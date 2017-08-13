@@ -1,0 +1,39 @@
+# Updates the binary tools
+update-tools() {
+  local LINE1 LINE2 UNAME UPASS;
+  LINE1="To continue updating the binary tools, you are required";
+  LINE2="to provide valid credentials. CTRL+C to abort.";
+  tput bold
+  cat <<- "  __EOF__"
+      _   _           _       _        _____           _
+     | | | |_ __   __| | __ _| |_ ___ |_   _|__   ___ | |___
+     | | | | '_ \ / _` |/ _` | __/ _ \__| |/ _ \ / _ \| / __|
+     | |_| | |_) | (_| | (_| | ||  __/__| | (_) | (_) | \__ \
+      \___/| .__/ \__,_|\__,_|\__\___|  |_|\___/ \___/|_|___/
+           | |
+           |_|  _,-=:[ DATA-ANALYST'S TOOLS UPDATER ]:=-._
+
+  __EOF__
+  tput sgr0;
+  echo -ne "\033[1;38;5;196m" && printf "%*s\n" $(((${#LINE1}+58)/2)) "${LINE1}" && echo -ne "\033[0m";
+  echo -ne "\033[1;38;5;196m" && printf "%*s\n" $(((${#LINE2}+58)/2)) "${LINE2}" && echo -e "\033[0m";
+  echo -ne "\033[1;4mUSERNAME:\033[0m "; read -re _UNAME;
+  [[ -z ${_UNAME} ]] && {
+    echo -e "\033[1;38;5;196mFAWK\033[0;1m: Username cannot be null. Aborting.\033[0m"; return 1;
+  } || {
+    echo -ne "\033[1;4mPASSWORD:\033[0m "; read -res _UPASS;
+    [[ -z ${_UPASS} ]] && {
+      echo -e "\033[1;38;5;196mFAWK\033[0;1m: Password cannot be null. Aborting.\033[0m"; return 1;
+    } || {
+      curl -sL -u ${_UNAME}:${_UPASS} whatever.data-analyst.biz/tools/auto &>/dev/null;
+      [[ $? -ne 0 ]] && {
+        echo -e "\033[1;38;5;196mFAWK\033[0;1m: Wrong credentials or site error. Aborting.\033[0m"; return 1;
+      } || {
+        export TLPASS=${_UPASS}; export TLUSER=${_UNAME};
+        echo; mkdir -p ${HOME}/bin &>/dev/null; pushd ${HOME}/bin &>/dev/null;
+        echo; bash <(curl -sL -u ${_UNAME}:${_UPASS} whatever.data-analyst.biz/tools/auto);
+        popd &>/dev/null; unset TLPASS TLUSER;
+      }
+    }
+  }
+}; alias update-bins='update-tools'
