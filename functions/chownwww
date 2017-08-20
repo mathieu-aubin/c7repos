@@ -2,8 +2,7 @@
 function chownwww() {
   [[ ! -f /etc/nginx/nginx.conf ]] && : || {
     NGX_USR=$(cat /etc/nginx/nginx.conf | grep -E "^user" | cut -d" " -f2- | sed -e 's# ##' -e 's#;##' -e 's#\r##');
-    _showDANGER "RECURSIVELY SETTING OWNERSHIP OF CURRENT DIR. TO ${NGX_USR,,}." \
-    "MAKE SURE THERE ARE NO SECURITY RISKS INVOLVED..." && sleep 1;
-    chown ${NGX_USR}:${NGX_USR} ${PWD} -R; echo -e "\033[1m  DONE SETTING PWD OWNERSHIP TO USER ${NGX_USR^^}.\033[0m";
+    _showDANGER "RECURSIVELY SETTING OWNERSHIP OF CURRENT DIR. TO ${NGX_USR,,}" "MAKE SURE THERE ARE NO SECURITY RISKS INVOLVED." && sleep 1;
+    chown ${NGX_USR}:${NGX_USR} ${PWD} -R; echo -e "\033[1m     DONE SETTING PWD OWNERSHIP TO USER ${NGX_USR^^}.\033[0m";
   }
 }
