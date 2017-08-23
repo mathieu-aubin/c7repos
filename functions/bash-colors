@@ -1,6 +1,10 @@
-# Outputs a shitpile of colors, useable on the terminal
+# Displays useful sets of terminal colors based on param input
+# either set by default aliases or user-defined... When looking
+# for a color theme for a project, bash-colors-random has prooven 
+# to effortlessly throw some decent color combination.
 bash-colors() {
   local SEQNUM=${1:-4}; [[ "$SEQNUM" -eq "0" ]] && SEQNUM=4;
+  tput rmam;
   seq -ws ' ' 0 ${SEQNUM} 256 | \xargs -n1 bash -c \
   'echo -ne "\e[1;48;5;${0}m \\\e[48;5;${0}m \e[0m"; \
   echo -ne "\e[1;7;38;5;${0}m\\\e[7;38;5;${0}m \e[0m"; \
@@ -12,9 +16,9 @@ bash-colors() {
   echo -ne " \e[9;38;5;${0}m\\\e[9;38;5;${0}m\e[0m"; \
   echo -ne " \e[4;9;38;5;${0}m\\\e[4;9;38;5;${0}m\e[0m"; \
   echo -e " \e[1;3;4;9;38;5;${0}m\\\e[1;3;4;9;38;5;${0}m\e[0m"';
+  tput smam;
 }
 alias bash-colors-full='bash-colors 1';
 alias bash-colors-minimal='bash-colors 8';
 alias bash-colors-less='bash-colors 2';
 alias bash-colors-random='bash-colors $(shuf -n1 -i 1-64)';
-
