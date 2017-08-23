@@ -139,4 +139,5 @@ ChangeLog
   * Adds a bin folder containing nano-static and update-grub
   * change some of the functions, giving credits where credit is due
   * Officially adds c7repos script to the repository (fina-fucking-ly)
+  * Changes the links to nano-static and update-grub to the raw GIT repo files
 

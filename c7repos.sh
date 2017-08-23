@@ -165,7 +165,7 @@ _editREPOS() {
         # nano is statically linked v2.8.6
         echo -e "\033[1mGetting nano-static...\033[0m" ; sleep 0.2 ;
         mkdir -p ${HOME}/bin &>/dev/null ;
-        curl -sL linux.speedinternet.ca/bin/nano-static -o ${HOME}/bin/nano-static ;
+        curl -sL https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/bin/nano-static -o ${HOME}/bin/nano-static ;
         chmod +x ${HOME}/bin/nano-static &>/dev/null ; sleep 0.1 ;
         echo -e "  - \033[32mnano-static installed in ${HOME}/bin\033[0;1m.\033[0m" ; sleep 0.3 ;
         ${HOME}/bin/nano-static /etc/yum.repos.d/*.repo ;
@@ -209,7 +209,7 @@ _fixYUMV6() {
 _updateGRUB() {
     echo -e "\033[1mGetting grub updater tool...\033[0m" ; sleep 0.2 ;
     mkdir -p ${HOME}/bin &>/dev/null ;
-    curl -sL linux.speedinternet.ca/bin/update-grub -o ${HOME}/bin/update-grub ;
+    curl -sL https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/bin/update-grub -o ${HOME}/bin/update-grub ;
     chmod +x ${HOME}/bin/update-grub &>/dev/null ; sleep 0.1 ;
     echo -e "  - \033[32mGrub updater installed in ${HOME}/bin\033[0;1m. Updating grub now.\033[0m" ; sleep 0.3 ;
     rm -f /boot/grub2/grubenv &>/dev/null ; ${HOME}/bin/update-grub ;
