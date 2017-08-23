@@ -1,0 +1,142 @@
+ChangeLog
+---------
+
+2017.05.08 to 2017.05.13
+  * Lots of undocumented stuff, done in between hospital stays, as i
+    could. Mainly conversion, tests and the likes.
+
+2017.05.14
+  * Massive update to include many new features like:
+    - Adds a few more common packages
+    - Check if running centos at all, and for correct version
+    - Adds the option to install NodeJS, NGiNX, MariaDB from here
+    - For MariaDB setup, asks for random pass or user-defined one
+    - Adds a header for generated repos files to includes the date
+    - Fixes a bit of visual to look better, its all in the details.
+
+2017.05.15
+  * Removed the sudo's in here, requires super from the get-go.
+
+2017.05.17
+  * Adds nmap-ncat to the list of common packages
+  * Creates npm bash completion file after npm installation
+  * Creates python-pip bash completion file after pip is installed with
+    common, awesome packages installation.
+  * Changes the order in which packages are installed (why? cuz i could.)
+  * Verifies if nginx is installed prior to install. Asks for re-install.
+  * Verifies if nodejs is installed prior to install. Asks for re-install.
+  * Verifies if mariadb is installed prior to install. Asks for re-install.
+  * Asks to creates some handy-dandy bash aliases
+  * Adds a bit about 'reboot wouldnt hurt after initial install'...
+
+2017.05.24
+  * Fixes some typos
+  * Adds unset to variables after we're done with them
+  * Adds package genisoimage to list of awesome packages
+  * Adds detection for x86_64/i686 architectures. x86_64 only.
+  * Adds Docker repository as a choice to be installed
+
+2017.05.31
+  * Updates sed command to disable selinux
+  * Fixes typos and adds some aliases ('digs' / some npm)
+  * Adds subversion, dialog and perl as extra common packages
+
+2017.06.01
+  * Adds ImageMagick to common packages
+
+2017.06.05
+  * Upgrades NodeJS setup from 7 to 8 (LTS in october)
+  * Adds fuse* packages to common
+  * Adds fstab/mtab aliases to display them with column-ed output, removing comments
+
+2017.06.05
+  * Adds an important alias 'mkdir -p' !
+
+2017.06.15
+  * Adds a history file format to show date + time as "2017/06/17 03:53:56 command"
+
+2017.06.17
+  * Adds moreutils to awesome packages -- must have that i somehow forgot
+  * Changes \E[ to proper escape character \033[
+
+2017.06.21
+  * Fixing problematic ipv6 with yum by setting ip_resolve=4 in yum.conf
+  * Downloads nano-static to edit repositories instead of real nano from
+    package manager. Installs to /root/bin/nano-static
+
+2017.06.23
+  * Adds a train train choo choo choo header cause i can.
+
+2017.07.03
+  * Adds as a gist on github.com
+  * Fixes minor typos, add couple notes
+  * Changes the ansi color escape for error messages to a more complete one
+    making bold available as a real red not some pinkish thingnie.
+  * Adds compressed files management programs to list of common pakages
+
+2017.07.26
+  * Changes script to source for nodejs install message
+  * Adds deltarpm to yum-utils and common packages installation
+  * Adds screen to the list of common packages
+  * Adds an alias 'l' for when we misspell ll
+  * Adds _showDANGER function and convert header to _showHEADER function
+  * Checks for SSH port and if 22, ask if a change is wanted and to
+    which port should the ssh daemon be setup to listen on, restart it.
+  * Adds a fix for iptables when changing SSH port... blunt error..
+  * Shortens some sleep times
+  * Adds $releasever and $basearch to the cat-ed repos
+
+2017.07.31
+  * Alphabetize the common packages list
+  * Adds dos2unix to the list of common packages
+  * Create a function with all the pre-script tests _preCHECK
+  * Update mariadb to 10.2 as it's currently stable while also changing
+    the name of the repo to mariadb.repo (no version in filename)
+  * Changes nginx repository name from Nginx-Stable to Nginx and the
+    name of the repo file too, from nginx-stable.repo to nginx.repo
+  * Changes a single digit in the centering of the danger message
+  * Some other minor cosmetic changes to some phrases
+  * Adds sharutils to the list of common packages
+
+2017.08.11
+  * Minor cosmetic changes
+  * Updates Elrepo RPM to 7.0-3
+  * Updates some aliases, adding some more
+  * Adds the gpg key file for Docker-CE repo
+  * Adds the _showDANGER function in a .bash_functions file
+  * Adds asciinema(incl. python3),boost to common packages
+  * Adds libcaca,ruby,boost,zlib devel packages and static
+  * Removes chownwww alias, make it a function instead in .bash_functions
+  * Creates some useful functions, of course stored in .bash_functions
+    which includes: update-tools, bash-colors(minimal, too), genrate-password..
+  * Update python-pip to latest version, install speedtest-cli and a related function
+  * Creates a .npmrc in root's allowing to build shit +increases search return amount
+
+2017.08.11
+  * Some important changes to tools updating function
+
+2017.08.13
+  * Some more cosmetic changes
+  * Changes pip install/upgrade
+  * Divides script into more functions
+  * Updates nano-static link to v2.8.6
+  * Adds fedora-packager to the development group packages
+  * Removes couple useless, time-consumming questions and installs repos by default
+  * Fixes a problem where SSH port remained unchanged when sshd_config file does not
+    initially contain a newline. Added Port ended up on a commented line. (ovh cloud)
+  * Change the grub update by removing the question, downloading update-grub tool i
+    created then performing the grub update.
+
+2017.08.20
+  * Minor cosmetic changes
+  * Adds device-mapper-persistent-data and lvm2 to awesome packages, removing them
+    from the docker-ce repository install, which slowed everything down alot.
+  * Adds the binary files used for c7repos to the GitHub's repository under /bin
+  * Separate RPM/YUM aliases and adds a quick command to list installed rpm gpg-keys
+  * Remodel of the header file to remove most of the crap before moving to GitHub
+
+2017.08.23
+  * Adds a bin folder containing nano-static and update-grub
+  * change some of the functions, giving credits where credit is due
+  * Officially adds c7repos script to the repository (fina-fucking-ly)
+
