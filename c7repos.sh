@@ -71,12 +71,12 @@ BRAGURL='https://github.com/mathieu-aubin/c7repos' ;
 _showHEADER() {
 tput rmam; tput bold
 cat <<- "__EOF__"
-     ____
-    |__  |
-  ╔═╗ / /
-  ║  /_/╦═╗╔═╗╔═╗╔═╗╔═╗
-  ╚═╝   ╠╦╝║╣ ╠═╝║ ║╚═╗
-        ╩╚═╚═╝╩  ╚═╝╚═╝.sh
+           ____
+          |__  |
+        ╔═╗ / /
+        ║  /_/╦═╗╔═╗╔═╗╔═╗╔═╗
+        ╚═╝   ╠╦╝║╣ ╠═╝║ ║╚═╗
+              ╩╚═╚═╝╩  ╚═╝╚═╝.sh
 
 __EOF__
 tput sgr0 ;
