@@ -163,3 +163,9 @@
     section, renaming the function from createALIASES to createDOTFILES as it's somewhat
     more accurate. Also worth mentioning, moved the aliases from the script to the repo.
 
+2017.08.26
+  * Adds telnet to package list
+  * Push for testing after major modifications
+  * c7repos.sh RAW file is also available via https://bit.ly/c7repos 'mirror'
+  * Fixes bad functions, removes after modifications useless informations and aesthetic
+
