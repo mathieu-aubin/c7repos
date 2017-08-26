@@ -1,43 +1,77 @@
 #!/bin/bash
 #
-# c7repos - Installs common/base CentOS7 repos and programs (x86_64 only)
+# c7repos.sh - Copyright © 2017 Mathieu Aubin <mathieu@zeroserieux.com>
 #
-# Copyright 2017 Mathieu Aubin <mathieu@zeroserieux.com>
+# Installs common/base CentOS 7 repositories and programs (x86_64 only)
 #
+# WHAT
+# ¯¯¯¯
 # Attempts to installs/create the following repositories configs, and
-# some suggested (at user's will) extra packages for a clean, practical,
-# usable base server system:
+# some suggested (at user's will) extra packages for a clean, practical
+# and usable base server system
 #
-#   EPEL * REMi * NGiNX * NODEJS * EL-REPO * MARiADB * DOCKER CE
+# EPEL ** REMi ** NGiNX ** NODEJS ** EL-REPO ** MARiADB ** DOCKER (CE)
 #
 # Some repos have options that can be enabled in the repo file itself.
 # REMi, as an example, has all PHP versions easily enablable from the
-# repo file. 'kernel-ml', EL-REPO's latest kernel packages is also just
-# a digit away from being enabled. Yum can also be run with the extra
+# repo files. EL-REPO's latest kernel packages, kernel-ml, is also just
+# a digit away from being enabled. YUM can also be run with the extra
 # switche --enablerepo=repo.name, essentially doing the same, as a one-
-# shot type deal. Shit more Yum stuff to be read to whom dares using the
-# awesome 'man' command. Ontario be likes 'Yours to discover.'
+# shot type deal. Alot more YUM stuff to be read to whom dares using the
+# awesome 'man' command or by visiting
 #
-# History - first version drafted 2017.05.08
+# YUM's official webpage at http://yum.baseurl.org
 #
-# Originally created for C6 by Peggy <peggy@zeroserieux.com> following a
-# requested c6 repo config script. It grew from there on, to something
-# a little more actual and practical. (peggy is a fictitious character)
+# WHERE
+# ¯¯¯¯¯
+# c7repos.sh is available at https://github.com/mathieu-aubin/c7repos
 #
-# ChangeLog - View on official GitHub repository at
-# https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/changelog
+# HOWTO
+# ¯¯¯¯¯
+# From a FRESHLY INSTALLED CentOS 7 server, c7repos.sh can be called as
+# superuser (root) by using any of the following methods:
+#
+#  Method #1
+#  ¯¯¯¯¯¯¯¯¯
+#  - Executing straight from GitHub or a known mirror. Example:
+#
+#  > bash <(curl -sSL raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh)
+#
+#  Method #2
+#  ¯¯¯¯¯¯¯¯¯
+#  - Downloading/saving it to a location on the machine.
+#  - Executing a simple bash call pointing to the file. Example:
+#
+#  > wget raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh
+#  > bash c7repos.sh
+#
+# HiSTORY
+# ¯¯¯¯¯¯¯
+# Originally scripted for CentOS 6 by Peggy <peggy@zeroserieux.com> following
+# a request for a simple os configuration script. From there on, it grew to
+# something a little more actual and practical. (Peggy is a fictitious character)
+#
+# CHANGELOG
+# ¯¯¯¯¯¯¯¯¯
+# Changelog available on GitHub at
+# https://github.com/mathieu-aubin/c7repos
+#
+# CONTRiBUTiNG
+# ¯¯¯¯¯¯¯¯¯¯¯¯
+# By all means and please, do not hesitate to send comments, ideas and/or
+# pull requests on GitHub.
 #
 
 # Function that displays our header...
 _showHEADER() {
 tput rmam; tput bold
 cat <<- "__EOF__"
-                     ___     ____            ___             _ __
-     o O O          / __|   |__  |   ___    | _ \    ___    | '_ \   ___     ___
-   _o   _     _    | (__      / /   |___|   |   /   / -_)   | .__/  / _ \   (_-<
-   ||__[O]  _(_)_   \___|   _/_/_   _____   |_|_\   \___|   |_|__   \___/   /__/_   _____
-  {======|_|"""""|_|"""""|_|"""""|_|     |_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|
- ./o--000'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-''
+     ____
+    |__  |
+  ╔═╗ / /
+  ║  /_/╦═╗╔═╗╔═╗╔═╗╔═╗
+  ╚═╝   ╠╦╝║╣ ╠═╝║ ║╚═╗
+        ╩╚═╚═╝╩  ╚═╝╚═╝.sh
 
 __EOF__
 tput sgr0 ;
@@ -207,14 +241,15 @@ _fixYUMV6() {
 
 # Function to update grub2 bootloader
 _updateGRUB() {
-    echo -e "\033[1mGetting grub updater tool...\033[0m" ; sleep 0.2 ;
+    echo -e "\033[1mGetting grub-updater tool...\033[0m" ; sleep 0.2 ;
     mkdir -p ${HOME}/bin &>/dev/null ;
     curl -sL https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/bin/update-grub -o ${HOME}/bin/update-grub ;
     chmod +x ${HOME}/bin/update-grub &>/dev/null ; sleep 0.1 ;
-    echo -e "  - \033[32mGrub updater installed in ${HOME}/bin\033[0;1m. Updating grub now.\033[0m" ; sleep 0.3 ;
+    echo -e "  - \033[32mGrub-updater tool installed in ${HOME}/bin\033[0;1m. Updating grub2 now.\033[0m" ; sleep 0.3 ;
     rm -f /boot/grub2/grubenv &>/dev/null ; ${HOME}/bin/update-grub ;
 }
 
+# Function to install development group packages
 _installDEVEL() {
     echo -en "\033[1mInstall development group packages? [\033[0;32mY\033[0;1m/n]\033[0m " ; read -er _DEVPACK ;
     case "${_DEVPACK}" in
@@ -231,6 +266,7 @@ _installDEVEL() {
     unset _DEVPACK ;
 }
 
+# Function to install/enable MariaDB
 _installMARIADB() {
     rpm -q MariaDB-server &>/dev/null ;
     if [[ $? -ne 0 ]]; then
@@ -283,6 +319,7 @@ _installMARIADB() {
     unset _MARIADB _MARIADB_INST _SQLPASS ;
 }
 
+# Function to install/enable NGiNX
 _installNGINX() {
     rpm -q nginx &>/dev/null ;
     if [[ $? -ne 0 ]]; then
@@ -307,6 +344,7 @@ _installNGINX() {
     unset _NGXPID _GINX ;
 }
 
+# Function to install NodeJS/NPM
 _installNODE() {
     rpm -q nodejs &>/dev/null ;
     if [[ $? -ne 0 ]]; then
@@ -324,20 +362,23 @@ _installNODE() {
         [[ ${_NODE_INST} -eq 0 ]] && yum -y install nodejs &>/dev/null || yum -y reinstall nodejs &>/dev/null ;
         echo -e "  - \033[32mNodeJS installed\033[0;1m.\033[0m" ; sleep 0.3 ;
         echo -e "\033[1mUpgrading NPM to latest/current version...\033[0m" ; sleep 0.2 ;
+        # Upgrades npm to latest version
         npm install npm -g --upgrade &>/dev/null ;
         echo -e "  - \033[32mNPM upgraded\033[0;1m.\033[0m" ; sleep 0.3 ;
         echo -e "\033[1mCreating NPM completion file...\033[0m" ; sleep 0.2 ;
-        mkdir -p /etc/bash_completion.d &>/dev/null ; npm completion >/etc/bash_completion.d/npm ;
-        echo -e "unsafe-perm\nsearchlimit=50\nuser-agent='NPM Linux x86_64'" >> ${HOME}/.npmrc ;
+        # Outputs npm completion file
+        mkdir -p /etc/bash_completion.d &>/dev/null ; npm completion >/etc/bash_completion.d/npm 2>/dev/null;
+        echo -e "unsafe-perm\nsearchlimit=80\nuser-agent='NPM Linux x86_64'" >> ${HOME}/.npmrc ;
         echo -e "  - \033[32mNPM completion file created\033[0;1m.\033[0m" ; sleep 0.3 ;
         ;;
     esac
     unset _NODE_INST _NODENPM ;
 }
 
+# Function to install the common packages/applications
 _installCOMMON() {
     # Set of commonly used packages and utilities to be installed
-    _COMMON_PACKAGES='asciinema bash-completion bash-completion-extras boost bind-utils curlftpfs deltarpm device-mapper-persistent-data dialog dos2unix fex fuseiso genisoimage git htop ImageMagick ipset iptables iptables-services jwhois lvm2 mc mlocate moreutils nano net-tools nmap nmap-ncat parallel perl pv python-pip screen sharutils sshfs subversion unar unzip wget whois xauth zip' ;
+    _COMMON_PACKAGES='asciinema bash-completion bash-completion-extras boost bind-utils curlftpfs deltarpm device-mapper-persistent-data dialog dos2unix fex fuseiso genisoimage git htop ImageMagick ipset iptables ip6tables iptables-services jwhois lvm2 mc mlocate moreutils nano net-tools nmap nmap-ncat parallel perl pv python-pip screen sharutils sshfs subversion unar unzip wget whois xauth zip' ;
 
     echo -en "\033[1mInstall commonly used, awesome packages (ex: htop, mc, pv)? [\033[0;32mY\033[0;1m/n]\033[0m " ; read -er _COMMON ;
     case "${_COMMON}" in
@@ -350,9 +391,13 @@ _installCOMMON() {
         export EDITOR=$(which nano) ;
         echo 'export EDITOR=$(which nano);' >> $HOME/.bashrc ;
         systemctl enable iptables &>/dev/null ;
+        systemctl enable ip6tables &>/dev/null ;
         rpm -q python-pip &>/dev/null ;
+        # Save pip completion file if previous check is successful
         [[ $? -ne 0 ]] && echo -e '# pip bash completion start\n_pip_completion() {\nCOMPREPLY=($(COMP_WORDS="${COMP_WORDS[*]}" COMP_CWORD=$COMP_CWORD PIP_AUTO_COMPLETE=1 $1))\n}\ncomplete -o default -F _pip_completion pip pip2 pip2.7\n# pip bash completion end' >/usr/share/bash-completion/completions/pip && \
+        # Upgrades pip to latest version
         pip install pip --upgrade &>/dev/null ;
+        # Install speedtest-cli (https://github.com/sivel/speedtest-cli)
         pip install speedtest-cli &>/dev/null ;
         echo "# Source the bash completion files needed for bash completion to work" >> ${HOME}/.bashrc ;
         echo "[ -f /etc/bash_completion ] && . /etc/bash_completion" >> ${HOME}/.bashrc ;
@@ -363,115 +408,122 @@ _installCOMMON() {
     unset _COMMON_PACKAGES _COMMON ;
 }
 
-_installALIASES() {
-    echo -en "\033[1mInstall great, awesome, indispensable, cannot-live-by command-line ALIASES? [\033[0;32mY\033[0;1m/n]\033[0m " ; read -er _ALIASES ;
-    case "${_ALIASES}" in
-      [nN][oO]|[no])
-        sleep 0.3 ;
-        ;;
-      *)
-        echo -e "\033[1mCreating alias file at ${HOME}/.bash_aliases...\033[0m" ; sleep 0.2 ;
+_createALIASES() {
+    #echo -en "\033[1mInstall great, awesome, indispensable, cannot-live-by command-line ALIASES? [\033[0;32mY\033[0;1m/n]\033[0m " ; read -er _ALIASES ;
+    #case "${_ALIASES}" in
+    #  [nN][oO]|[no])
+    #    sleep 0.3 ;
+    #    ;;
+    #  *)
+
+        # Appending some stuff to .bashrc
+        echo -e "\033[1mAppending to ${HOME}/.bashrc...\033[0m" ; sleep 0.2 ;
         echo -e "\nshopt -s checkwinsize\nshopt -s histappend\nexport HISTCONTROL=ignoreboth\nexport HISTSIZE=20000\nexport HISTFILESIZE=100000\nexport HISTTIMEFORMAT=\"%Y/%m/%d %T \"" >> ${HOME}/.bashrc ;
-        echo -e '\n# Source all .bash_** files not excluded from the egrep command' >> ${HOME}/.bashrc ;
-        echo 'for DFs in $(ls -1p $HOME/.bash_* | \egrep -v "history|logout|profile|back|/$"); do source $DFs; done' >> ${HOME}/.bashrc ;
+        echo -e "\n# Source ${HOME}/.bash_* files not excluded by the grep command" >> ${HOME}/.bashrc ;
+        echo 'for DFs in $(ls -1p $HOME/.bash_* | grep -E -v "history|logout|profile|back|/$"); do source $DFs; done' >> ${HOME}/.bashrc ;
 
-        # Creates the function file based on repository files.
+        # Creates the functions file
+        echo -e "\033[1mCreating functions file at ${HOME}/.bash_functions...\033[0m" ; sleep 0.2 ;
         echo -e "# .bash_functions - Functions file added by an awesome script on $(date +"%F %R:%S")\n#" >> ${HOME}/.bash_functions ;
-        for _FSRC in {"bash-colors","chownwww","echoerr","_showDANGER","speedtest","update-tools","view-source"}; do
-          curl -sLk https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/functions/${_FSRC} >> ${HOME}/.bash_functions ;
-          echo '' >> ${HOME}/.bash_functions ;
-        done
 
+            for _FSRC in {"_showDANGER","bash-colors","chownwww","echoerr","speedtest","update-tools","view-source"}; do
+                curl -sLk https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/functions/${_FSRC} >> ${HOME}/.bash_functions ;
+                echo '' >> ${HOME}/.bash_functions ;
+            done
+
+        # Creates the aliases file
+        echo -e "\033[1mCreating alias file at ${HOME}/.bash_aliases...\033[0m" ; sleep 0.2 ;
     echo -e "# .bash_aliases - Aliases file added by an awesome script on $(date +"%F %R:%S")\n#" >> ${HOME}/.bash_aliases ;
-	cat <<- "__EOF__" >> ${HOME}/.bash_aliases ;
-	alias du='du -kh'
-	alias df='df -kTh'
-	alias nano='nano -w'
-	alias wget='wget -4'
-	alias locate='locate -i'
-	alias columnt='column -t' # Because i always write it wrong
-	alias rm-ds_store='find ./ -type f -iname ".DS_Store" -exec rm {} \;'
-	alias curlc='curl -c /tmp/cookies -b /tmp/cookies -sSLI'; alias curl-cookie='curlc'
-	alias quick-stats='bash <(curl -s linux.speedinternet.ca/qstats)'; alias qstats='quick-stats'
+    cat <<- "__EOF__" >> ${HOME}/.bash_aliases ;
+    alias du='du -kh'
+    alias df='df -kTh'
+    alias nano='nano -w'
+    alias wget='wget -4'
+    alias locate='locate -i'
+    alias columnt='column -t' # Because i always write it wrong
+    alias rm-ds_store='find ./ -type f -iname ".DS_Store" -exec rm {} \;'
+    alias curlc='curl -c /tmp/cookies -b /tmp/cookies -sSLI'; alias curl-cookie='curlc'
+    alias quick-stats='bash <(curl -s linux.speedinternet.ca/qstats)'; alias qstats='quick-stats'
 
-	# Rpm/Yum aliases
-	alias rpm-list-keys='rpm -q gpg-pubkey --qf "%{name}-%{version}-%{release} --> %{summary}\n"'
-	alias update='yum clean all && yum makecache && yum update'
+    # Rpm/Yum aliases
+    alias rpm-list-keys='rpm -q gpg-pubkey --qf "%{name}-%{version}-%{release} --> %{summary}\n"'
+    alias update='yum clean all && yum makecache && yum update'
 
-	# Some nice ip aliases
-	alias myip='curl -sL v4.speedinternet.ca'
-	alias myip6='curl -sL v6.speedinternet.ca'
-	alias myips='myip; myip6' # Outputs both, when/if available
+    # Some nice ip aliases
+    alias myip='curl -sL v4.speedinternet.ca'
+    alias myip6='curl -sL v6.speedinternet.ca'
+    alias myips='myip; myip6' # Outputs both, when/if available
 
-	# Some quick navigation aliases
-	alias cd..="cd ..; ll"
-	alias ..="cd ..; ll"
-	alias ...="cd ../../; ll"
-	alias ....="cd ../../../; ll"
-	alias back="cd -; ll"
-	alias home="cd $HOME; ll"
-	alias l='ll'
-	alias lld='ll | egrep "^d"'
-	alias llf='ll | egrep -v "^d"'
-	alias ll='ls -lah --color --group-directories-first'
-	alias lln='ls -lah --group-directories-first --color=never'
+    # Some quick navigation aliases
+    alias cd..="cd ..; ll"
+    alias ..="cd ..; ll"
+    alias ...="cd ../../; ll"
+    alias ....="cd ../../../; ll"
+    alias back="cd -; ll"
+    alias home="cd $HOME; ll"
+    alias l='ll'
+    alias lld='ll | egrep "^d"'
+    alias llf='ll | egrep -v "^d"'
+    alias ll='ls -lah --color --group-directories-first'
+    alias lln='ls -lah --group-directories-first --color=never'
 
-	# Overrides the default cp/rm/mkdir aliases
-	alias cp='cp -i'; alias rm='rm -I'; alias mkdir='mkdir -p'
+    # Overrides the default cp/rm/mkdir aliases
+    alias cp='cp -i'; alias rm='rm -I'; alias mkdir='mkdir -p'
 
-	# Dot files fun (add/source to/fom dot files, quickly)
-	alias srcalias='[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases'
-	alias addalias='nano ~/.bash_aliases; srcalias; srcalias'
-	alias srcexports='[[ -f ~/.bash_exports ]] && source ~/.bash_exports'
-	alias addexport='nano ~/.bash_exports && srcexports'
-	alias srcfunctions='[[ -f ~/.bash_functions ]] && source ~/.bash_functions'
-	alias addfunction='nano ~/.bash_functions && srcfunctions'
-	alias srccolors='[[ -f ~/.bash_colors ]] && source ~/.bash_colors'
-	alias addcolors='nano ~/.bash_colors && srccolors'
-	alias srcdot='for DFs in $(ls -1p $HOME/.bash_* | egrep -v "history|logout|profile|back|/$"); do source $DFs; done'
+    # Dot files fun (add/source to/fom dot files, quickly)
+    alias srcalias='[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases'
+    alias addalias='nano ~/.bash_aliases; srcalias; srcalias'
+    alias srcexports='[[ -f ~/.bash_exports ]] && source ~/.bash_exports'
+    alias addexport='nano ~/.bash_exports && srcexports'
+    alias srcfunctions='[[ -f ~/.bash_functions ]] && source ~/.bash_functions'
+    alias addfunction='nano ~/.bash_functions && srcfunctions'
+    alias srccolors='[[ -f ~/.bash_colors ]] && source ~/.bash_colors'
+    alias addcolors='nano ~/.bash_colors && srccolors'
+    alias srcdot='for DFs in $(ls -1p $HOME/.bash_* | egrep -v "history|logout|profile|back|/$"); do source $DFs; done'
 
-	# Some network check commands
-	alias digs="dig +short" # Shorten dig's output with +short
-	alias netstat='netstat -peanut | sort && echo -e "\nTry command \033[32mnetstat-extra\033[0m for a detailed netstat check.\nTry command \033[32mnetstat-plus\033[0m for alot more to netstat..."'
-	alias netstat-extra='echo -e "\033[31mLSOF OUTPUT (lsof -i):\033[0m" && sleep 0.2; lsof -i && echo -e "\033[31mLSOF OUTPUT DONE.\033[0m\n"; echo -e "\n\033[31mNETSTAT OUTPUT (netstat -peanut):\033[0m" && sleep 0.2; \netstat -peanut | sort && echo -e "\033[31mNETSTAT OUTPUT DONE.\033[0m\n"; echo -e "Try command \033[0;32mnetstat-plus\033[0m for a more torough network check\033[0m"'
-	alias netstat-plus='echo -e "\033[31mLSOF OUTPUT (lsof -i):\033[0m" && sleep 0.2; \lsof -i && echo -e "\033[31mLSOF OUTPUT DONE.\033[0m\n"; echo -e "\n\033[31mNETSTAT OUTPUT (netstat -peanut):\033[0m" && sleep 0.2; \netstat -peanut | sort && echo -e "\033[31mNETSTAT OUTPUT DONE.\033[0m\n"; echo -e "\n\033[31mNMAP LOCAL OUTPUT (nmap -sT -O 127.0.0.1):\033[0m" && sleep 0.2; \nmap -sT -O 127.0.0.1; echo -e "\033[31mNMAP LOCAL OUTPUT DONE.\033[0m"; echo -e "\n\033[31mNMAP OUTPUT (nmap -sT -O $(curl -s v4.ident.me)):\033[0m" && sleep 0.2; \nmap -sT -O $(curl -s v4.ident.me); echo -e "\033[31mNMAP OUTPUT DONE.\033[0m"'
-	alias watch-netstat='watch -cn1 '\''\netstat -peanut | egrep -v "WAIT|AWK|SYN|udp"'\'''
+    # Some network commands
+    alias digs="dig +short" # Shorten dig's output with +short
+    alias netstat='netstat -peanut | sort && echo -e "\nTry command \033[32mnetstat-extra\033[0m for a detailed netstat check.\nTry command \033[32mnetstat-plus\033[0m for alot more to netstat..."'
+    alias netstat-extra='echo -e "\033[31mLSOF OUTPUT (lsof -i):\033[0m" && sleep 0.2; lsof -i && echo -e "\033[31mLSOF OUTPUT DONE.\033[0m\n"; echo -e "\n\033[31mNETSTAT OUTPUT (netstat -peanut):\033[0m" && sleep 0.2; \netstat -peanut | sort && echo -e "\033[31mNETSTAT OUTPUT DONE.\033[0m\n"; echo -e "Try command \033[0;32mnetstat-plus\033[0m for a more torough network check\033[0m"'
+    alias netstat-plus='echo -e "\033[31mLSOF OUTPUT (lsof -i):\033[0m" && sleep 0.2; \lsof -i && echo -e "\033[31mLSOF OUTPUT DONE.\033[0m\n"; echo -e "\n\033[31mNETSTAT OUTPUT (netstat -peanut):\033[0m" && sleep 0.2; \netstat -peanut | sort && echo -e "\033[31mNETSTAT OUTPUT DONE.\033[0m\n"; echo -e "\n\033[31mNMAP LOCAL OUTPUT (nmap -sT -O 127.0.0.1):\033[0m" && sleep 0.2; \nmap -sT -O 127.0.0.1; echo -e "\033[31mNMAP LOCAL OUTPUT DONE.\033[0m"; echo -e "\n\033[31mNMAP OUTPUT (nmap -sT -O $(curl -s v4.ident.me)):\033[0m" && sleep 0.2; \nmap -sT -O $(curl -s v4.ident.me); echo -e "\033[31mNMAP OUTPUT DONE.\033[0m"'
+    alias watch-netstat='watch -cn1 '\''\netstat -peanut | egrep -v "WAIT|AWK|SYN|udp"'\'''
 
-	alias free-ram='sync; sleep 1; sync; sync && echo 3 >/proc/sys/vm/drop_caches'
-	alias chownroot='chown root:root $PWD -R && echo -e "Files/folders permissions set to root, recursively."'
-	alias edit-iptables='nano /etc/sysconfig/iptables'
-	alias edit-ip6tables='nano /etc/sysconfig/ip6tables'
+    alias free-ram='sync; sleep 1; sync; sync && echo 3 >/proc/sys/vm/drop_caches'
+    alias chownroot='chown root:root $PWD -R && echo -e "Files/folders permissions set to root, recursively."'
+    alias edit-iptables='nano /etc/sysconfig/iptables'
+    alias edit-ip6tables='nano /etc/sysconfig/ip6tables'
 
-	# NodeJS/NPM
-	alias npm-update='update-npm'; alias update-npm='npm i npm -g --upgrade'
+    # NodeJS/NPM
+    alias npm-update='update-npm'; alias update-npm='npm i npm -g --upgrade'
 
-	# Outputs the command with a warning as it can FUCK A SYSTEM if ran carelessly
-	alias set-permissions='echo -e "\033[1;48;5;196m  WATCH OUT WITH THIS COMMAND -- YOU CAN FUCK UP YOUR SYSTEM BAD IF YOU RUN THIS CARELESSLY  \033[0m"; echo "# Command: find ./ -type f -exec chmod 664 {} + -o -type d -exec chmod 775 {} +"'
+    # Outputs the command with a warning as it can FUCK A SYSTEM if ran carelessly
+    alias set-permissions='echo -e "\033[1;48;5;196m  WATCH OUT WITH THIS COMMAND -- YOU CAN FUCK UP YOUR SYSTEM BAD IF YOU RUN THIS CARELESSLY  \033[0m"; echo "# Command: find ./ -type f -exec chmod 664 {} + -o -type d -exec chmod 775 {} +"'
 
-	# fstab and mtab display aliases, removing comments
-	alias fstab='cat /etc/fstab | grep -v "^#" | column -t'
-	alias mtab='cat /etc/mtab | grep -v "^#" | column -t'
-	__EOF__
+    # fstab and mtab display aliases, removing comments
+    alias fstab='cat /etc/fstab | grep -v "^#" | column -t'
+    alias mtab='cat /etc/mtab | grep -v "^#" | column -t'
+    __EOF__
 
         if [ ${_NGX_INST} == 1 ]; then
             echo -e "\n# NGiNX (awesome) custom aliases/commands" >> ${HOME}/.bash_aliases ;
-	cat <<- "__EOF__" >> ${HOME}/.bash_aliases ;
-	alias ginx='cd /etc/nginx; ll'
-	alias ginxT='nginx -T'
-	alias ginxv='nginx -v'
-	alias ginxt='nginx -t'
-	alias ginxr='nginx -s reload'
-	alias ginxs='echo -e "Getting \033[32mNGiNX\033[0m metrics from access logs... this may take a bit.\n"; cat /var/log/nginx/access.log | cut -f 9 -d" " | sort | uniq -c | egrep -v "(-|\"|[a-zA-Z]|166$| 0$)" && echo -e "\nDONE."'
-	alias ginxlog='tail -n500 /var/log/nginx/access.log | less'
-	alias ginxerr='tail -n500 /var/log/nginx/error.log | less'
-	__EOF__
+    cat <<- "__EOF__" >> ${HOME}/.bash_aliases ;
+    alias ginx='cd /etc/nginx; ll'
+    alias ginxT='nginx -T'
+    alias ginxv='nginx -v'
+    alias ginxt='nginx -t'
+    alias ginxr='nginx -s reload'
+    alias ginxs='echo -e "Getting \033[32mNGiNX\033[0m metrics from access logs... this may take a bit.\n"; cat /var/log/nginx/access.log | cut -f 9 -d" " | sort | uniq -c | egrep -v "(-|\"|[a-zA-Z]|166$| 0$)" && echo -e "\nDONE."'
+    alias ginxlog='tail -n500 /var/log/nginx/access.log | less'
+    alias ginxerr='tail -n500 /var/log/nginx/error.log | less'
+    __EOF__
         fi
         echo -e "  - \033[32mAwesome aliases/functions files created\033[0m\033[1m. They will be sourced automatically upon next login.\033[0m." ; sleep 0.3 ;
-        ;;
-    esac
-    unset _NGX_INST _ALIASES ;
+    #    ;;
+    #esac
+    #unset _NGX_INST _ALIASES ;
 }
 
+# Function to check for current running ssh port - Might have some issues with proper detection
 _checkSSH() {
     # Checking the ssh server port, relying on which port user currently is connected on
     if [[ ${SSH_CLIENT##* } -eq 22 ]]; then
@@ -540,8 +592,7 @@ _installNGINX ;
 _installNODE ;
 # Call to install common packages
 _installCOMMON ;
-# Call to install aliases
-_installALIASES ;
+# Call to create aliase and function
+_createALIASES ;
 
 echo -e "\n\033[1mDone with this CentOS 7 auto install script, consider checking your firewall, SSH config and the likes. A reboot wouldn't hurt, after initial install...\nHave a nice day.\033[0m" ;
-

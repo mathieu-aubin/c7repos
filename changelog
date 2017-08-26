@@ -1,5 +1,12 @@
-ChangeLog
----------
+
+  ▄▄·  ▄ .▄ ▄▄▄·  ▐ ▄  ▄▄ • ▄▄▄ .▄▄▌         ▄▄ • 
+ ▐█ ▌▪██▪▐█▐█ ▀█ •█▌▐█▐█ ▀ ▪▀▄.▀·██•  ▪     ▐█ ▀ ▪
+ ██ ▄▄██▀▐█▄█▀▀█ ▐█▐▐▌▄█ ▀█▄▐▀▀▪▄██▪   ▄█▀▄ ▄█ ▀█▄
+ ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
+ ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀ 
+
+2017.05.08
+  * First version drafted.
 
 2017.05.08 to 2017.05.13
   * Lots of undocumented stuff, done in between hospital stays, as i
@@ -136,8 +143,23 @@ ChangeLog
   * Remodel of the header file to remove most of the crap before moving to GitHub
 
 2017.08.23
+  * Officially adds c7repos script to the repository
   * Adds a bin folder containing nano-static and update-grub
-  * change some of the functions, giving credits where credit is due
-  * Officially adds c7repos script to the repository (fina-fucking-ly)
+  * Change some of the functions, giving credits where credit is due
   * Changes the links to nano-static and update-grub to the raw GIT repo files
+
+2017.08.25
+  * Updates .npmrc searchlimit value from 50 to 80
+  * Cosmetic changes to changelog, including new logo
+  * Adds REPOURL as a variable to be used for the url
+  * Changes qstats alias to go to the github gist site
+  * Changes the c7repos ascii logo to something smaller
+  * Some more comments added to a couple different functions
+  * Changes the file header completely adding the what, where and howto's
+  * Adds openssl-devel to the development packages, not remembering if it gets
+    installed by default or not. Muhh.
+  * Adds ip6tables to the list of awesome packages and a systemctl call to enable it
+  * Removes the questions for the aliases file creation and subdivise a bit more that
+    section, renaming the function from createALIASES to createDOTFILES as it's somewhat
+    more accurate. Also worth mentioning, moved the aliases from the script to the repo.
 
