@@ -2,19 +2,19 @@
 # does a nice centering job with the custom text data versus the ascii banner. Just one of thoses
 # *** don't need, must have, cause me can! *** type of deal. Stone me.
 _showDANGER() {
-  local LINE1=${1}; local LINE2=${2};
+  local LINE1="${1}"; local LINE2="${2}";
   echo -e "\033[1;38;5;196m  ____________                                ________\033[0m";
   echo -e "\033[1;38;5;196m   ______  __ \_____ ______________ _______________  /\033[0m";
   echo -e "\033[1;38;5;196m    ____  / / /  __ \`/_  __ \_  __ \`/  _ \_  ___/_  /\033[0m";
   echo -e "\033[1;38;5;196m     __  /_/ // /_/ /_  / / /  /_/ //  __/  /    /_/\033[0m";
   echo -e "\033[1;38;5;196m      /_____/ \__,_/ /_/ /_/_\__, / \___//_/    (_)\033[0m";
   echo -e "\033[1;38;5;196m                            /____/\033[0m";
-  echo -e "\033[1;38;5;196m         \033[4mPOTENTIAL DANGER\033[0m"; echo;
+  echo -e "\033[1;38;5;196m         \033[3;4mPOTENTIAL DANGER\033[0m"; echo;
   [[ ! -z "${LINE1}" ]] && {
     echo -ne "\033[1;38;5;196m"; printf "%*s\n" $(((${#LINE1}+54)/2)) "${LINE1}"; echo -ne "\033[0m";
     [[ ! -z "${LINE2}" ]] && {
       echo -ne "\033[1;38;5;196m"; printf "%*s\n" $(((${#LINE2}+54)/2)) "${LINE2}"; echo -e "\033[0m";
     } || { echo; }
-  } || { echo; }
+  } || { echo; }
   sleep 1;
 }
