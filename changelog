@@ -169,3 +169,5 @@
   * c7repos.sh RAW file is also available via https://bit.ly/c7repos 'mirror'
   * Fixes bad functions, removes after modifications useless informations and aesthetic
 
+2017.08.26
+  * Fixes a small problem in grub updater
