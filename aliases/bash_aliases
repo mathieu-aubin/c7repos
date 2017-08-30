@@ -1,36 +1,38 @@
 
-alias du='du -kh'
-alias df='df -kTh'
-alias nano='nano -w'
-alias wget='wget -4'
-alias locate='locate -i'
-alias columnt='column -t' # Because i always write it wrong
-alias rm-ds_store='find ./ -type f -iname ".DS_Store" -exec rm {} \;'; alias remove-ds_store='rm-ds_store'
-alias curlc='curl -c /tmp/cookies -b /tmp/cookies -sSL'; alias curl-cookie='curlc'
-alias quick-stats='bash <(curl -sL https://bit.ly/qsts)'; alias qstats='quick-stats'
+alias du='du -kh';
+alias df='df -kTh';
+alias nano='nano -w';
+alias wget='wget -4';
+alias locate='locate -i';
+alias columnt='column -t'; # Because i always write it wrong
+alias rm-ds_store='find ./ -type f -iname ".DS_Store" -exec rm {} \;'; alias remove-ds_store='rm-ds_store';
+alias curlc='curl -c /tmp/cookies -b /tmp/cookies -sSL'; alias curl-cookie='curlc';
+alias quick-stats='bash <(curl -sL https://bit.ly/qsts)'; alias qstats='quick-stats';
 
 # rpm/yum aliases
-alias rpm-list-keys='rpm -q gpg-pubkey --qf "%{name}-%{version}-%{release} --> %{summary}\n"'
-alias update='yum clean all && yum makecache && yum update'
+alias rpm-list-keys='rpm -q gpg-pubkey --qf "%{name}-%{version}-%{release} --> %{summary}\n"';
+list-rpm-gpg-keys='rpm-list-keys'; rpm-gpg-keys='rpm-list-keys'; gpg-list-rpm='rpm-list-keys'; alias rpm-keys-list='rpm-list-keys';
+
+alias update='yum clean all && yum makecache && yum update';
 
 # Some nice ip aliases
-alias myip='curl -skL v4.speedinternet.ca'
-alias myip6='curl -6 -skL v6.speedinternet.ca'
+alias myip='curl -skL v4.speedinternet.ca';
+alias myip6='curl -6 -skL v6.speedinternet.ca';
 # Outputs both, when/if available
-alias myips='myip; myip6'
+alias myips='myip; myip6';
 
 # Some quick navigation aliases
-alias cd..="cd ..; ll"
-alias ..="cd ..; ll"
-alias ...="cd ../../; ll"
-alias ....="cd ../../../; ll"
-alias back="cd -; ll"
-alias home="cd ~; ll"
-alias l='ll'
-alias lld='ll | egrep "^d"'
-alias llf='ll | egrep -v "^d"'
-alias ll='ls -lah --color --group-directories-first'
-alias lln='ls -lah --group-directories-first --color=never'
+alias cd..='cd ..; ll';
+alias ..='cd ..; ll';
+alias ...='cd ../../; ll';
+alias ....='cd ../../../; ll';
+alias back='cd -; ll';
+alias home='cd ~; ll';
+alias l='ll';
+alias lld='ll | egrep "^d"';
+alias llf='ll | egrep -v "^d"';
+alias ll='ls -lah --color --group-directories-first';
+alias lln='ls -lah --group-directories-first --color=never';
 
 # Overrides the default cp/rm/mkdir aliases
 alias cp='cp -i'; alias rm='rm -I'; alias mkdir='mkdir -p'
@@ -53,7 +55,7 @@ alias digs='dig +short'
 alias netstat='netstat -peanut | sort && echo -e "\nTry command \033[32mnetstat-extra\033[0m for a detailed netstat check.\nTry command \033[32mnetstat-plus\033[0m for alot more to netstat..."'
 alias netstat-extra='echo -e "\033[31mLSOF OUTPUT (lsof -i):\033[0m" && sleep 0.2; lsof -i && echo -e "\033[31mLSOF OUTPUT DONE.\033[0m\n"; echo -e "\n\033[31mNETSTAT OUTPUT (netstat -peanut):\033[0m" && sleep 0.2; \netstat -peanut | sort && echo -e "\033[31mNETSTAT OUTPUT DONE.\033[0m\n"; echo -e "Try command \033[0;32mnetstat-plus\033[0m for a more torough network check\033[0m"'
 alias netstat-plus='echo -e "\033[31mLSOF OUTPUT (lsof -i):\033[0m" && sleep 0.2; \lsof -i && echo -e "\033[31mLSOF OUTPUT DONE.\033[0m\n"; echo -e "\n\033[31mNETSTAT OUTPUT (netstat -peanut):\033[0m" && sleep 0.2; \netstat -peanut | sort && echo -e "\033[31mNETSTAT OUTPUT DONE.\033[0m\n"; echo -e "\n\033[31mNMAP LOCAL OUTPUT (nmap -sT -O 127.0.0.1):\033[0m" && sleep 0.2; \nmap -sT -O 127.0.0.1; echo -e "\033[31mNMAP LOCAL OUTPUT DONE.\033[0m"; echo -e "\n\033[31mNMAP OUTPUT (nmap -sT -O $(curl -s v4.ident.me)):\033[0m" && sleep 0.2; \nmap -sT -O $(curl -s v4.ident.me); echo -e "\033[31mNMAP OUTPUT DONE.\033[0m"'
-alias watch-netstat='watch -cn1 '\''\netstat -peanut | egrep -v "WAIT|AWK|SYN|udp"'\'''
+alias watch-netstat='watch -cn1 '\''\netstat -peanut | egrep -v "WAIT|AWK|SYN"'\'''
 
 alias free-ram='sync; sleep 1; sync; sync && echo 3 >/proc/sys/vm/drop_caches'
 alias chownroot='chown root:root $PWD -R && echo -e "Files/folders permissions set to root, recursively."'
@@ -63,6 +65,7 @@ alias edit-ip6tables='nano /etc/sysconfig/ip6tables'
 # NodeJS/NPM updater
 alias update-npm='npm i npm -g --upgrade'; alias npm-update='update-npm'
 
+# set-permissions will set PWD files permissions to 664 and folders to 775
 # Outputs the command with a warning as it can FUCK A SYSTEM if ran carelessly
 alias set-permissions='echo -e "\033[1;48;5;196m  WATCH OUT WITH THIS COMMAND -- YOU CAN FUCK UP YOUR SYSTEM BAD IF YOU RUN THIS CARELESSLY  \033[0m"; echo "# Command: find ./ -type f -exec chmod 664 {} + -o -type d -exec chmod 775 {} +"'
 
@@ -76,8 +79,7 @@ alias ginxT='nginx -T'
 alias ginxv='nginx -v'
 alias ginxt='nginx -t'
 alias ginxr='nginx -s reload'
-# Assuming you are using default log file type, ginxs will fetch the returned http
-#codes since the last log rotation and display an occurence count for each one..
+# Assuming you are using default log file type, ginxs will fetch the returned http codes since the last log rotation and display an occurence count for each one..
 alias ginxs='echo -e "Getting \033[32mNGiNX\033[0m metrics from access logs... this may take a bit.\n"; cat /var/log/nginx/access.log | cut -f 9 -d" " | sort | uniq -c | egrep -v "(-|\"|[a-zA-Z]|166$| 0$)" && echo -e "\nDONE."'
 alias ginxlog='tail -n500 /var/log/nginx/access.log | less'
 alias ginxerr='tail -n500 /var/log/nginx/error.log | less'
