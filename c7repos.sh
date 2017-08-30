@@ -46,7 +46,7 @@
 #  > wget https://bit.ly/c7repos -O c7repos.sh
 #  > bash c7repos.sh
 #
-# HiSTORY
+# HISTORY
 # ¯¯¯¯¯¯¯
 # Originally scripted for CentOS 6 by Peggy <peggy@zeroserieux.com> following
 # a request for a simple os configuration script. From there on, it grew to
@@ -56,7 +56,7 @@
 # ¯¯¯¯¯¯¯¯¯
 # Changelog available on GitHub at https://github.com/mathieu-aubin/c7repos
 #
-# CONTRiBUTiNG
+# CONTRIBUTING
 # ¯¯¯¯¯¯¯¯¯¯¯¯
 # By all means and please, do not hesitate to send comments, ideas and/or
 # pull requests on GitHub.
@@ -67,9 +67,16 @@ REPOURL='https://raw.githubusercontent.com/mathieu-aubin/c7repos/master' ;
 # URL to insert into generated files
 BRAGURL='https://github.com/mathieu-aubin/c7repos' ;
 
+# Saves current terminal before clearing its content
+tput smcup ; tput civis ; tput clear ;
+
+# Resets term upon QUIT/CTRL+C and EXIT signals
+trap 'echo -ne "\n\033[1m  -- C7REPOS DONE. PRESS ENTER TO EXIT --\033[0m"; read; tput smam; tput sgr0; tput cnorm; tput rmcup; unset REPOURL BRAGURL' SIGINT ;
+trap 'echo -ne "\n\033[1m  -- C7REPOS DONE. PRESS ENTER TO EXIT --\033[0m"; read; tput smam; tput sgr0; tput cnorm; tput rmcup; unset REPOURL BRAGURL' EXIT ;
+
 # Function that displays our header...
 _showHEADER() {
-tput rmam; tput bold
+tput bold ;
 cat <<- "__EOF__"
              ____
             |__  |
@@ -81,9 +88,6 @@ cat <<- "__EOF__"
 __EOF__
 tput sgr0 ;
 }
-
-# Resets term upon exit
-trap 'tput smam; tput sgr0; unset REPOURL BRAGURL' EXIT ;
 
 # Function that displays potential danger situation, with a danger msg centered.
 _showDANGER() {
@@ -510,4 +514,4 @@ _installCOMMON ;
 # Call to create aliase and function
 _createDOTFILES ;
 
-echo -e "\n\033[1mDone with this CentOS 7 auto install script, consider checking your firewall, SSH config and the likes. A reboot wouldn't hurt, after initial install...\nHave a nice day.\033[0m" ;
+echo -e "\n\033[1mDone with this CentOS 7 auto install script.\nConsider checking your firewall, SSH config and the likes.\nA reboot wouldn't hurt, after initial install...\n\nHave a nice day.\033[0m" ;

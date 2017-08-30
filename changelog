@@ -173,6 +173,7 @@
   * Fixes a small problem in grub updater (/root/bin/update-grub)
 
 2017.08.30
+  * Lots of minor changes
   * Updates _showDANGER function
   * Adds an extra space to the logo header
   * Adds a new functions digall and _showINFOS to the functions list
@@ -188,3 +189,5 @@
     rpm-keys-list. Changes watch-netstat to remove the grep on udp.
   * Replace all occurences of curl -sXXX by curl -skL preventing problems in case of bad cer-
     tificates and making sure redirection occurs if need be.
+  * Saves terminal content before script execution adding some signals traps to restore upon
+    quit/ctrl+c/exit...
