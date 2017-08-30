@@ -221,7 +221,7 @@ _updateSYSTEM() {
     # Clear/refresh yum cache
     echo -ne "\033[1mCleaning YUM cache...\033[0m" ; sleep 0.2 ;
     yum clean all &>/dev/null ; echo -e "\033[32m DONE\033[0;1m.\033[0m" ;
-    echo -ne "\033[1mGenerating a new cache...\033[0m" ; sleep 0.2 ;
+    echo -ne "\033[1mGenerating a new cache (please wait)...\033[0m" ; sleep 0.2 ;
     yum makecache fast &>/dev/null ; echo -e "\033[32m DONE\033[0;1m.\033[0m" ;
     # Yum-utils
     echo -e "\033[1mInstalling yum-utils and deltarpm...\033[0m" ; sleep 0.2;
@@ -242,7 +242,7 @@ _fixYUMV6() {
     # This comes from a problem i faced on fedora and c7 with epel throwing garbage at ipv6 requests, making any
     # update attemps unsuccessfull... that fucked me good but the guys there fixed it quick after i told them.
     # You do whatever. I rather disable ipv6 for yum than swear, even for only a few seconds.
-    echo -e "\033[1mFixing 'potential' yum IPv6 problems with some repositories...\033[0m" ; sleep 0.2 ;
+    echo -e "\033[1mFixing 'potential' IPv6 problem with some repos...\033[0m" ; sleep 0.2 ;
     echo "ip_resolve=4" >> /etc/yum.conf ;
     echo -e "  - \033[32mYum 'potential' IPv6 problem fixed\033[0;1m.\033[0m" ; sleep 0.3 ;
 }
