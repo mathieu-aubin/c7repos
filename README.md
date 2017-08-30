@@ -46,6 +46,6 @@ bash c7repos.sh
 
 Originally scripted for CentOS 6 by Peggy following a request for a simple os configuration script. From there on, it grew to something a little more actual and practical. (Peggy is a fictitious character)
 
-## CONTRIBUTING
+### CONTRIBUTING
 
 By all means and please, do not hesitate to send comments, ideas and/or pull requests.
