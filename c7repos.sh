@@ -268,7 +268,7 @@ _installDEVEL() {
         echo -e "\033[1mInstalling development tools package group...\033[0m" ; sleep 0.2 ;
         yum -y groups install "Development Tools" "Fedora Packager" &>/dev/null ;
         yum -y install caca-utils libcaca-devel ruby-devel boost-devel boost-static zlib-devel zlib-static openssl-devel &>/dev/null ;
-        echo -e "  - \033[32mDevelopment tools package groups installed\033[0;1m.\033[0m" ; sleep 0.3 ;
+        echo -e "  - \033[32mDevelopment tools group package installed\033[0;1m.\033[0m" ; sleep 0.3 ;
         ;;
     esac
     unset _DEVPACK ;
