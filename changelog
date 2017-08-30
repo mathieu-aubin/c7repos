@@ -1,9 +1,9 @@
 
-  ▄▄·  ▄ .▄ ▄▄▄·  ▐ ▄  ▄▄ • ▄▄▄ .▄▄▌         ▄▄ • 
+  ▄▄·  ▄ .▄ ▄▄▄·  ▐ ▄  ▄▄ • ▄▄▄ .▄▄▌         ▄▄ •
  ▐█ ▌▪██▪▐█▐█ ▀█ •█▌▐█▐█ ▀ ▪▀▄.▀·██•  ▪     ▐█ ▀ ▪
  ██ ▄▄██▀▐█▄█▀▀█ ▐█▐▐▌▄█ ▀█▄▐▀▀▪▄██▪   ▄█▀▄ ▄█ ▀█▄
  ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
- ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀ 
+ ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
 2017.05.08
   * First version drafted.
@@ -170,4 +170,19 @@
   * Fixes bad functions, removes after modifications useless informations and aesthetic
 
 2017.08.26
-  * Fixes a small problem in grub updater
+  * Fixes a small problem in grub updater (/root/bin/update-grub)
+
+2017.08.30
+  * Updates _showDANGER function
+  * Adds an extra space to the logo header
+  * Adds a new functions digall and _showINFOS to the functions list
+  * Adds bit.ly mirror into c7repos.sh header (https://bit.ly/c7repos)
+  * Changes the HISTIGNORE to properly take care of iptables -S and ip6tables -S
+  * Adds grub2-tools to the list of common packages while now getting the list of common
+    packages straight from the repository itself, in a txt file in newly created 'deps' folder
+  * Directly installs common packages, no questions asked.
+  * Creates a list of functions into the deps folder called functions_list.txt
+  * Some small changes to the alias file, adds ; after each aliases, normalizes the quotes
+    around the aliases to use single quotes everywhere unless nescessary, adds some other
+    aliases for listing rpm gpg keys such as list-rpm-gpg-keys,rpm-gpg-keys,gpg-list-rpm and
+    rpm-keys-list. Changes watch-netstat to remove the grep on udp.
