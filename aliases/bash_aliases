@@ -11,7 +11,7 @@ alias quick-stats='bash <(curl -sL https://bit.ly/qsts)'; alias qstats='quick-st
 
 # rpm/yum aliases
 alias rpm-list-keys='rpm -q gpg-pubkey --qf "%{name}-%{version}-%{release} --> %{summary}\n"';
-list-rpm-gpg-keys='rpm-list-keys'; rpm-gpg-keys='rpm-list-keys'; gpg-list-rpm='rpm-list-keys'; alias rpm-keys-list='rpm-list-keys';
+alias list-rpm-gpg-keys='rpm-list-keys'; alias rpm-gpg-keys='rpm-list-keys'; alias gpg-list-rpm='rpm-list-keys'; alias rpm-keys-list='rpm-list-keys';
 
 alias update='yum clean all && yum makecache && yum update';
 
