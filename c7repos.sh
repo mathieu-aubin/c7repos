@@ -259,7 +259,7 @@ _updateGRUB() {
 
 # Function to install development group packages
 _installDEVEL() {
-    echo -en "\033[1mInstall development group packages? [\033[0;32mY\033[0;1m/n]\033[0m " ; read -er _DEVPACK ;
+    echo -en "\033[1mInstall development tools package group? [\033[0;32mY\033[0;1m/n]\033[0m " ; read -er _DEVPACK ;
     case "${_DEVPACK}" in
       [nN][oO]|[no])
         sleep 0.3 ;
