@@ -1,0 +1,9 @@
+bash-colors
+chownwww
+digall
+echoerr
+_showDANGER
+_showINFOS
+speedtest
+update-tools
+view-source
