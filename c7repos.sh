@@ -456,7 +456,7 @@ _checkSSH() {
                 # Add a new Port line, with our new port
                 echo -e "\nPort ${_SSHPC}" >> /etc/ssh/sshd_config ;
                 # Restart SSH daemon
-                systemctl restart sshd ;
+                systemctl restart sshd ; export SSH_CLIENT='' ;
                 # Fix BOTH iptables default files with new port
                 yum -y install iptables ip6tables iptables-services &>/dev/null ;
                 [[ -f /etc/sysconfig/ip6tables ]] && sed -i "s#--dport 22#--dport ${_SSHPC}#" /etc/sysconfig/ip6tables ;
