@@ -388,7 +388,7 @@ _installCOMMON() {
     # Set of commonly used packages and utilities to be installed
     _COMMON_PACKAGES=$(curl -skL ${REPOURL}/deps/common_packages.txt) ;
 
-    echo -e "\033[1mInstalling awesome packages...\033[0m" ; sleep 0.2 ;
+    echo -e "\033[1mInstalling base (awesome) packages...\033[0m" ; sleep 0.2 ;
     yum -y install ${_COMMON_PACKAGES} &>/dev/null ;
     export EDITOR=$(which nano) ;
     echo 'export EDITOR=$(which nano);' >> $HOME/.bashrc ;
