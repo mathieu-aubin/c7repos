@@ -186,3 +186,5 @@
     around the aliases to use single quotes everywhere unless nescessary, adds some other
     aliases for listing rpm gpg keys such as list-rpm-gpg-keys,rpm-gpg-keys,gpg-list-rpm and
     rpm-keys-list. Changes watch-netstat to remove the grep on udp.
+  * Replace all occurences of curl -sXXX by curl -skL preventing problems in case of bad cer-
+    tificates and making sure redirection occurs if need be.
