@@ -1,12 +1,16 @@
-# Function to retrieve most common informations from the dig command
+# Function to retrieve most of DIG (A,AAAA,CAA,CNAME,MX,NS,PTR,SRV,TXT) if available.
 function digall() {
-  [[ ! -z ${1} ]] && {
-    local DOMAIN=${1};
-    host ${DOMAIN} &>/dev/null; [[ $? -eq 0 ]] && {
-      for DQ in {A,AAAA,CNAME,MX,SRV,TXT}; do
-        echo -e "\033[1;4m${DQ} records for \033[3m${DOMAIN^^}\033[0m"
-        local RL=$(dig ${DQ,,} +nocmd +multiline +noall +answer ${DOMAIN});
-        [[ ! -z ${RL} ]] && echo -e "\n${RL}" || echo -e "\n\033[1;38;5;196mNo ${DQ} records found.\033[0m\n";
-      done } || { echo -e "\033[1;38;5;196mERROR\033[0m: ${DOMAIN} is NOT a valid domain."; return 1; }
-  } || { echo -e "\033[1;38;5;196mERROR\033[0m: no domain specified."; return 1; }
-}
+  if ! [[ -z ${1} ]]; then
+    local DOMAIN=${1,,}; local RL;
+    host ${DOMAIN} &>/dev/null; if [[ $? -eq 0 ]]; then
+      for DQ in {A,AAAA,CAA,CNAME,MX,NS,PTR,SRV,TXT}; do
+        RL=$(dig ${DQ} +nocmd +multiline +noall +answer ${DOMAIN} | sed -e "s/${DOMAIN}.\t*/TTL: /");
+        [[ ! -z "${RL}" ]] && echo -e "\033[1;3;4;38;5;90m${DOMAIN^^} ${DQ} RECORDS\033[0m\n${RL}\n";
+      done
+    else
+      echo -e "\033[1;38;5;196mERROR\033[0m: \033[1m${DOMAIN^^}\033[0m is NOT valid." && return 1;
+    fi
+  else
+    echo -e "\033[1;38;5;196mERROR\033[0m: no domain specified." && return 1;
+  fi
+}; alias dig-all='digall';
