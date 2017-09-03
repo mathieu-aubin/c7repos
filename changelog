@@ -196,3 +196,4 @@
 
 2017.09.03
   * Adds an alias to clean kernel while keeping devel version (package-cleanup --oldkernels --keepdevel)
+    also runs update-grub after package cleanup to make sure our boot is updated.
