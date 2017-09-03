@@ -176,6 +176,8 @@
   * Lots of minor changes
   * Updates _showDANGER function
   * Adds an extra space to the logo header
+  * Hides cursor before starting the script
+  * Adds a delay after showing the header logo (1sec)
   * Adds a new functions digall and _showINFOS to the functions list
   * Adds bit.ly mirror into c7repos.sh header (https://bit.ly/c7repos)
   * Changes the HISTIGNORE to properly take care of iptables -S and ip6tables -S
@@ -189,5 +191,8 @@
     rpm-keys-list. Changes watch-netstat to remove the grep on udp.
   * Replace all occurences of curl -sXXX by curl -skL preventing problems in case of bad cer-
     tificates and making sure redirection occurs if need be.
-  * Saves terminal content before script execution adding some signals traps to restore upon
-    quit/ctrl+c/exit...
+  * Pushing back this idea of saving terminal beforehand, it didn't pass quality check!
+  * Checks that user doesn't input port 22 back as SSH port, fails if stoop enough to do so
+
+2017.09.03
+  * Adds an alias to clean kernel while keeping devel version (package-cleanup --oldkernels --keepdevel)
