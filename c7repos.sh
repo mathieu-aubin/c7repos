@@ -418,7 +418,7 @@ _installCOMMON() {
 _createDOTFILES() {
     # Appending some stuff to .bashrc
     echo -e "\033[1mAppending to ${HOME}/.bashrc...\033[0m" ; sleep 0.2 ;
-    echo -e "\nshopt -s checkwinsize\nshopt -s histappend\nexport HISTIGNORE='&:exit:x:l:history:editenv:[h ]*:[ \\\t]*:?:??:ip6tables -S:iptables -S:w -i:pwd:srcalias*:addalias*:srcexports*:addexport*:srcfunctions*:addfunction*:srccolors*:addcolors*:srcdot*:env:nginx -t:quit:popd*:ginx*:chownwww*:yum clean*:yum makecache*'\nexport HISTCONTROL=ignoreboth\nexport HISTSIZE=20000\nexport HISTFILESIZE=100000\nexport HISTTIMEFORMAT=\"%Y/%m/%d %T \"" >> ${HOME}/.bashrc ;
+    echo -e "\nshopt -s checkwinsize\nshopt -s histappend\nexport HISTIGNORE='&:exit:x:l:history:editenv:[h ]*:[ \\\t]*:?:??:w -i:pwd:srcalias*:srcexports*:srcfunctions*:srccolors*:srcdot*:env:quit:popd*:ginx*:chownwww*:yum clean*:yum makecache*'\nexport HISTCONTROL=ignoreboth\nexport HISTSIZE=20000\nexport HISTFILESIZE=100000\nexport HISTTIMEFORMAT=\"%Y/%m/%d %T \"" >> ${HOME}/.bashrc ;
     echo -e "\n# Source ${HOME}/.bash_* files not excluded by the grep command" >> ${HOME}/.bashrc ;
     echo 'for DFs in $(ls -1p $HOME/.bash_* | grep -E -v "history|logout|profile|back|/$"); do source $DFs; done' >> ${HOME}/.bashrc ;
 

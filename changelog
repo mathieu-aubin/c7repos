@@ -199,3 +199,6 @@
     also runs update-grub after package cleanup to make sure our boot is updated.
   * Adds an function to update all global npm packages at once (update-npm-all aliased to update-npm-packages)
   * Fixes the color escape for bash-colors function changing it from  \e to \033
+
+2017.09.04
+  * Removes some of the HISTIGNORE previously set, found it annoying for some commands.
