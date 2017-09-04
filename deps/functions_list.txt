@@ -7,3 +7,4 @@ _showINFOS
 speedtest
 update-tools
 view-source
+update-npm-all
