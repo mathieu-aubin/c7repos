@@ -6,5 +6,5 @@ _showDANGER
 _showINFOS
 speedtest
 update-tools
-view-source
 update-npm-all
+view-source
