@@ -228,9 +228,9 @@ _updateSYSTEM() {
     echo -ne "\033[1mGenerating a new cache (please wait)...\033[0m" ; sleep 0.2 ;
     yum makecache fast &>/dev/null ; echo -e "\033[32m DONE\033[0;1m.\033[0m" ;
     # Yum-utils and deltarpm
-    echo -e "\033[1mInstalling yum-utils and deltarpm...\033[0m" ; sleep 0.2;
-    yum install yum-utils deltarpm -y &>/dev/null
-    echo -e "  - \033[32mPackages yum-utils, deltarpm installed\033[0;1m.\033[0m" ; sleep 0.3 ;
+    echo -e "\033[1mInstalling deltarpm, yum-axelget and yum-utils...\033[0m" ; sleep 0.2;
+    yum install yum-utils deltarpm yum-axelget -y &>/dev/null
+    echo -e "  - \033[32mPackages installed\033[0;1m.\033[0m" ; sleep 0.3 ;
     # System update
     echo -e "\033[1mInstalling system updates (please wait)...\033[0m" ; sleep 0.2 ;
     yum -y update &>/dev/null ;

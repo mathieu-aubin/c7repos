@@ -203,3 +203,6 @@
 2017.09.04
   * Removes some of the HISTIGNORE previously set, found it annoying for some commands.
   * Updates chownwww function so as to strip tabs and spaces from nginx username - yah...
+
+2017.09.22
+  * Adds yum plugin axelget to speed up some of yum's heavy downloads when possible
