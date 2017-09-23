@@ -207,3 +207,5 @@
 2017.09.22
   * Adds yum plugin axelget to speed up some of yum's heavy downloads when possible
   * Minor syntax correction/changes
+  * Install pyftpdlib (https://github.com/giampaolo/pyftpdlib) with pip
+  * Refactor npm and pip completion code, changing npm completion file's location
