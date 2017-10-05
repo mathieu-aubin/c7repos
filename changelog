@@ -207,3 +207,10 @@
 2017.09.22
   * Adds yum plugin axelget to speed up some of yum's heavy downloads when possible
   * Minor syntax correction/changes
+  * Install pyftpdlib (https://github.com/giampaolo/pyftpdlib) with pip
+  * Refactor npm and pip completion code, changing npm completion file's location
+
+2017.10.05
+  * Adds some infos in the file header about url/bit.ly
+  * Adds an alias for lsblk to output more details, in a structured fashion
+  * Changes the export line for EDITOR, adding a newline before it to uncram things
