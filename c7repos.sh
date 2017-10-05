@@ -25,26 +25,36 @@
 # WHERE
 # ¯¯¯¯¯
 # c7repos.sh is available at https://github.com/mathieu-aubin/c7repos
-# and the install script is mirrored using bit.ly at https://bit.ly/c7repos
+# and the install script is mirrored using BIT.LY at https://bit.ly/c7repos
 #
 # HOWTO
 # ¯¯¯¯¯
 # From a FRESHLY INSTALLED CentOS 7 server, c7repos.sh can be called as
-# superuser (root) by using any of the following methods:
+# superuser (root) by using one of the following methods:
 #
 #  Method #1
 #  ¯¯¯¯¯¯¯¯¯
 #  - Executing straight from GitHub or a known mirror. Example:
 #
-#  > bash <(curl -skL https://bit.ly/c7repos)
+#      root@host ~ # bash <(curl -skL https://bit.ly/c7repos)
 #
 #  Method #2
 #  ¯¯¯¯¯¯¯¯¯
 #  - Downloading/saving it to a location on the machine.
 #  - Executing a simple bash call pointing to the file. Example:
 #
-#  > wget https://bit.ly/c7repos -O c7repos.sh
-#  > bash c7repos.sh
+#      root@host ~ # wget https://bit.ly/c7repos -O c7repos.sh
+#      root@host ~ # bash c7repos.sh
+#
+# HOWTO NOTE
+# ¯¯¯¯¯¯¯¯¯¯
+# Using https://bit.ly/c7repos is just about the same as using the raw
+# repository directly the difference being i can monitor the usage.
+#
+# If you do not want to go thru bitly, you are free to run directly from
+# GitHub, using the repository url directly instead:
+#
+# https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh
 #
 # HISTORY
 # ¯¯¯¯¯¯¯
@@ -396,7 +406,7 @@ _installCOMMON() {
     echo -e "\033[1mInstalling base packages...\033[0m" ; sleep 0.2 ;
     yum -y install ${_COMMON_PACKAGES} &>/dev/null ;
     export EDITOR=$(which nano) ;
-    echo 'export EDITOR=$(which nano);' >> $HOME/.bashrc ;
+    echo -e '\nexport EDITOR=$(which nano);' >> $HOME/.bashrc ;
     systemctl enable iptables &>/dev/null ; systemctl enable ip6tables &>/dev/null ;
     systemctl start iptables &>/dev/null ; systemctl start ip6tables &>/dev/null ;
 
