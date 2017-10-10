@@ -17,6 +17,7 @@ alias kernel-cleanup='package-cleanup --oldkernels --keepdevel && /root/bin/upda
 alias update='yum clean all && rm -rf /var/cache/yum && yum makecache && yum update';
 
 # System commands
+alias blkid='blkid -c /dev/null -o export';
 alias lsblk='lsblk --output NAME,MODE,SIZE,TYPE,FSTYPE,UUID,LABEL,MOUNTPOINT';
 
 # Some nice ip aliases

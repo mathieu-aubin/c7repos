@@ -217,4 +217,5 @@
 
 2017.10.10
   * Some fixing of the alias file
+  * Adds an alias for blkid to clear cached and output as 'export' format
   * Adds an alias for grep to show 5 lines before and after the grepped content (for context)
