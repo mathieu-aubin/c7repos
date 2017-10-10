@@ -214,3 +214,7 @@
   * Adds some infos in the file header about url/bit.ly
   * Adds an alias for lsblk to output more details, in a structured fashion
   * Changes the export line for EDITOR, adding a newline before it to uncram things
+
+2017.10.10
+  * Some fixing of the alias file
+  * Adds an alias for grep to show 5 lines before and after the grepped content (for context)
