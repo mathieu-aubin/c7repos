@@ -439,7 +439,7 @@ _createDOTFILES() {
     #echo -e "\nshopt -s checkwinsize\nshopt -s histappend\nexport HISTIGNORE='&:exit:x:l:history:editenv:[h ]*:[ \\\t]*:?:??:w -i:pwd:srcalias*:srcexports*:srcfunctions*:srccolors*:srcdot*:env:quit:popd*:ginx*:chownwww*:yum clean*:yum makecache*'\nexport HISTCONTROL=ignoreboth\nexport HISTSIZE=20000\nexport HISTFILESIZE=100000\nexport HISTTIMEFORMAT=\"%Y/%m/%d %T \"" >> ${HOME}/.bashrc ;
     echo -e "\nshopt -s checkwinsize\nshopt -s histappend\nexport HISTCONTROL=ignoreboth\nexport HISTSIZE=20000\nexport HISTFILESIZE=100000\nexport HISTTIMEFORMAT=\"%Y/%m/%d %T \"" >> ${HOME}/.bashrc ;
     echo -e "\n# Source ${HOME}/.bash_* files not excluded by the grep command" >> ${HOME}/.bashrc ;
-    echo 'for DFs in $(ls -1p ${HOME}/.bash_* | grep -Ev "history|logout|profile|back|/$"); do source ${DFs}; done' >> ${HOME}/.bashrc ;
+    echo 'for DFs in $(ls -1p ${HOME}/.bash_* | \grep -Ev "history|logout|profile|back|/$"); do source ${DFs}; done' >> ${HOME}/.bashrc ;
 
     # Creates the functions file
     echo -e "\033[1mCreating functions file at ${HOME}/.bash_functions...\033[0m" ; sleep 0.2 ;

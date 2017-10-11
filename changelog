@@ -219,3 +219,8 @@
   * Some fixing of the alias file
   * Adds an alias for blkid to clear cached and output as 'export' format
   * Adds an alias for grep to show 5 lines before and after the grepped content (for context)
+
+2017.10.11
+  * Fixes an error that happens because of grep -A alias where when sourcing the .bash_* files
+    it would also source the history and execute whatever had been run previously = bad...
+    TODO/NOTE -- This whole thing with grep -A seemed a good thing at first, test and report!
