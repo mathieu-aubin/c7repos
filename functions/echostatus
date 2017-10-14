@@ -1,0 +1,13 @@
+# Functions inspired from init.d function file (https://admin.fedoraproject.org/pkgdb/package/rpms/initscripts/)
+# The following will display a status message on screen. They are simple to use, just call each of them by their
+# respective names to have a status displayed. Call them with a string for parameter to have them display their
+# intended status plus a message of your choosing. like the following examples
+#
+#     echo_info 'this would be an informatio message';
+#     echo_success 'the previous operation was successful';
+#
+echo_info() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;244m INFO ${MSG}"; }
+echo_passed() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;226mPASSED${MSG}"; }
+echo_success() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;34m GOOD ${MSG}"; }
+echo_failure() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;196mFAILED${MSG}"; }
+echo_warning() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;202m WARN ${MSG}"; }
