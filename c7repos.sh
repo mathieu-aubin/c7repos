@@ -459,6 +459,13 @@ _createDOTFILES() {
         curl -skL ${REPOURL}/aliases/bash_aliases >> ${HOME}/.bash_aliases ;
     echo -e "  - \033[32mBash aliases/functions files created\033[0;1m.\n    They will be sourced automatically upon next login.\033[0m" ; sleep 0.3 ;
 
+    # Creates the export file
+    echo -e "\033[1mAdding a random colored PS1 to exports...\033[0m" ; sleep 0.2 ;
+    _RND=$(shuf -n3 -i 21-231); _C1=$(echo ${_RND}|cut -d' ' -f1); _C2=$(echo ${_RND}|cut -d' ' -f2); _C3=$(echo ${_RND}|cut -d' ' -f3);
+    _RNDPS1="\[\033[1m\][\[\033[1;38;5;${_C1}m\]\u\[\033[0m\]@\[\033[1;38;5;${_C2}m\]\H\[\033[0;1m\]] \[\033[1;38;5;${_C3}m\]\w\[\033[0;1m\] \\$\[\033[0m\] "
+    echo -e "# .bash_exports - Export file created by an awesome script on $(date +"%F %R:%S")\n# Get it at ${BRAGURL}\n#" >> ${HOME}/.bash_exports ;
+    echo -e "export PS1=\"${_RNDPS1}\"" >> ${HOME}/.bash_exports ;
+    echo -e '  - \033[32mRandom PS1 added to the exports\033[0;1m'; sleep 0.3 ;
 }
 
 # Function to check for current running ssh port - Might have some issues with proper detection

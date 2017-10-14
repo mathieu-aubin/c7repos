@@ -225,3 +225,6 @@
   * Fixes an error that happens because of grep -A alias where when sourcing the .bash_* files
     it would also source the history and execute whatever had been run previously = bad...
     TODO/NOTE -- This whole thing with grep -A seemed a good thing at first, test and report!
+
+2017.10.14
+  * Creating and export file with a randomized PS1
