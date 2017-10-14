@@ -5,7 +5,7 @@ alias nano='nano -w';
 alias wget='wget -4';
 alias locate='locate -i';
 alias columnt='column -t'; # Because i always write it wrong
-alias grep='grep -C5'; # Shows 5 lines before and after a grep, for context (-A5 -B5 = -C5)
+alias greps='grep -C5'; # Shows 5 lines before and after a grep, for context (-A5 -B5 = -C5)
 alias rm-ds_store='find ./ -type f -iname ".DS_Store" -exec rm {} \;'; alias remove-ds_store='rm-ds_store';
 alias curlc='curl -c /tmp/cookies -b /tmp/cookies -sSL'; alias curl-cookie='curlc';
 alias quick-stats='bash <(curl -sL https://bit.ly/qsts)'; alias qstats='quick-stats';
