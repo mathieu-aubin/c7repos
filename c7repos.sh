@@ -358,7 +358,11 @@ _installNGINX() {
         [[ ${_NGX_INST} -eq 0 ]] && echo -e "\033[1mInstalling \033[0;32mNGiNX\033[0;1m...\033[0m" || echo -e "\033[1mRe-installing \033[0;32mNGiNX\033[0;1m...\033[0m" ; sleep 0.2 ;
         [[ ${_NGX_INST} -eq 0 ]] && yum -y install nginx &>/dev/null || yum -y reinstall nginx &>/dev/null ;
         systemctl enable nginx &>/dev/null ;
-        nginx -t &>/dev/null; [[ $? -eq 0 ]] && { _NGXPID="$(pidof nginx)" ; [[ -z ${_NGXPID} ]] && echo -ne "\033[1mStarting \033[0;32mNGiNX\033[0;1m...\033[0m" ; sleep 0.2 ; systemctl start nginx && echo -e "\033[32m NGiNX\033[0;1m started.\033[0m" ; sleep 1 ; }
+        nginx -t &>/dev/null; [[ $? -eq 0 ]] && {
+            _NGXPID="$(pidof nginx)" ;
+            [[ -z ${_NGXPID} ]] && echo -ne "\033[1mStarting \033[0;32mNGiNX\033[0;1m...\033[0m" && sleep 0.2 ;
+            systemctl start nginx && echo -e "\033[32m NGiNX\033[0;1m started.\033[0m" && sleep 1 ;
+        }
         echo -e "  - \033[32mNGiNX installed\033[0;1m.\033[0m" ; sleep 0.3 ;
         _NGX_INST=1 ;
         ;;

@@ -227,6 +227,8 @@
     TODO/NOTE -- This whole thing with grep -A seemed a good thing at first, test and report!
 
 2017.10.14
+  * Small changes here and there...
   * Creating and export file with a randomized PS1
+  * Some little changes to the NGiNX install function, mostly aesthetic...
   * Adds echo_info, echo_passed, echo_success, echo_failure and echo_warning functions
   * Changes the ever so stupid grep alias showing 5 lines before and after to 'greps' instead.
