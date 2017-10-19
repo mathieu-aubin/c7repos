@@ -1,18 +1,18 @@
 
-  ▄▄·  ▄ .▄ ▄▄▄·  ▐ ▄  ▄▄ • ▄▄▄ .▄▄▌         ▄▄ •
- ▐█ ▌▪██▪▐█▐█ ▀█ •█▌▐█▐█ ▀ ▪▀▄.▀·██•  ▪     ▐█ ▀ ▪
- ██ ▄▄██▀▐█▄█▀▀█ ▐█▐▐▌▄█ ▀█▄▐▀▀▪▄██▪   ▄█▀▄ ▄█ ▀█▄
- ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
- ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
+          ▄▄·  ▄ .▄ ▄▄▄·  ▐ ▄  ▄▄ • ▄▄▄ .▄▄▌         ▄▄ •
+         ▐█ ▌▪██▪▐█▐█ ▀█ •█▌▐█▐█ ▀ ▪▀▄.▀·██•  ▪     ▐█ ▀ ▪
+         ██ ▄▄██▀▐█▄█▀▀█ ▐█▐▐▌▄█ ▀█▄▐▀▀▪▄██▪   ▄█▀▄ ▄█ ▀█▄
+         ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
+         ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
-2017.05.08
+2017.05.08  Mathieu Aubin  <mathieu@zeroserieux.com>
   * First version drafted.
 
-2017.05.08 to 2017.05.13
+2017.05.08-2017.05.13  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Lots of undocumented stuff, done in between hospital stays, as i
     could. Mainly conversion, tests and the likes.
 
-2017.05.14
+2017.05.14  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Massive update to include many new features like:
     - Adds a few more common packages
     - Check if running centos at all, and for correct version
@@ -21,10 +21,10 @@
     - Adds a header for generated repos files to includes the date
     - Fixes a bit of visual to look better, its all in the details.
 
-2017.05.15
+2017.05.15  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Removed the sudo's in here, requires super from the get-go.
 
-2017.05.17
+2017.05.17  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Adds nmap-ncat to the list of common packages
   * Creates npm bash completion file after npm installation
   * Creates python-pip bash completion file after pip is installed with
@@ -36,52 +36,52 @@
   * Asks to creates some handy-dandy bash aliases
   * Adds a bit about 'reboot wouldnt hurt after initial install'...
 
-2017.05.24
+2017.05.24  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Fixes some typos
   * Adds unset to variables after we're done with them
   * Adds package genisoimage to list of awesome packages
   * Adds detection for x86_64/i686 architectures. x86_64 only.
   * Adds Docker repository as a choice to be installed
 
-2017.05.31
+2017.05.31  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Updates sed command to disable selinux
   * Fixes typos and adds some aliases ('digs' / some npm)
   * Adds subversion, dialog and perl as extra common packages
 
-2017.06.01
+2017.06.01  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Adds ImageMagick to common packages
 
-2017.06.05
+2017.06.05  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Upgrades NodeJS setup from 7 to 8 (LTS in october)
   * Adds fuse* packages to common
   * Adds fstab/mtab aliases to display them with column-ed output, removing comments
 
-2017.06.05
+2017.06.05  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Adds an important alias 'mkdir -p' !
 
-2017.06.15
+2017.06.15  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Adds a history file format to show date + time as "2017/06/17 03:53:56 command"
 
-2017.06.17
+2017.06.17  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Adds moreutils to awesome packages -- must have that i somehow forgot
   * Changes \E[ to proper escape character \033[
 
-2017.06.21
+2017.06.21  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Fixing problematic ipv6 with yum by setting ip_resolve=4 in yum.conf
   * Downloads nano-static to edit repositories instead of real nano from
     package manager. Installs to /root/bin/nano-static
 
-2017.06.23
+2017.06.23  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Adds a train train choo choo choo header cause i can.
 
-2017.07.03
+2017.07.03  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Adds as a gist on github.com
   * Fixes minor typos, add couple notes
   * Changes the ansi color escape for error messages to a more complete one
     making bold available as a real red not some pinkish thingnie.
   * Adds compressed files management programs to list of common pakages
 
-2017.07.26
+2017.07.26  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Changes script to source for nodejs install message
   * Adds deltarpm to yum-utils and common packages installation
   * Adds screen to the list of common packages
@@ -93,7 +93,7 @@
   * Shortens some sleep times
   * Adds $releasever and $basearch to the cat-ed repos
 
-2017.07.31
+2017.07.31  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Alphabetize the common packages list
   * Adds dos2unix to the list of common packages
   * Create a function with all the pre-script tests _preCHECK
@@ -105,7 +105,7 @@
   * Some other minor cosmetic changes to some phrases
   * Adds sharutils to the list of common packages
 
-2017.08.11
+2017.08.11  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Minor cosmetic changes
   * Updates Elrepo RPM to 7.0-3
   * Updates some aliases, adding some more
@@ -119,10 +119,10 @@
   * Update python-pip to latest version, install speedtest-cli and a related function
   * Creates a .npmrc in root's allowing to build shit +increases search return amount
 
-2017.08.11
+2017.08.11  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Some important changes to tools updating function
 
-2017.08.13
+2017.08.13  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Some more cosmetic changes
   * Changes pip install/upgrade
   * Divides script into more functions
@@ -134,7 +134,7 @@
   * Change the grub update by removing the question, downloading update-grub tool i
     created then performing the grub update.
 
-2017.08.20
+2017.08.20  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Minor cosmetic changes
   * Adds device-mapper-persistent-data and lvm2 to awesome packages, removing them
     from the docker-ce repository install, which slowed everything down alot.
@@ -142,13 +142,13 @@
   * Separate RPM/YUM aliases and adds a quick command to list installed rpm gpg-keys
   * Remodel of the header file to remove most of the crap before moving to GitHub
 
-2017.08.23
+2017.08.23  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Officially adds c7repos script to the repository
   * Adds a bin folder containing nano-static and update-grub
   * Change some of the functions, giving credits where credit is due
   * Changes the links to nano-static and update-grub to the raw GIT repo files
 
-2017.08.25
+2017.08.25  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Updates .npmrc searchlimit value from 50 to 80
   * Cosmetic changes to changelog, including new logo
   * Adds REPOURL as a variable to be used for the url
@@ -163,16 +163,16 @@
     section, renaming the function from createALIASES to createDOTFILES as it's somewhat
     more accurate. Also worth mentioning, moved the aliases from the script to the repo.
 
-2017.08.26
+2017.08.26  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Adds telnet to package list
   * Push for testing after major modifications
   * c7repos.sh RAW file is also available via https://bit.ly/c7repos 'mirror'
   * Fixes bad functions, removes after modifications useless informations and aesthetic
 
-2017.08.26
+2017.08.26  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Fixes a small problem in grub updater (/root/bin/update-grub)
 
-2017.08.30
+2017.08.30  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Lots of minor changes
   * Updates _showDANGER function
   * Adds an extra space to the logo header
@@ -194,41 +194,50 @@
   * Pushing back this idea of saving terminal beforehand, it didn't pass quality check!
   * Checks that user doesn't input port 22 back as SSH port, fails if stoop enough to do so
 
-2017.09.03
+2017.09.03  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Adds an alias to clean kernel while keeping devel version (package-cleanup --oldkernels --keepdevel)
     also runs update-grub after package cleanup to make sure our boot is updated.
   * Adds an function to update all global npm packages at once (update-npm-all aliased to update-npm-packages)
   * Fixes the color escape for bash-colors function changing it from  \e to \033
 
-2017.09.04
+2017.09.04  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Removes some of the HISTIGNORE previously set, found it annoying for some commands.
   * Updates chownwww function so as to strip tabs and spaces from nginx username - yah...
 
-2017.09.22
+2017.09.22  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Adds yum plugin axelget to speed up some of yum's heavy downloads when possible
   * Minor syntax correction/changes
   * Install pyftpdlib (https://github.com/giampaolo/pyftpdlib) with pip
   * Refactor npm and pip completion code, changing npm completion file's location
 
-2017.10.05
+2017.10.05  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Adds some infos in the file header about url/bit.ly
   * Adds an alias for lsblk to output more details, in a structured fashion
   * Changes the export line for EDITOR, adding a newline before it to uncram things
 
-2017.10.10
+2017.10.10  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Some fixing of the alias file
   * Adds an alias for blkid to clear cached and output as 'export' format
   * Adds an alias for grep to show 5 lines before and after the grepped content (for context)
 
-2017.10.11
+2017.10.11  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Some changes to aliase file normalizing 'egrep' to 'grep -E'
   * Fixes an error that happens because of grep -A alias where when sourcing the .bash_* files
     it would also source the history and execute whatever had been run previously = bad...
     TODO/NOTE -- This whole thing with grep -A seemed a good thing at first, test and report!
 
-2017.10.14
+2017.10.14  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Small changes here and there...
   * Creating and export file with a randomized PS1
   * Some little changes to the NGiNX install function, mostly aesthetic...
   * Adds echo_info, echo_passed, echo_success, echo_failure and echo_warning functions
   * Changes the ever so stupid grep alias showing 5 lines before and after to 'greps' instead.
+
+2017.10.18  Mathieu Aubin  <mathieu@zeroserieux.com>
+  * Center the changelog file header - its just prettier.
+  * Adds the committer's name and email for every new changelog entry...
+    Who knows, maybe it won't just be my name on there at some point.
+
+2017.10.19  Mathieu Aubin  <mathieu@zeroserieux.com>
+  * Adds the git.io short url to c7repos.sh file header and readme and
+    move some things around while at it.

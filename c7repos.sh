@@ -18,30 +18,44 @@
 # a digit away from being enabled. YUM can also be run with the extra
 # switche --enablerepo=repo.name, essentially doing the same, as a one-
 # shot type deal. Alot more YUM stuff to be read to whom dares using the
-# awesome 'man' command or by visiting
-#
-# YUM's official webpage at http://yum.baseurl.org
+# awesome 'man' command or by visiting YUM's official webpage at
+# http://yum.baseurl.org
 #
 # WHERE
 # ¯¯¯¯¯
-# c7repos.sh is available at https://github.com/mathieu-aubin/c7repos
-# and the install script is mirrored using BIT.LY at https://bit.ly/c7repos
+# c7repos.sh code repository is hosted on GitHub at
+#
+#      https://github.com/mathieu-aubin/c7repos
+#
+# The installable script (aka the raw script file) is accessible via
+# the traditionnal GitHub's raw url and is also 'mirrored' using both
+# short url providers.
+#
+#      Git.io --> https://git.io/vd7Ye
+#      Bit.ly --> https://bit.ly/c7repos
 #
 # HOWTO
 # ¯¯¯¯¯
-# From a FRESHLY INSTALLED CentOS 7 server, c7repos.sh can be called as
-# superuser (root) by using one of the following methods:
+# Preferably from a FRESHLY INSTALLED CentOS 7 server, c7repos.sh can be
+# called as superuser (root) using one of the following methods:
 #
 #  Method #1
 #  ¯¯¯¯¯¯¯¯¯
-#  - Executing straight from GitHub or a known mirror. Example:
+#   - Executing straight from a known mirror. Example:
 #
 #      root@host ~ # bash <(curl -skL https://bit.ly/c7repos)
 #
 #  Method #2
 #  ¯¯¯¯¯¯¯¯¯
-#  - Downloading/saving it to a location on the machine.
-#  - Executing a simple bash call pointing to the file. Example:
+#   - Piping curl stdout to bash's stdin. Example:
+#
+#      root@host ~ # curl -skL https://git.io/vd7Ye | bash -
+#    nobody@host ~ $ curl -skL https://git.io/vd7Ye | sudo bash -
+#
+#  Method #3
+#  ¯¯¯¯¯¯¯¯¯
+#   - Downloading/saving it to a location on the machine.
+#   - Executing a simple bash call pointing to the file. Example:
 #
 #      root@host ~ # wget https://bit.ly/c7repos -O c7repos.sh
 #      root@host ~ # bash c7repos.sh
@@ -49,11 +63,13 @@
 # HOWTO NOTE
 # ¯¯¯¯¯¯¯¯¯¯
 # Using https://bit.ly/c7repos is just about the same as using the raw
-# repository directly the difference being i can monitor the usage.
+# repository directly the difference being i could potentially monitor
+# some of the usage, at some point, if any.
 #
-# If you do not want to go thru bitly, you are free to run directly from
-# GitHub, using the repository url directly instead:
+# If you do not want to go thru Bit.ly, you are free to run directly from
+# either one of GitHub's addresses, Git.io's mirror or the raw url.
 #
+# https://git.io/vd7Ye (git.io mirror/short url)
 # https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh
 #
 # HISTORY
@@ -64,12 +80,12 @@
 #
 # CHANGELOG
 # ¯¯¯¯¯¯¯¯¯
-# Changelog available on GitHub at https://github.com/mathieu-aubin/c7repos
+# A changelog is available on GitHub at https://git.io/vd5aC
 #
 # CONTRIBUTING
 # ¯¯¯¯¯¯¯¯¯¯¯¯
 # By all means and please, do not hesitate to send comments, ideas and/or
-# pull requests on GitHub.
+# pull requests.
 #
 
 # Repository URL used to fetch ressources
@@ -81,7 +97,7 @@ BRAGURL='https://github.com/mathieu-aubin/c7repos' ;
 tput civis ; tput clear ;
 
 # Resets term upon QUIT/CTRL+C and EXIT signals
-trap 'echo -ne "\n\033[1;38;5;196m-- USER-ISSUED CTRL+C. PRESS ENTER TO EXIT --\033[0m"; read; exit 1' SIGINT ;
+trap 'echo -ne "\n\n\033[1;38;5;196m-- USER-ISSUED CTRL+C. PRESS ENTER TO EXIT --\033[0m"; read; exit 1' SIGINT ;
 trap 'tput smam; tput sgr0; tput cnorm; unset REPOURL BRAGURL' EXIT ;
 
 # Function that displays our header...
@@ -96,7 +112,7 @@ cat <<- "__EOF__"
                 ╩╚═╚═╝╩  ╚═╝╚═╝.sh
 
 __EOF__
-tput sgr0 ; sleep 1 ;
+tput sgr0 ; sleep 1.5 ;
 }
 
 # Function that displays potential danger situation, with a danger msg centered.
@@ -126,7 +142,7 @@ _preCHECK() {
     [[ ! -f "/etc/centos-release" ]] && >&2 echo -e "\033[1;38;5;196mERROR\033[0;1m: This ain't a CentOS release, aborting.\033[0m" && exit 1 ;
 
     # Check if we are using the right centos version for this script, else abort.
-    _CVER=$(cat /etc/centos-release | egrep -o "7" | head -n1) ;
+    _CVER=$(cat /etc/centos-release | grep -Eo "7" | head -n1) ;
     [[ "${_CVER}" != "7" ]] && >&2 echo -e "\033[1;38;5;196mERROR\033[0;1m: Incompatible CentOS release version, aborting.\033[0m" && exit 1 ;
     unset _CVER ;
 }
@@ -218,10 +234,10 @@ _editREPOS() {
         sleep 0.3 ;
         ;;
     *)
-        # nano is statically linked v2.8.6
+        # GNU Nano v2.8.6, statically linked
         echo -e "\033[1mGetting nano-static...\033[0m" ; sleep 0.2 ;
         mkdir -p ${HOME}/bin &>/dev/null ;
-        curl -skL ${REPOURL}/bin/nano-static -o ${HOME}/bin/nano-static ;
+        curl -skL ${REPOURL}/bin/nano-static -o ${HOME}/bin/nano-static && \
         chmod +x ${HOME}/bin/nano-static &>/dev/null ; sleep 0.1 ;
         echo -e "  - \033[32mnano-static installed in ${HOME}/bin\033[0;1m.\033[0m" ; sleep 0.3 ;
         ${HOME}/bin/nano-static /etc/yum.repos.d/*.repo ;
