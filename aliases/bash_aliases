@@ -88,3 +88,6 @@ alias ginxr='nginx -s reload';
 alias ginxs='echo -e "Getting \033[32mNGiNX\033[0m metrics from access logs... this may take a bit.\n"; cat /var/log/nginx/access.log | cut -f 9 -d" " | sort | uniq -c | grep -E -v "(-|\"|[a-zA-Z]|166$| 0$)" && echo -e "\nDONE."';
 alias ginxlog='tail -n500 /var/log/nginx/access.log | less';
 alias ginxerr='tail -n500 /var/log/nginx/error.log | less';
+
+# Self-destruct aliases (one-shot)
+alias parallel="unalias parallel && mkdir -p ~/.parallel && touch ~/.parallel/will-cite && sed -i '/alias parallel/d' ~/.bash_aliases && parallel"
