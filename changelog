@@ -244,3 +244,4 @@
 
 2017.10.23  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds 'function' to every functions that were missing it +tiny changes
+   * Creates/adds a new function, netstat-count, displaying current netstat status
