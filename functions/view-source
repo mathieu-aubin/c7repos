@@ -1,5 +1,5 @@
-# View WEB source of files
-view-source() {
+# Function to view WEB sources from given urls
+function view-source() {
   [[ $# -ge 1 ]] && {
     tmp=$(mktemp) || return;
     trap 'rm -f "${tmp}"' RETURN

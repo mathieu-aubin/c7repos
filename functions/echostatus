@@ -6,8 +6,8 @@
 #     echo_info 'this would be an informatio message';
 #     echo_success 'the previous operation was successful';
 #
-echo_info() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;244m INFO ${MSG}"; }
-echo_passed() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;226mPASSED${MSG}"; }
-echo_success() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;34m GOOD ${MSG}"; }
-echo_failure() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;196mFAILED${MSG}"; }
-echo_warning() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;202m WARN ${MSG}"; }
+function echo_info() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;244m INFO ${MSG}"; }
+function echo_passed() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;226mPASSED${MSG}"; }
+function echo_success() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;34m GOOD ${MSG}"; }
+function echo_failure() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;196mFAILED${MSG}"; }
+function echo_warning() { [[ ! -z "${1}" ]] && MSG="\\033[0;1m]\\033[0m - ${1}\n" || MSG="\\033[0;1m]\\033[0m"; echo -ne "\\033[0;1m[\\033[0;1;38;5;202m WARN ${MSG}"; }

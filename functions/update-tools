@@ -1,5 +1,5 @@
 # Updates the binary tools
-update-tools() {
+function update-tools() {
   local LINE1 LINE2 UNAME UPASS;
   LINE1="To continue updating the binary tools, you are required";
   LINE2="to provide valid credentials. CTRL+C to abort.";

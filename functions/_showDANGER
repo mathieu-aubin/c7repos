@@ -1,7 +1,7 @@
 # Shows a graphical ascii-art 'danger' banner with up to 2 lines of text data. 55 characters or less
 # does a nice centering job with the custom text data versus the ascii banner. Just one of thoses
 # *** don't need, must have, cause me can! *** type of deal. Stone me.
-_showDANGER() {
+function _showDANGER() {
   tput rmam; local LINE1="${1}"; local LINE2="${2}";
   echo -e "\033[1;38;5;196m  ____________                                ________\033[0m";
   echo -e "\033[1;38;5;196m   ______  __ \_____ ______________ _______________  /\033[0m";

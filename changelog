@@ -241,3 +241,6 @@
 2017.10.19  Mathieu Aubin  <mathieu@zeroserieux.com>
   * Adds the git.io short url to c7repos.sh file header and readme and
     move some things around while at it.
+
+2017.10.23  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds 'function' to every functions that were missing it +tiny changes

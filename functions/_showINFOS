@@ -1,6 +1,6 @@
 # Shows a graphical ascii-art 'informations' banner with up to 2 lines of text data.
 # 66 characters or less centers the text nicely against the ascii banner.
-_showINFOS() {
+function _showINFOS() {
   tput rmam; RNDC=$(shuf -n1 -i 17-230);
   local LINE1="${1}"; local LINE2="${2}";
   echo -e "\033[1;38;5;${RNDC}m  ___        __                            _   _\033[0m";

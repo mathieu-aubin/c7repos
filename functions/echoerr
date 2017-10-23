@@ -1,4 +1,4 @@
 # Write Error/Message to stderr
-echoerr() {
+function echoerr() {
   >&2 echo -e $@;
 }; alias errecho='echoerr';

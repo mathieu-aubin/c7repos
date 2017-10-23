@@ -2,7 +2,7 @@
 # either set by default aliases or user-defined... When looking
 # for a color theme for a project, bash-colors-random has prooven
 # to effortlessly throw some decent color combination.
-bash-colors() {
+function bash-colors() {
   local SEQNUM=${1:-4}; [[ "$SEQNUM" -eq "0" ]] && SEQNUM=4;
   tput rmam;
   seq -ws ' ' 0 ${SEQNUM} 256 | \xargs -n1 bash -c \
