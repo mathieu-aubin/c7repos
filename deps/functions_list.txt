@@ -2,9 +2,11 @@ bash-colors
 chownwww
 digall
 echoerr
+echostatus
+netstat-count
 _showDANGER
 _showINFOS
 speedtest
-update-tools
 update-npm-all
+update-tools
 view-source
