@@ -246,3 +246,6 @@
    * Adds 'function' to every functions that were missing it +tiny changes
    * Creates/adds a new function, netstat-count, displaying current netstat status
    * Updates the function list text file in deps directory (do i need this sh**? later.)
+
+2017.10.24  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Fixes an error in last added function
