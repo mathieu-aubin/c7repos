@@ -216,7 +216,7 @@ _installREPOS() {
 
     # NodeJS
     echo -e "\033[1mInstalling NodeJS repository from official source...\033[0m" ; sleep 0.2 ;
-    bash <(curl -skL https://rpm.nodesource.com/setup_8.x) &>/dev/null && \
+    bash <(curl -skL https://rpm.nodesource.com/setup_9.x) &>/dev/null && \
     echo -e "  - \033[32mNodeJS repository installed\033[0;1m.\033[0m" ; sleep 0.3 ;
 
     # DockerCE (disabled by default)
