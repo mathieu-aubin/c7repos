@@ -6,6 +6,7 @@ echostatus
 netstat-count
 _showDANGER
 _showINFOS
+pidof-parent
 speedtest
 update-npm-all
 update-tools

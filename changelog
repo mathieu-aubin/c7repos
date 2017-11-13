@@ -254,4 +254,5 @@
    * Updates NodeJS to 9.x
 
 2017.11.13  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds a new function, pidof-parent to the lot
    * Updates functions _showDANGER _showINFOS and chownwww
