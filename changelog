@@ -252,3 +252,6 @@
 
 2017.11.04  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Updates NodeJS to 9.x
+
+2017.11.13  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Updates functions _showDANGER _showINFOS and chownwww
