@@ -13,6 +13,7 @@ fuseiso
 genisoimage
 git
 grub2-tools
+hdparm
 htop
 ImageMagick
 ipset

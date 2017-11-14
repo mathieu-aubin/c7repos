@@ -256,3 +256,6 @@
 2017.11.13  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds a new function, pidof-parent to the lot
    * Updates functions _showDANGER _showINFOS and chownwww
+
+2017.11.14  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds hdparm to the lot of common packages
