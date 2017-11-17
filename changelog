@@ -259,3 +259,6 @@
 
 2017.11.14  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds hdparm to the lot of common packages
+
+2017.11.17  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds certbot/fribidi/java to the lot of common packages
