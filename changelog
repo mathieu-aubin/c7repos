@@ -262,3 +262,9 @@
 
 2017.11.17  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds certbot/fribidi/java to the lot of common packages
+
+2017.11.26  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Small typos
+   * Updates MariaDB repository to v10.3
+   * Makes sure Docker CE repository gets overwritten upon re-install instead
+     of being appended to as it was the case
