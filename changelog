@@ -268,3 +268,6 @@
    * Updates MariaDB repository to v10.3
    * Makes sure Docker CE repository gets overwritten upon re-install instead
      of being appended to as it was the case
+
+2017.11.27  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds important (debatable) notification about locate aliased to locate -i

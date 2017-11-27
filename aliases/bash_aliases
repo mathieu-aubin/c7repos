@@ -35,7 +35,7 @@ alias back='cd -; ll';
 alias home='cd ~; ll';
 alias l='ll';
 alias lld='ll | grep -E "^d"';
-alias llf='ll | grep -E -v "^d"';
+alias llf='ll | grep -Ev "^d"';
 alias ll='ls -lah --color --group-directories-first';
 alias lln='ls -lah --group-directories-first --color=never';
 
@@ -51,7 +51,7 @@ alias srcfunctions='[[ -f ~/.bash_functions ]] && source ~/.bash_functions';
 alias addfunction='nano ~/.bash_functions && srcfunctions';
 alias srccolors='[[ -f ~/.bash_colors ]] && source ~/.bash_colors';
 alias addcolors='nano ~/.bash_colors && srccolors';
-alias srcdot='for DFs in $(ls -1p ~/.bash_* | grep -E -v "history|logout|profile|back|/$"); do source $DFs; done';
+alias srcdot='for DFs in $(ls -1p ~/.bash_* | grep -Ev "history|logout|profile|back|/$"); do source $DFs; done';
 
 # Shorten dig's output with +short
 alias digs='dig +short';
@@ -60,9 +60,9 @@ alias digs='dig +short';
 alias netstat='netstat -peanut | sort && echo -e "\nTry command \033[32mnetstat-extra\033[0m for a detailed netstat check.\nTry command \033[32mnetstat-plus\033[0m for alot more to netstat..."';
 alias netstat-extra='echo -e "\033[31mLSOF OUTPUT (lsof -i):\033[0m" && sleep 0.2; lsof -i && echo -e "\033[31mLSOF OUTPUT DONE.\033[0m\n"; echo -e "\n\033[31mNETSTAT OUTPUT (netstat -peanut):\033[0m" && sleep 0.2; \netstat -peanut | sort && echo -e "\033[31mNETSTAT OUTPUT DONE.\033[0m\n"; echo -e "Try command \033[0;32mnetstat-plus\033[0m for a more torough network check\033[0m"';
 alias netstat-plus='echo -e "\033[31mLSOF OUTPUT (lsof -i):\033[0m" && sleep 0.2; \lsof -i && echo -e "\033[31mLSOF OUTPUT DONE.\033[0m\n"; echo -e "\n\033[31mNETSTAT OUTPUT (netstat -peanut):\033[0m" && sleep 0.2; \netstat -peanut | sort && echo -e "\033[31mNETSTAT OUTPUT DONE.\033[0m\n"; echo -e "\n\033[31mNMAP LOCAL OUTPUT (nmap -sT -O 127.0.0.1):\033[0m" && sleep 0.2; \nmap -sT -O 127.0.0.1; echo -e "\033[31mNMAP LOCAL OUTPUT DONE.\033[0m"; echo -e "\n\033[31mNMAP OUTPUT (nmap -sT -O $(curl -s v4.ident.me)):\033[0m" && sleep 0.2; \nmap -sT -O $(curl -s v4.ident.me); echo -e "\033[31mNMAP OUTPUT DONE.\033[0m"';
-alias watch-netstat='watch -cn1 '\''\netstat -peanut | grep -E -v "WAIT|AWK|SYN"'\''';
+alias watch-netstat='watch -cn1 '\''\netstat -peanut | grep -Ev "WAIT|AWK|SYN"'\''';
 
-alias free-ram='sync; sleep 1; sync; sync && echo 3 >/proc/sys/vm/drop_caches';
+alias free-ram='free -mh && sync && sync && echo 3 >/proc/sys/vm/drop_caches && fstrim -av && free -mh';
 alias chownroot='chown root:root $PWD -R && echo -e "Files/folders permissions set to root, recursively."';
 alias edit-iptables='nano /etc/sysconfig/iptables';
 alias edit-ip6tables='nano /etc/sysconfig/ip6tables';
@@ -75,8 +75,8 @@ alias update-npm='npm i npm -g --upgrade'; alias npm-update='update-npm';
 alias set-permissions='echo -e "\033[1;48;5;196m  WATCH OUT WITH THIS COMMAND -- YOU CAN FUCK UP YOUR SYSTEM BAD IF YOU RUN THIS CARELESSLY  \033[0m"; echo "# Command: find ./ -type f -exec chmod 664 {} + -o -type d -exec chmod 775 {} +"';
 
 # fstab and mtab display aliases, removing comments
-alias fstab='cat /etc/fstab | grep -E -v "^#" | column -t';
-alias mtab='cat /etc/mtab | grep -E -v "^#" | column -t';
+alias fstab='cat /etc/fstab | grep -Ev "^#" | column -t';
+alias mtab='cat /etc/mtab | grep -Ev "^#" | column -t';
 
 # NGiNX (awesome) custom aliases/commands
 alias ginx='cd /etc/nginx; ll';
@@ -85,9 +85,11 @@ alias ginxv='nginx -v';
 alias ginxt='nginx -t';
 alias ginxr='nginx -s reload';
 # Assuming you are using default log file type, ginxs will fetch the returned http codes since the last log rotation and display an occurence count for each one..
-alias ginxs='echo -e "Getting \033[32mNGiNX\033[0m metrics from access logs... this may take a bit.\n"; cat /var/log/nginx/access.log | cut -f 9 -d" " | sort | uniq -c | grep -E -v "(-|\"|[a-zA-Z]|166$| 0$)" && echo -e "\nDONE."';
+alias ginxs='echo -e "Getting \033[32mNGiNX\033[0m metrics from access logs... this may take a bit.\n"; cat /var/log/nginx/access.log | cut -f 9 -d" " | sort | uniq -c | grep -Ev "(-|\"|[a-zA-Z]|166$| 0$)" && echo -e "\nDONE."';
 alias ginxlog='tail -n500 /var/log/nginx/access.log | less';
 alias ginxerr='tail -n500 /var/log/nginx/error.log | less';
 
-# Self-destruct aliases (one-shot)
+# Self-destruct aliases (one-shot, self-removing aliases)
 alias parallel="unalias parallel && mkdir -p ~/.parallel && touch ~/.parallel/will-cite && sed -i '/alias parallel/d' ~/.bash_aliases && parallel"
+
+alias locate='warnlocate; &>/dev/null echo'; alias warnlocate='echo -e "\033[4;1mIMPORTANT INFORMATIONS REGARDING LOCATE\033[0m\n\nThe current system aliases defines this command as \033[1;3mlocate -i\033[0m (case insensitive).\nIf for such behavior is undesirable, remove or comment the appropriated line in\nyour alias file (~/.bash_aliases) or run the following now to quickly unalias it\nand comment it out:\n\n# unalias locate; sed -i \"s/alias locate/#alias locate/\" ~/.bash_aliases\n\nRun your command again for its real result" && sed -i "/warnlocate/d" ~/.bash_aliases && alias locate="locate -i"'
