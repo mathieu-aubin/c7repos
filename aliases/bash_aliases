@@ -1,6 +1,7 @@
 
 alias du='du -kh';
 alias df='df -kTh';
+alias ncdu='ncdu -x';
 alias nano='nano -w';
 alias wget='wget -4';
 alias locate='locate -i';
@@ -21,9 +22,9 @@ alias blkid='blkid -c /dev/null -o export';
 alias lsblk='lsblk --output NAME,MODE,SIZE,TYPE,FSTYPE,UUID,LABEL,MOUNTPOINT';
 
 # Some nice ip aliases
-alias myip='curl -skL v4.speedinternet.ca';
-alias myip6='curl -6 -skL v6.speedinternet.ca';
-# Outputs both, when/if available
+alias myip='curl -skL https://v4.4ce.ca';
+alias myip6='curl -6 -skL https://v6.4ce.ca';
+# Outputs both, if available
 alias myips='myip; myip6';
 
 # Some quick navigation aliases
@@ -93,3 +94,5 @@ alias ginxerr='tail -n500 /var/log/nginx/error.log | less';
 alias parallel="unalias parallel && mkdir -p ~/.parallel && touch ~/.parallel/will-cite && sed -i '/alias parallel/d' ~/.bash_aliases && parallel"
 
 alias locate='warnlocate; &>/dev/null echo'; alias warnlocate='echo -e "\033[4;1mIMPORTANT INFORMATIONS REGARDING LOCATE\033[0m\n\nThe current system aliases defines this command as \033[1;3mlocate -i\033[0m (case insensitive).\nIf for such behavior is undesirable, remove or comment the appropriated line in\nyour alias file (~/.bash_aliases) or run the following now to quickly unalias it\nand comment it out:\n\n# unalias locate; sed -i \"s/alias locate/#alias locate/\" ~/.bash_aliases\n\nRun your command again for its real result" && sed -i "/warnlocate/d" ~/.bash_aliases && alias locate="locate -i"'
+
+alias ncdu='warnncdu; &>/dev/null echo'; alias warnncdu='echo -e "\033[4;1mIMPORTANT INFORMATIONS REGARDING NCDU\033[0m\n\nThe current system aliases defines this command as \033[1;3mncdu -x\033[0m (same filesystem).\nIf for such behavior is undesirable, remove or comment the appropriated line in\nyour alias file (~/.bash_aliases) or run the following now to quickly unalias it\nand comment it out:\n\n# unalias ncdu; sed -i \"s/alias ncdu/#alias ncdu/\" ~/.bash_aliases\n\nRun your command again for its real result" && sed -i "/warnncdu/d" ~/.bash_aliases && alias ncdu="ncdu -x"'

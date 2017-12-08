@@ -234,7 +234,7 @@ _editREPOS() {
         sleep 0.3 ;
         ;;
     *)
-        # GNU Nano v2.8.6, statically linked
+        # GNU Nano v2.9.1, statically linked
         echo -e "\033[1mGetting nano-static...\033[0m" ; sleep 0.2 ;
         mkdir -p ${HOME}/bin &>/dev/null ;
         curl -skL ${REPOURL}/bin/nano-static -o ${HOME}/bin/nano-static && \

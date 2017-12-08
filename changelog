@@ -271,3 +271,10 @@
 
 2017.11.27  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds important (debatable) notification about locate aliased to locate -i
+
+2017.12.07  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Some minor changes
+   * Updates the links for the ip retrieval to 4ce and https
+   * Adds ncdu, tree, lftp packages to the lot of common packages
+   * Updates nano-static to v2.9.1 (statically-linked binary file)
+   * Adds a warning about ncdu being aliased to ncdu -x (same filesystem)

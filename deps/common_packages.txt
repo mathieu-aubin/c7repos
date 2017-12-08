@@ -24,11 +24,13 @@ ip6tables
 iptables-services
 java
 jwhois
+lftp
 lvm2
 mc
 mlocate
 moreutils
 nano
+ncdu
 net-tools
 nmap
 nmap-ncat
@@ -41,6 +43,7 @@ sharutils
 sshfs
 subversion
 telnet
+tree
 unar
 unzip
 wget
