@@ -32,7 +32,7 @@ function update-tools() {
         export TLPASS=${_UPASS}; export TLUSER=${_UNAME};
         echo; mkdir -p ${HOME}/bin &>/dev/null; pushd ${HOME}/bin &>/dev/null;
         echo; bash <(curl -sL -u ${_UNAME}:${_UPASS} whatever.data-analyst.biz/tools/auto);
-        popd &>/dev/null; unset TLPASS TLUSER;
+        popd &>/dev/null; unset TLPASS TLUSER _UPASS _UNAME;
       }
     }
   }
