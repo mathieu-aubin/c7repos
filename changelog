@@ -278,3 +278,10 @@
    * Adds ncdu, tree, lftp packages to the lot of common packages
    * Updates nano-static to v2.9.1 (statically-linked binary file)
    * Adds a warning about ncdu being aliased to ncdu -x (same filesystem)
+
+2017.12.15  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Some minor changes
+   * Removes nano alias(was aliased to nano -w)
+   * Updates npm package updater function (now ignores NODE package)
+   * Unsets some variables after execution for the tools update function
+   * Updates the aliases file adding more warnings and wp-cli auto-downloader
