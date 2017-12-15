@@ -140,7 +140,7 @@ _preCHECK() {
     [[ ! -f "/etc/centos-release" ]] && >&2 echo -e "\033[1;38;5;196mERROR\033[0;1m: This ain't a CentOS release, aborting.\033[0m" && exit 1 ;
 
     # Check if we are using the right centos version for this script, else abort.
-    _CVER=$(cat /etc/os-release | grep -Pio 'VERSION_ID="\K[[:digit:]].') ;
+    _CVER=$(cat /etc/os-release | grep -Pio 'VERSION_ID="\K[[:digit:]"]') ;
     [[ "${_CVER}" != "7" ]] && >&2 echo -e "\033[1;38;5;196mERROR\033[0;1m: Incompatible CentOS release version, aborting.\033[0m" && exit 1 ;
 }
 
