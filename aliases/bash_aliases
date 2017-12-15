@@ -2,7 +2,6 @@
 alias du='du -kh';
 alias df='df -kTh';
 alias ncdu='ncdu -x';
-alias nano='nano -w';
 alias wget='wget -4';
 alias locate='locate -i';
 alias columnt='column -t'; # Because i always write it wrong
