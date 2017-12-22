@@ -17,12 +17,15 @@ git
 grub2-tools
 hdparm
 htop
+inkscape
 ImageMagick
+ImageMagick-c++
 ipset
 iptables
 ip6tables
 iptables-services
 java
+java-1.8.0-openjdk
 jwhois
 lftp
 lvm2

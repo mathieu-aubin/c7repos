@@ -1,25 +1,26 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
-# c7repos.sh - Copyright © 2017 Mathieu Aubin <mathieu@zeroserieux.com>
+# c7repos.sh -- Copyright © 2017 Mathieu Aubin <mathieu@zeroserieux.com>
 #
-# Installs common/base CentOS 7 repositories and programs (x86_64 only)
+# Installs common/base CentOS7 repositories/programs (x86_64 arch. only)
 #
 # WHAT
 # ¯¯¯¯
-# Attempts to installs/create the following repositories configs, and
-# some suggested (at user's will) extra packages for a clean, practical
+# Attempts  to installs/create the  following repositories  configs, and
+# some suggested (at user's will) extra  packages for a clean, practical
 # and usable base server system
 #
-# EPEL ** REMi ** NGiNX ** NODEJS ** EL-REPO ** MARiADB ** DOCKER (CE)
+#  EPEL ** REMi ** NGiNX ** NODEJS ** EL-REPO ** MARiADB ** DOCKER (CE)
 #
-# Some repos have options that can be enabled in the repo file itself.
-# REMi, as an example, has all PHP versions easily enablable from the
-# repo files. EL-REPO's latest kernel packages, kernel-ml, is also just
-# a digit away from being enabled. YUM can also be run with the extra
-# switche --enablerepo=repo.name, essentially doing the same, as a one-
+# Some repos  have options that can be enabled in the  repo file itself.
+# REMi, as an  example, has all PHP versions  easily enablable from  the
+# repo files. EL-REPO's latest kernel  packages, kernel-ml, is also just
+# a digit away  from being enabled. YUM can  also be run with  the extra
+# switch --enablerepo=repo.name,  essentially doing the  same, as a one-
 # shot type deal. Alot more YUM stuff to be read to whom dares using the
-# awesome 'man' command or by visiting YUM's official webpage at
-# http://yum.baseurl.org
+# awesome 'man' command or by visiting
+#
+#      YUM's official webpage --> http://yum.baseurl.org
 #
 # WHERE
 # ¯¯¯¯¯
@@ -27,9 +28,9 @@
 #
 #      https://github.com/mathieu-aubin/c7repos
 #
-# The installable script (aka the raw script file) is accessible via
-# the traditionnal GitHub's raw url and is also 'mirrored' using both
-# short url providers.
+# The installable script (aka the raw script file) is accessible via the
+# traditionnal GitHub's raw url and  is also 'mirrored' using both short
+# url providers.
 #
 #      Git.io --> https://git.io/vd7Ye
 #      Bit.ly --> https://bit.ly/c7repos
@@ -47,7 +48,7 @@
 #
 #  Method #2
 #  ¯¯¯¯¯¯¯¯¯
-#   - Piping curl stdout to bash's stdin. Example:
+#   - Piping curl's output to bash's input. Examples:
 #
 #      root@host ~ # curl -skL https://git.io/vd7Ye | bash -
 #    nobody@host ~ $ curl -skL https://git.io/vd7Ye | sudo bash -
@@ -55,18 +56,20 @@
 #  Method #3
 #  ¯¯¯¯¯¯¯¯¯
 #   - Downloading/saving it to a location on the machine.
-#   - Executing a simple bash call pointing to the file. Example:
+#   - Executing a simple bash call pointing to the file. Examples:
 #
 #      root@host ~ # wget https://bit.ly/c7repos -O c7repos.sh
 #      root@host ~ # bash c7repos.sh
 #
 # HOWTO NOTE
 # ¯¯¯¯¯¯¯¯¯¯
-# Using https://bit.ly/c7repos is just about the same as using the raw
-# repository directly the difference being i could potentially monitor
+# You  MUST  be superuser in order to run the this - sudo works as well.
+#
+# Using  https://bit.ly/c7repos  is just about the same as using the raw
+# repository  directly the  difference being i could potentially monitor
 # some of the usage, at some point, if any.
 #
-# If you do not want to go thru Bit.ly, you are free to run directly from
+# If you do not want to go thru Bit.ly you are free to run directly from
 # either one of GitHub's addresses, Git.io's mirror or the raw url.
 #
 # https://git.io/vd7Ye (git.io mirror/short url)
@@ -74,19 +77,25 @@
 #
 # HISTORY
 # ¯¯¯¯¯¯¯
-# Originally scripted for CentOS 6 by Peggy <peggy@zeroserieux.com> following
-# a request for a simple os configuration script. From there on, it grew to
-# something a little more actual and practical. (Peggy is a fictitious character)
+# Originally coded for C6 by Peggy  <peggy@zeroserieux.com> following  a
+# request for a simple C6 config script. From there on, some time later,
+# it grew to  something a little more  actual and practical. (Peggy is a
+# fictitious character)
 #
 # CHANGELOG
 # ¯¯¯¯¯¯¯¯¯
-# A changelog is available on GitHub at https://git.io/vd5aC
+# A changelog is available (and hopefuly up-to-date) on GitHub at
+#
+#      https://git.io/vd5aC
 #
 # CONTRIBUTING
 # ¯¯¯¯¯¯¯¯¯¯¯¯
 # By all means and please, do not hesitate to send comments, ideas and/or
-# pull requests.
+# pull requests. Looking forward for your input.
 #
+
+# Defines some versions used in the script
+MARIADBVER=10.3 ; NODEJSVER=9 ;
 
 # Repository URL used to fetch ressources
 REPOURL='https://raw.githubusercontent.com/mathieu-aubin/c7repos/master' ;
@@ -104,15 +113,21 @@ trap 'tput smam; tput sgr0; tput cnorm' EXIT ;
 _showHEADER() {
 tput bold ;
 cat <<- "__EOF__"
-             ____
-            |__  |
-          ╔═╗ / /
-          ║  /_/╦═╗╔═╗╔═╗╔═╗╔═╗
-          ╚═╝   ╠╦╝║╣ ╠═╝║ ║╚═╗
-                ╩╚═╚═╝╩  ╚═╝╚═╝.sh
+
+                  ╔═══════════════════════════════╗
+                  ║                               ║
+                  ║       ____                    ║
+                  ║      |__  |                   ║
+                  ║    ╔═╗ / /                    ║
+                  ║    ║  /_/╦═╗╔═╗╔═╗╔═╗╔═╗      ║
+                  ║    ╚═╝   ╠╦╝║╣ ╠═╝║ ║╚═╗      ║
+                  ║          ╩╚═╚═╝╩  ╚═╝╚═╝.sh   ║
+                  ║                               ║
+                  ║                               ║
+                  ╚═══════════════════════════════╝
 
 __EOF__
-tput sgr0 ; sleep 1.5 ;
+tput sgr0 ; sleep 1.75 ;
 }
 
 # Function that displays potential danger situation, with a danger msg centered.
@@ -189,15 +204,15 @@ _installREPOS() {
 	# Generated by an awesome script on $(date +"%F %R:%S")
 	# Get it at ${BRAGURL}
 	[MariaDB]
-	name=MariaDB 10.3 repository for CentOS \$releasever
-	baseurl=https://yum.mariadb.org/10.3/centos\$releasever-amd64
+	name=MariaDB ${MARIADBVER} repository for CentOS \$releasever
+	baseurl=https://yum.mariadb.org/${MARIADBVER}/centos\$releasever-amd64
 	gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 	gpgcheck=1
 	enabled=1
 	__EOF__
-	echo -e "  - \033[32mRepository file for MariaDB created\033[0;1m.\033[0m"; sleep 0.3 ;
+	echo -e "  - \033[32mRepository file for MariaDB ${MARIADBVER} created\033[0;1m.\033[0m"; sleep 0.3 ;
 
-	# Nginx
+	# Create the NGiNX repo file
 	cat <<- __EOF__ | tee /etc/yum.repos.d/nginx.repo &>/dev/null ;
 	# Generated by an awesome script on $(date +"%F %R:%S")
 	# Get it at ${BRAGURL}
@@ -212,14 +227,14 @@ _installREPOS() {
 
     # NodeJS
     echo -e "\033[1mInstalling NodeJS repository from official source...\033[0m" ; sleep 0.2 ;
-    bash <(curl -skL https://rpm.nodesource.com/setup_9.x) &>/dev/null && \
+    bash <(curl -skL https://rpm.nodesource.com/setup_${NODEJSVER}.x) &>/dev/null && \
     echo -e "  - \033[32mNodeJS repository installed\033[0;1m.\033[0m" ; sleep 0.3 ;
 
     # DockerCE (disabled by default)
     echo -e "\033[1mInstalling Docker CE repository from official source...\033[0m" ; sleep 0.2 ;
     echo -e "# Generated by an awesome script on $(date +"%F %R:%S")\n# Get it at ${BRAGURL}\n#" > /etc/yum.repos.d/docker-ce.repo ;
     curl -skL https://download.docker.com/linux/centos/docker-ce.repo | sed -e 's/enabled=1/enabled=0/' >> /etc/yum.repos.d/docker-ce.repo && \
-    echo -e "  - \033[32mDocker CE repository installed\033[0;1m.\033[0m" ; sleep 0.3 ;
+    echo -e "  - \033[32mDocker CE repository installed (disabled by default)\033[0;1m.\033[0m" ; sleep 0.3 ;
 }
 
 # Function to edit repo files
@@ -293,7 +308,8 @@ _installDEVEL() {
       *)
         echo -e "\033[1mInstalling development tools package group...\033[0m" ; sleep 0.2 ;
         yum -y groups install "Development Tools" "Fedora Packager" &>/dev/null ;
-        yum -y install caca-utils libcaca-devel ruby-devel boost-devel boost-static zlib-devel zlib-static openssl-devel &>/dev/null ;
+        yum -y install ruby-devel boost-devel boost-static zlib-devel zlib-static openssl-devel koji-utils &>/dev/null ;
+        rpmdev-setuptree &>/dev/null ; # Setup the rpm build tree
         echo -e "  - \033[32mDevelopment tools group package installed\033[0;1m.\033[0m" ; sleep 0.3 ;
         ;;
     esac
