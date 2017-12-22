@@ -25,7 +25,6 @@ iptables
 ip6tables
 iptables-services
 java
-java-1.8.0-openjdk
 jwhois
 lftp
 lvm2
