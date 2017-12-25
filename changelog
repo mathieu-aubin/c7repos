@@ -303,4 +303,5 @@
      it has been installed
 
 2017.12.25  Mathieu Aubin  <mathieu@zeroserieux.com>
-   * Added some utilities packages to the common packages
+   * Adds bc to common packages
+   * Adds some utilities packages to the common packages

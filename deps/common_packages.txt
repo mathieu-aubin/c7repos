@@ -1,6 +1,7 @@
 asciinema
 bash-completion
 bash-completion-extras
+bc
 boost
 bind-utils
 bridge-utils
