@@ -301,3 +301,6 @@
      alot easier to change/switch thoses
    * Adds a simple note saying that Docker CE repo is disabled by default, after
      it has been installed
+
+2017.12.25  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Added some utilities packages to the common packages

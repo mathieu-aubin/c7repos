@@ -3,7 +3,10 @@ bash-completion
 bash-completion-extras
 boost
 bind-utils
+bridge-utils
 certbot
+cifs-utils
+crypto-utils
 curlftpfs
 deltarpm
 device-mapper-persistent-data
@@ -34,6 +37,7 @@ moreutils
 nano
 ncdu
 net-tools
+nfs-utils
 nmap
 nmap-ncat
 parallel
@@ -44,11 +48,13 @@ screen
 sharutils
 sshfs
 subversion
+sysfsutils
 targetcli
 telnet
 tree
 unar
 unzip
+usbutils
 wget
 whois
 xauth
