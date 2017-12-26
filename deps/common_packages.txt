@@ -47,6 +47,7 @@ pv
 python-pip
 screen
 sharutils
+squashfuse
 sshfs
 subversion
 sysfsutils
