@@ -1,51 +1,68 @@
-# c7repos
+# _c7repos.sh_
 
-Basic CentOS 7 initial setup script - Installs common/base repositories and programs (x86_64 only)
+Basic initial *CentOS* 7 setup script.
+Installs common/base *CentOS* 7 repositories/programs (___x86_64 ONLY___)
 
 ### WHAT
 
-Attempts to installs/create the following repositories configs
+*c7repos.sh* attempts to installs/create the following repositories configurations
 
-#### EPEL - REMi - NGiNX - NODEJS - EL-REPO - MARiADB - DOCKER-CE
+##### ___EPEL___ - ___REMi___ - ___NGiNX___ - ___NODEJS___ - ___EL-REPO___ - ___MARiADB___ - ___DOCKER (CE)___
 
-and some extra packages for a clean, practical and usable base server system.
+and some suggested extra packages for a clean, practical and usable base server system. _c7repos.sh_ also defines a bunch of useful system aliases and functions.
 
-Some repos have options that can be enabled in the repo file itself. REMi, as an example, has all PHP versions easily enablable from the repo files. EL-REPO's latest kernel packages, kernel-ml, is also just a digit away from being enabled. YUM can also be run with the extra switche --enablerepo=repo.name, essentially doing the same, as a one-shot type deal. Alot more YUM stuff to be read to whom dares using the awesome 'man' command or by visiting YUM's official webpage at http://yum.baseurl.org
+Some repositories have options that can be enabled directly in the repo files themselves (located in /etc/yum.repos.d/). _REMi_, per example, contains all _PHP_ versions easily enableable from the repository files. Per example, _EL-REPO_'s latest kernel packages _kernel-ml_, is also just a digit away from being enabled. [_YUM_](http://yum.baseurl.org) can also be run with the extra switch `--enablerepo=repo.name`, essentially doing the same. Alot more [_YUM_](http://yum.baseurl.org) stuff to be read in the manual or by visiting [_YUM_'s Official webpage](http://yum.baseurl.org)
 
 ### WHERE
 
-c7repos.sh is available at https://github.com/mathieu-aubin/c7repos and the install script is mirrored using bit.ly at https://bit.ly/c7repos
+_c7repos.sh_ code repository is hosted on [_GitHub_](https://github.com/mathieu-aubin/c7repos).
+
+The installable script is accessible via the traditionnal [_GitHub_'s raw url](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh) and is also 'mirrored' using both short following url providers [_Git.io_](https://git.io/vd7Ye) and [_Bit.ly_](https://bit.ly/c7repos)
 
 ### HOWTO
 
-From a FRESHLY INSTALLED CentOS 7 server, c7repos.sh can be called as superuser (root) by using any of the following methods:
+Preferably from a ___FRESHLY iNSTALLED___ _CentOS_ 7 server, _c7repos.sh_ can be called as superuser (_root_) using one of the following methods
 
-####  Method 1
+##### Method #1
 
-  - Executing straight from GitHub or a known mirror.
+   - Executing straight from a known mirror.
 
-  Example:
+   Example:
 
-```shell
-bash <(curl -skL https://bit.ly/c7repos)
-```
+    root@host ~ # bash <(curl -skL https://bit.ly/c7repos)
 
-####  Method 2
+##### Method #2
 
-  - Downloading/saving it to a location on the machine.
-  - Executing a simple bash call pointing to the file.
+   - Piping _curl_'s output to _bash_'s input.
 
-  Example:
+   Examples:
 
-```shell
-wget https://bit.ly/c7repos -O c7repos.sh
-bash c7repos.sh
-```
+    root@host ~ # curl -skL https://git.io/vd7Ye | bash -
+    user@host ~ $ curl -skL https://git.io/vd7Ye | sudo bash -
 
-### HISTORY
+##### Method #3
 
-Originally scripted for CentOS 6 by Peggy following a request for a simple os configuration script. From there on, it grew to something a little more actual and practical. (Peggy is a fictitious character)
+   - Downloading/saving it to a location on the machine and executing a simple _bash_ call pointing to the file.
 
-### CONTRIBUTING
+   Example:
 
-By all means and please, do not hesitate to send comments, ideas and/or pull requests.
+    root@host ~ # wget https://bit.ly/c7repos -O c7repos.sh && bash c7repos.sh
+
+### HOWTO/iNSTALL NOTE
+
+You **MUST** be superuser (*root*) in order to run _c7repos.sh_ (_sudo_ works as well). Using [_Bit.ly_ mirror](https://bit.ly/c7repos) is just about the same as using [_GitHub_'s raw repository url](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh) directly the only difference being that i can potentially monitor the usage at some point and if need be. If you do not want to go thru [_Bit.ly_](https://bit.ly/c7repos) you are free to run directly from either one of _GitHub_'s addresses, [_Git.io_'s short](https://git.io/vd7Ye) or [_GitHub_'s raw](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh) url.
+
+[_Git.io_'s short url](https://git.io/vd7Ye)
+[_GitHub_'s raw url](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh)
+
+### HiSTORY
+
+Originally coded for _CentOS_ 6 by _Peggy_ following a request for a simple server configuration script. From there on and some time later, it grew to something a little more actual and practical. (_Peggy_ is a fictitious character)
+
+### CHANGELOG
+
+A changelog is available (hopefuly up-to-date) on [_GitHub_](https://git.io/vd5aC)
+
+### CONTRiBUTiNG
+
+By all means and please, do not hesitate to send comments, ideas and/or pull requests. Looking forward for your input.

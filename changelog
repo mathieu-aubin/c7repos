@@ -305,3 +305,6 @@
 2017.12.25  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds bc & squashfuse to common packages
    * Adds some utilities packages to the common packages
+
+2017.12.31  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Updates README.md
