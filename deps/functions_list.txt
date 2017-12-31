@@ -1,11 +1,11 @@
+_showDANGER
+_showINFOS
 bash-colors
 chownwww
 digall
 echoerr
 echostatus
 netstat-count
-_showDANGER
-_showINFOS
 pidof-parent
 speedtest
 update-npm-all
