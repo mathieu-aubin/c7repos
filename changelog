@@ -308,4 +308,5 @@
 
 2017.12.31  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Updates README.md
+   * Adds function generate-password
    * Sort the functions_list.txt file in a certain way

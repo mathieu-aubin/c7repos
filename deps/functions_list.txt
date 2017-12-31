@@ -5,6 +5,7 @@ chownwww
 digall
 echoerr
 echostatus
+generate-password
 netstat-count
 pidof-parent
 speedtest
