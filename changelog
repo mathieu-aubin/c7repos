@@ -316,3 +316,5 @@
    * Changes/adds/fixes some aliases
    * Fix referal author's name in genpass function (thanks Pete)
    * Updates the digall function to include SPF1 records checks
+   * Updates the header in the main script to remove some space padding
+     and to add the github's page address and a little description
