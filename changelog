@@ -311,3 +311,8 @@
    * Adds function generate-password
    * Re-work(already!) of generate-password function
    * Sort the functions_list.txt file in a certain way
+
+2018.01.11  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Changes/adds/fixes some aliases
+   * Fix referal author's name in genpass function (thanks Pete)
+   * Updates the digall function to include SPF1 records checks

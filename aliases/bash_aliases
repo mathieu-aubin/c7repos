@@ -23,11 +23,14 @@ alias quick-stats='bash <(curl -sL https://bit.ly/qsts)'; alias qstats='quick-st
 # RPM/YUM aliases
 alias rpm-list-keys='rpm -q gpg-pubkey --qf "%{name}-%{version}-%{release} --> %{summary}\n"';
 alias list-rpm-gpg-keys='rpm-list-keys'; alias rpm-gpg-keys='rpm-list-keys'; alias gpg-list-rpm='rpm-list-keys'; alias rpm-keys-list='rpm-list-keys';
-alias kernel-cleanup='package-cleanup --oldkernels --keepdevel && /root/bin/update-grub';
-alias update='yum clean all && rm -rf /var/cache/yum && yum makecache && yum update';
+alias kernel-cleanup='package-cleanup --oldkernels --keepdevel; [[ -f ~/bin/update-grub ]] && ~/bin/update-grub';
+alias update='yum clean all &>/dev/null && yum makecache && yum update';
+alias update-clean='yum clean all &>/dev/null && rm -rf /var/cache/yum && yum makecache && yum update';
 
 # System commands
 alias blkid='blkid -c /dev/null -o export';
+alias uuid2dev='\blkid -c /dev/null -U'; alias uuid-to-dev='uuid2dev';
+alias label2dev='\blkid -c /dev/null -L'; alias label-to-dev='label2dev';
 alias lsblk='lsblk --output NAME,MODE,SIZE,TYPE,FSTYPE,UUID,LABEL,MOUNTPOINT';
 
 # Some nice ip aliases
@@ -90,17 +93,17 @@ alias mtab='cat /etc/mtab | grep -Ev "^#" | column -t';
 
 # NGiNX (awesome) custom aliases/commands
 alias ginx='cd /etc/nginx; ll';
-alias ginxT='nginx -T';
-alias ginxv='nginx -v';
-alias ginxt='nginx -t';
-alias ginxr='nginx -s reload';
+alias ginxT='nginx -T'; alias ginxv='nginx -v';
+alias ginxt='nginx -t'; alias ginxr='nginx -s reload';
 # Assuming you are using default log file type, ginxs will fetch the returned http codes since the last log rotation and display an occurence count for each one..
 alias ginxs='echo -e "Getting \033[32mNGiNX\033[0m metrics from access logs... this may take a bit.\n"; cat /var/log/nginx/access.log | cut -f 9 -d" " | sort | uniq -c | grep -Ev "(-|\"|[a-zA-Z]|166$| 0$)" && echo -e "\nDONE."';
-alias ginxlog='tail -n500 /var/log/nginx/access.log | less';
-alias ginxerr='tail -n500 /var/log/nginx/error.log | less';
+alias ginxlog='tail -n500 /var/log/nginx/access.log | less'; alias ginxerr='tail -n500 /var/log/nginx/error.log | less';
 
 # WordPress Client (wp-cli) alias allowing root
 alias wp-cli='wp-cli --allow-root'; alias wpcli='wp-cli'; alias wp='wp-cli';
+
+# FFmpeg and related
+alias ffmpeg='ffmpeg -hide_banner'; alias ffprobe='ffprobe -hide_banner';
 
 # Self-destruct aliases (one-shot, self-removing aliases)
 alias parallel="unalias parallel && mkdir -p ~/.parallel && touch ~/.parallel/will-cite && sed -i '/alias parallel/d' ~/.bash_aliases && parallel";
