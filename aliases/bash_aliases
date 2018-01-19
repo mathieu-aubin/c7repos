@@ -23,9 +23,9 @@ alias quick-stats='bash <(curl -sL https://bit.ly/qsts)'; alias qstats='quick-st
 # RPM/YUM aliases
 alias rpm-list-keys='rpm -q gpg-pubkey --qf "%{name}-%{version}-%{release} --> %{summary}\n"';
 alias list-rpm-gpg-keys='rpm-list-keys'; alias rpm-gpg-keys='rpm-list-keys'; alias gpg-list-rpm='rpm-list-keys'; alias rpm-keys-list='rpm-list-keys';
-alias kernel-cleanup='package-cleanup --oldkernels --keepdevel; [[ -f ~/bin/update-grub ]] && ~/bin/update-grub';
+alias kernel-cleanup='package-cleanup --oldkernels --keepdevel; [[ -f ~/bin/update-grub ]] && ~/bin/update-grub || grub2-mkconfig >/boot/grub2/grub.cfg';
 alias update='yum clean all &>/dev/null && yum makecache && yum update';
-alias update-clean='yum clean all &>/dev/null && rm -rf /var/cache/yum && yum makecache && yum update';
+alias update-clean='yum clean all &>/dev/null && rm -rf /var/cache/yum && yum makecache && yum update'; alias clean-update='update-clean';
 
 # System commands
 alias blkid='blkid -c /dev/null -o export';

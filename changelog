@@ -321,3 +321,4 @@
 
 2018.01.19  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds subnetcalc to common packages
+   * Modifies and adds some aliases (kernel cleanup and grub update)
