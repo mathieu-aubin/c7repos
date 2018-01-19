@@ -318,3 +318,6 @@
    * Updates the digall function to include SPF1 records checks
    * Updates the header in the main script to remove some space padding
      and to add the github's page address and a little description
+
+2018.01.19  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds subnetcalc to common packages

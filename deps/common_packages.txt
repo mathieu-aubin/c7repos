@@ -49,6 +49,7 @@ screen
 sharutils
 squashfuse
 sshfs
+subnetcalc
 subversion
 sysfsutils
 targetcli
