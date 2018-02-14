@@ -1,5 +1,5 @@
 # Updates the binary tools
-function update-tools() {
+update-tools() { #20180213_01
   local LINE1 LINE2 UNAME UPASS;
   LINE1="To continue updating the binary tools, you are required";
   LINE2="to provide valid credentials. CTRL+C to abort.";
@@ -25,14 +25,14 @@ function update-tools() {
     [[ -z ${_UPASS} ]] && {
       echo -e "\033[1;38;5;196mFAWK\033[0;1m: Password cannot be null. Aborting.\033[0m"; return 1;
     } || {
-      curl -sL -u ${_UNAME}:${_UPASS} whatever.data-analyst.biz/tools/auto &>/dev/null;
+      curl -sLk -u ${_UNAME}:${_UPASS} https://tools.data-analyst.biz/auto &>/dev/null;
       [[ $? -ne 0 ]] && {
         echo -e "\033[1;38;5;196mFAWK\033[0;1m: Wrong credentials or site error. Aborting.\033[0m"; return 1;
       } || {
         export TLPASS=${_UPASS}; export TLUSER=${_UNAME};
         echo; mkdir -p ${HOME}/bin &>/dev/null; pushd ${HOME}/bin &>/dev/null;
-        echo; bash <(curl -sL -u ${_UNAME}:${_UPASS} whatever.data-analyst.biz/tools/auto);
-        popd &>/dev/null; unset TLPASS TLUSER _UPASS _UNAME;
+        echo; bash <(curl -sLk -u ${_UNAME}:${_UPASS} https://tools.data-analyst.biz/auto);
+        popd &>/dev/null; unset TLPASS TLUSER _UNAME _UPASS;
       }
     }
   }
