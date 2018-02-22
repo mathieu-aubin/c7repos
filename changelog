@@ -326,3 +326,18 @@
 2018.02.14  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Updates the tools function, changing multiple things on both the
      code and the backend server
+
+2018.02.15  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Updates the 'update-grub' binary with some new code that makes the
+     program alot more compatible with other releases than c7 (its also
+     part of data-analyst's toolset and gets pulled to many different OS)
+
+2018.02.21  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds IUS Community repository
+   * Adds LOC to the digall function
+   * Adds redhat-lsb-core to common packages
+   * Changes ~ to ${HOME} in the aliases file
+   * Other minor changes to the aliases file
+   * Changes the lead spacing for all commands
+   * Adds glibc-static to the development function
+   * Creates the will-cite for parallel (make sure you cite!)

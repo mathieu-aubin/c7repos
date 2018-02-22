@@ -45,6 +45,7 @@ parallel
 perl
 pv
 python-pip
+redhat-lsb-core
 screen
 sharutils
 squashfuse
