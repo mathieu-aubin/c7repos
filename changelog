@@ -341,3 +341,7 @@
    * Changes the lead spacing for all commands
    * Adds glibc-static to the development function
    * Creates the will-cite for parallel (make sure you cite!)
+
+2018.02.22  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds nasm to development packages
+   * Re-add the grubenv removal command before update-grub

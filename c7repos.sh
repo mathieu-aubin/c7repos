@@ -301,7 +301,7 @@ _updateGRUB() {
   curl -skL ${REPOURL}/bin/update-grub -o ${HOME}/bin/update-grub ;
   chmod +x ${HOME}/bin/update-grub &>/dev/null ; sleep 0.1 ;
   echo -e "  - \033[32mGrub-updater tool installed in ${HOME}/bin\033[0;1m. Updating grub2 now.\033[0m\n" ; sleep 0.3 ;
-  ${HOME}/bin/update-grub ; echo ;
+  rm -f /boot/grub2/grubenv; ${HOME}/bin/update-grub ; echo ;
 }
 
 # Function to install development group packages
@@ -314,7 +314,7 @@ _installDEVEL() {
     *)
       echo -e "\033[1mInstalling development tools package group...\033[0m" ; sleep 0.2 ;
       yum -y groups install "Development Tools" "Fedora Packager" &>/dev/null ;
-      yum -y install ruby-devel boost-devel boost-static zlib-devel zlib-static openssl-devel koji-utils glibc-static &>/dev/null ;
+      yum -y install ruby-devel boost-devel boost-static zlib-devel zlib-static openssl-devel koji-utils glibc-static nasm &>/dev/null ;
       rpmdev-setuptree &>/dev/null ; # Setup the rpm build tree
       echo -e "  - \033[32mDevelopment tools group package installed\033[0;1m.\033[0m" ; sleep 0.3 ;
       ;;
