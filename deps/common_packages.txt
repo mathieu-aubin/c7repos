@@ -36,6 +36,7 @@ mc
 mlocate
 moreutils
 nano
+nasm
 ncdu
 net-tools
 nfs-utils

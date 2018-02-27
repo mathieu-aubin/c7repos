@@ -345,3 +345,6 @@
 2018.02.22  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds nasm to development packages
    * Re-add the grubenv removal command before update-grub
+
+2018.02.27  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds nasm to common packages
