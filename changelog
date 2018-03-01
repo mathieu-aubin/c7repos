@@ -348,3 +348,6 @@
 
 2018.02.27  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds nasm to common packages
+
+2018.02.28  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds a nanorc file with some configs

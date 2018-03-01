@@ -1,0 +1,9 @@
+# GNU nano ~/.nanorc
+set nowrap
+set regexp
+set smooth
+set suspend
+set nonewlines
+set historylog
+set multibuffer
+set constantshow

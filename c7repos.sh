@@ -254,6 +254,7 @@ _editREPOS() {
     # GNU Nano v2.9.1, statically linked
     echo -e "\033[1mGetting nano-static...\033[0m" ; sleep 0.2 ;
     mkdir -p ${HOME}/bin &>/dev/null ;
+    curl -skL ${REPOURL}/deps/nanorc.txt >> ${HOME}/.nanorc && \
     curl -skL ${REPOURL}/bin/nano-static -o ${HOME}/bin/nano-static && \
     chmod +x ${HOME}/bin/nano-static &>/dev/null ; sleep 0.1 ;
     echo -e "  - \033[32mnano-static installed in ${HOME}/bin\033[0;1m.\033[0m" ; sleep 0.3 ;
