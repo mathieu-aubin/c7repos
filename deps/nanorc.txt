@@ -6,4 +6,4 @@ set suspend
 set nonewlines
 set historylog
 set multibuffer
-set constantshow
+#set constantshow

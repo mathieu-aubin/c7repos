@@ -351,3 +351,6 @@
 
 2018.02.28  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds a nanorc file with some configs
+
+2018.03.10  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Fixes broken nanorc file with older nano versions
