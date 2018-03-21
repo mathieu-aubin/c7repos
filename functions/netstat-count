@@ -1,4 +1,0 @@
-# Function that counts and displays current netstat status
-function netstat-count() {
-  \netstat -nat 2>&1 | awk '{print $6}' | sed '/established/d' | sed '/Foreign/d' | sort | uniq -c | sort -n;
-}; alias count-netstat='netstat-count';

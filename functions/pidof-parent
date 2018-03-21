@@ -1,8 +1,0 @@
-# Function to retrieve a process's parent pid. Simply call with any
-# process name to retrieve it's PPID. 'pidof-parent nginx' per example.
-function pidof-parent() {
-  [[ -z ${1} ]] && { >&2 echo -e "\033[1;38;5;196mERROR\033[0m: no process name specified." && return 1; }
-  local _PROC=$(echo "${1}"); local _PPID=$(ps hf -o pid -C "${_PROC}" | awk '{print $1; exit}' 2>/dev/null);
-  [[ -z ${_PPID} ]] && { >&2 echo -e "\033[1;38;5;196mERROR\033[0m: no such process."; return 1; }
-  echo ${_PPID};
-}

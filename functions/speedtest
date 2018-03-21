@@ -1,7 +1,0 @@
-# Starts a network speed test with the help of Matt Martz nice python
-# script, speedtest-cli -- https://github.com/sivel/speedtest-cli
-function speedtest() {
-  echo -e "\033[1mStarting a \033[0;32mSpeedTest\033[0;1m...\033[0m";
-  speedtest-cli --simple --share --secure && \
-  echo -e "\033[32mShare this link and show-off your results! \033[0m"
-}

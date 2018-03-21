@@ -1,8 +1,0 @@
-# Sets PWD ownership's to nginx user (takes care of potential CRLF in nginx.conf)
-function chownwww() {
-  [[ ! -f /etc/nginx/nginx.conf ]] && : || {
-    NGX_USR=$(cat /etc/nginx/nginx.conf | grep -E "^user" | grep -Eo "[[:alnum:][:punct:]]*;$" | sed -e 's# *##' -e 's#\t*##' -e 's#;##' -e 's#\r##');
-    _showDANGER "RECURSIVELY SETTING OWNERSHIP OF CURRENT DIR. TO \033[3m${NGX_USR}\033[0m" "MAKE SURE THERE ARE NO SECURITY RISKS INVOLVED." && sleep 1;
-    chown ${NGX_USR}:${NGX_USR} ${PWD} -R; echo -e "\033[1m     DONE SETTING PWD OWNERSHIP TO USER \033[3m${NGX_USR}\033[0m.\033[0m";
-  }
-}
