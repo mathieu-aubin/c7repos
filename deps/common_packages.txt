@@ -24,6 +24,9 @@ htop
 inkscape
 ImageMagick
 ImageMagick-c++
+ioping
+iotop
+iowatcher
 ipset
 iptables
 ip6tables

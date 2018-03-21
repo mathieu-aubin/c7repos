@@ -354,3 +354,6 @@
 
 2018.03.10  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Fixes broken nanorc file with older nano versions
+
+2018.03.21  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds ioping, iotop and iowatcher to common packages
