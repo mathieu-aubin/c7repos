@@ -128,7 +128,7 @@ _showHEADER() {
 	    ╚═══════════════════════════════╝
 	
 	__EOF__
-	tput sgr0 ; sleep 1.75 ;
+	tput sgr0 ; tput civis ; sleep 1.75 ;
 }
 
 # Function that displays potential danger situation, with a danger msg centered.

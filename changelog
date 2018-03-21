@@ -365,3 +365,4 @@
    * Minor script changes, copyright date, some rephrasing...
    * Changes the systemctl start calls to systemctl enable --now 
      which enables AND starts at the same time
+   * Multiple small fixes and improvements
