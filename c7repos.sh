@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 #
-# c7repos.sh -- Copyright © 2017 Mathieu Aubin <mathieu@zeroserieux.com>
+# c7repos.sh
 #
-# Installs common/base CentOS7 repositories/programs (x86_64 arch. only)
+# Copyright © 2017-2018 Mathieu Aubin <mathieu@zeroserieux.com>
+#
+# Installs common/base CentOS7 repositories/programs (x86_64 ONLY)
 #
 # WHAT
 # ¯¯¯¯
@@ -37,7 +39,7 @@
 #
 # HOWTO
 # ¯¯¯¯¯
-# Preferably from a FRESHLY INSTALLED CentOS 7 server, c7repos.sh can be
+# Preferably from a FRESHLY iNSTALLED CentOS 7 server, c7repos.sh can be
 # called as superuser (root) using one of the following methods:
 #
 #  Method #1
@@ -55,8 +57,8 @@
 #
 #  Method #3
 #  ¯¯¯¯¯¯¯¯¯
-#   - Downloading/saving it to a location on the machine.
-#   - Executing a simple bash call pointing to the file. Examples:
+#   - Saving it to a location on the machine.
+#   - Executing the script with bash. Example:
 #
 #      root@host ~ # wget https://bit.ly/c7repos -O c7repos.sh
 #      root@host ~ # bash c7repos.sh
@@ -65,9 +67,9 @@
 # ¯¯¯¯¯¯¯¯¯¯
 # You *MUST* be superuser in order to run the this - sudo works as well.
 #
-# Using  https://bit.ly/c7repos  is just about the same as using the raw
-# repository  directly the  difference being i could potentially monitor
-# some of the usage, at some point, if any.
+# Using  https://bit.ly/c7repos  is the same as using the raw repository
+# url directly, the difference being i can potentially monitor the usage
+# at some point.
 #
 # If you do not want to go thru Bit.ly you are free to run directly from
 # either one of GitHub's addresses, Git.io's mirror or the raw url.
@@ -106,28 +108,27 @@ BRAGURL='https://github.com/mathieu-aubin/c7repos' ;
 tput civis ; tput clear ;
 
 # Resets term upon QUIT/CTRL+C and EXIT signals
-trap 'echo -e "\n\n\033[1;38;5;196m-- USER-ISSUED CTRL+C. PRESS ENTER TO EXIT --\033[0m"; read; exit 1' SIGINT ;
+trap "read -rsp $'\n\n\033[1;38;5;196m-- USER-iSSUED CTRL+C. PRESS ENTER TO EXiT --\033[0m\n'; exit 1" SIGINT ;
 trap 'tput smam; tput sgr0; tput cnorm' EXIT ;
 
 # Function that displays our header...
 _showHEADER() {
-tput bold ;
-cat <<- "__EOF__"
-
-      ╔═══════════════════════════════╗
-      ║     http://c7repos.4ce.ca     ║
-      ║       ____                    ║
-      ║      |__  |                   ║
-      ║    ╔═╗ / /                    ║
-      ║    ║  /_/╦═╗╔═╗╔═╗╔═╗╔═╗      ║
-      ║    ╚═╝   ╠╦╝║╣ ╠═╝║ ║╚═╗      ║
-      ║          ╩╚═╚═╝╩  ╚═╝╚═╝.sh   ║
-      ║                               ║
-      ║ Basic CentOS 7 Install Script ║
-      ╚═══════════════════════════════╝
-
-__EOF__
-tput sgr0 ; sleep 1.75 ;
+	tput bold && cat <<- "__EOF__"
+	
+		╔═══════════════════════════════╗
+		║    https://c7repos.4ce.ca     ║
+		║       ____                    ║
+		║      |__  |                   ║
+		║    ╔═╗ / /                    ║
+		║    ║  /_/╦═╗╔═╗╔═╗╔═╗╔═╗      ║
+		║    ╚═╝   ╠╦╝║╣ ╠═╝║ ║╚═╗      ║
+		║          ╩╚═╚═╝╩  ╚═╝╚═╝.sh   ║
+		║                               ║
+		║ Basic CentOS 7 Install Script ║
+		╚═══════════════════════════════╝
+	
+	__EOF__
+	tput sgr0 ; sleep 1.75 ;
 }
 
 # Function that displays potential danger situation, with a danger msg centered.
@@ -161,7 +162,7 @@ _preCHECK() {
 
 # Function to disable SELinux
 _doSELINUX() {
-  echo -en "\033[1mDisable SELinux? (required to continue) [\033[0;32mY\033[0;1m/n]\033[0m " ; read -er _SEL ;
+  echo -en "\033[1mDisable SELinux? (required to continue) [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m " ; read -er _SEL ;
   case "${_SEL}" in
     [nN][oO]|[no])
       >&2 echo -e "\033[1;38;5;196mERROR\033[0;1m: I require SELinux to be disabled to continue, aborting.\033[0m" ; exit 1 ;
@@ -245,7 +246,7 @@ _installREPOS() {
 
 # Function to edit repo files
 _editREPOS() {
-  echo -en "\033[1mEdit repositories to enable/disable some? [\033[0;32mY\033[0;1m/n]\033[0m " ; read -er _EDITREPOS ;
+  echo -en "\033[1mEdit repositories to enable/disable some? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m " ; read -er _EDITREPOS ;
   case "${_EDITREPOS}" in
   [nN][oO]|[no])
     sleep 0.3 ;
@@ -307,7 +308,7 @@ _updateGRUB() {
 
 # Function to install development group packages
 _installDEVEL() {
-  echo -en "\033[1mInstall development tools package group? [\033[0;32mY\033[0;1m/n]\033[0m " ; read -er _DEVPACK ;
+  echo -en "\033[1mInstall development tools package group? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m " ; read -er _DEVPACK ;
   case "${_DEVPACK}" in
     [nN][oO]|[no])
       sleep 0.3 ;
@@ -327,9 +328,9 @@ _installDEVEL() {
 _installMARIADB() {
   rpm -q MariaDB-server &>/dev/null ;
   if [[ $? -ne 0 ]]; then
-    _MARIADB_INST=0 ; echo -en "\033[1mInstall MariaDB server? [\033[0;32mY\033[0;1m/n]\033[0m " ;
+    _MARIADB_INST=0 ; echo -en "\033[1mInstall MariaDB server? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m " ;
   else
-    _MARIADB_INST=1 ; echo -en "\033[1mMariaDB already installed. Re-install MariaDB server? [\033[0;32mY\033[0;1m/n]\033[0m " ;
+    _MARIADB_INST=1 ; echo -en "\033[1mMariaDB already installed. Re-install MariaDB server? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m " ;
   fi
   read -er _MARIADB ;
   case "${_MARIADB}" in
@@ -340,48 +341,47 @@ _installMARIADB() {
       [[ ${_MARIADB_INST} -eq 0 ]] && echo -e "\033[1mInstalling MariaDB server...\033[0m" || echo -e "\033[1mRe-installing MariaDB server...\033[0m" ; sleep 0.2 ;
       [[ ${_MARIADB_INST} -eq 0 ]] && yum -y install MariaDB-server MariaDB-client &>/dev/null || yum -y reinstall MariaDB-server MariaDB-client &>/dev/null ;
       echo -e "  - \033[32mMariaDB server installed\033[0m." ;
-      sed -i.OLD 's/\[server\]/\[server\]\nbind-address = 127.0.0.1/g' /etc/my.cnf.d/server.cnf; sleep 0.3 ;
+      sed -i.c7repos.OLD 's/\[server\]/\[server\]\nbind-address = 127.0.0.1/g' /etc/my.cnf.d/server.cnf; sleep 0.3 ;
       echo -ne "\033[1mStarting MariaDB server...\033[0m" ; sleep 0.2 ;
-      systemctl start mariadb && echo -e "\033[32m MariaDB started\033[0;1m.\033[0m" ; sleep 1 ;
+      systemctl enable mariadb --now && echo -e "\033[32m MariaDB started\033[0;1m.\033[0m" ; sleep 1 ;
 
       if [ ${_MARIADB_INST} -eq 0 ]; then
-        echo -en "\033[1mWould you like me to set a random root password? [y/\033[0;32mN\033[0;1m]\033[0m " ; read -er _SQLPASS ;
+        echo -en "\033[1mWould you like me to set a random root password? [y/\033[0;1;38;5;40mN\033[0;1m]\033[0m " ; read -er _SQLPASS ;
         case "${_SQLPASS}" in
           [yY][eE][sS]|[yes])
-            _RNDPASS=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w12 | head -n1) ; mysqladmin -u root password ${_RNDPASS} ;
-            echo -e "\033[1mThe newly created and set mysql root password is: \033[1;48;5;166m ${_RNDPASS} \033[0m\n" ; unset _RNDPASS ; sleep 0.3 ;
-            echo -e "\033[1;38;5;196mTAKE NOTE OF IT, IT IS NOT LOGGED ANYWHERE. THIS IS THE ONLY TIME YOU WILL SEE IT.\033[0m" ; sleep 0.5 ;
-            echo -e "\033[1;38;5;196mTAKE NOTE OF IT, IT IS NOT LOGGED ANYWHERE. THIS IS THE ONLY TIME YOU WILL SEE IT.\033[0m" ; sleep 0.5 ;
-            echo -e "\033[1;38;5;196mTAKE NOTE OF IT, IT IS NOT LOGGED ANYWHERE. THIS IS THE ONLY TIME YOU WILL SEE IT.\033[0m" ; sleep 1.5 ;
-            echo -e "\033[1mWhen asked for the root password, enter the previously show password.\033[0m" ; sleep 1.5 ;
+            _RNDPASS=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w18 | head -n1) ; mysqladmin -u root password ${_RNDPASS} ;
+            echo -e "\033[1mThe newly created and set MariaDB root password is: \033[1;37;41m  ${_RNDPASS}  \033[0m\n" ; unset _RNDPASS ; sleep 0.3 ;
+            echo -e "\033[1;38;5;196mTAKE NOTE OF iT, iT iS NOT LOGGED ANYWHERE. THiS iS THE ONLY TiME YOU WiLL SEE iT.\033[0m" ; sleep 0.5 ;
+            echo -e "\033[1;38;5;196mTAKE NOTE OF iT, iT iS NOT LOGGED ANYWHERE. THiS iS THE ONLY TiME YOU WiLL SEE iT.\033[0m" ; sleep 0.5 ;
+            echo -e "\033[1;38;5;196mTAKE NOTE OF iT, iT iS NOT LOGGED ANYWHERE. THiS iS THE ONLY TiME YOU WiLL SEE iT.\033[0m" ; sleep 1.5 ;
+            echo -e "\033[1mWhen asked for the root password, enter the previously shown password.\033[0m" ; sleep 1.5 ;
             ;;
           *)
             echo -e "\033[1mWhen asked for the root password, if you have not set one yet, just press ENTER.\033[0m" ; sleep 1.5 ;
             ;;
         esac
-        echo -ne "\n\033[1mPress ENTER to continue.\033[0m" ; read ;
+        read -rsp $'\033[1;37;41m PRESS ENTER TO CONTiNUE. \033[0m\n' ;
       fi
 
       echo -e "\n\033[1;38;5;196;4mIMPORTANT INFORMATIONS:\033[0m\n" ;
       echo -e "\033[1mI will open up MariaDB secure installation in a moment.\033[0m" ; sleep 0.5 ;
       echo -e "\033[1mI have already taken one step to secure MariaDB by setting its listening address\nto 127.0.0.1(localhost) so it's NOT exposed to the outside world.\033[0m" ; sleep 1 ;
       echo -e "\033[1mUnless you know precisely what you are doing, all the answers except the first one\nabout root password should be answered by YES or simply by pressing ENTER.\033[0m" ; sleep 1 ;
-      echo -e "\n\033[1mPress ENTER to continue securing MariaDB.\033[0m" ; read ;
+      read -rsp $'\033[1;37;41m PRESS ENTER TO CONTiNUE. \033[0m\n' ;
       echo -e "\033[1mStarting MariaDB secure installation...\033[0m" ; sleep 0.2 ;
       mysql_secure_installation ; echo -e "\n  - \033[32m DONE Securing MariaDB\033[0;1m.\033[0m" ;
-      systemctl enable mariadb &>/dev/null ;
       ;;
   esac
-  unset _MARIADB _MARIADB_INST _SQLPASS ;
+  unset _MARIADB _MARIADB_INST _SQLPASS _RNDPASS;
 }
 
 # Function to install/enable NGiNX
 _installNGINX() {
   rpm -q nginx &>/dev/null ;
   if [[ $? -ne 0 ]]; then
-    _NGX_INST=0 ; echo -en "\033[1mInstall \033[0;32mNGiNX\033[0;1m? [\033[0;32mY\033[0;1m/n]\033[0m " ; read -er _GINX ;
+    _NGX_INST=0 ; echo -en "\033[1mInstall \033[0;32mNGiNX\033[0;1m? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m " ; read -er _GINX ;
   else
-    _NGX_INST=1 ; echo -en "\033[0;32mNGiNX\033[0;1m already installed. Re-install? [\033[0;32mY\033[0;1m/n]\033[0m " ; read -er _GINX ;
+    _NGX_INST=1 ; echo -en "\033[0;32mNGiNX\033[0;1m already installed. Re-install? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m " ; read -er _GINX ;
   fi
 
   case "${_GINX}" in
@@ -391,11 +391,11 @@ _installNGINX() {
     *)
       [[ ${_NGX_INST} -eq 0 ]] && echo -e "\033[1mInstalling \033[0;32mNGiNX\033[0;1m...\033[0m" || echo -e "\033[1mRe-installing \033[0;32mNGiNX\033[0;1m...\033[0m" ; sleep 0.2 ;
       [[ ${_NGX_INST} -eq 0 ]] && yum -y install nginx &>/dev/null || yum -y reinstall nginx &>/dev/null ;
-      systemctl enable nginx &>/dev/null ;
-      nginx -t &>/dev/null; [[ $? -eq 0 ]] && {
+      nginx -t &>/dev/null;
+      [[ $? -eq 0 ]] && {
         _NGXPID="$(pidof nginx)" ;
         [[ -z ${_NGXPID} ]] && echo -ne "\033[1mStarting \033[0;32mNGiNX\033[0;1m...\033[0m" && sleep 0.2 ;
-        systemctl start nginx && echo -e "\033[32m NGiNX\033[0;1m started.\033[0m" && sleep 1 ;
+        systemctl enable nginx --now && echo -e "\033[32m NGiNX\033[0;1m started.\033[0m" && sleep 1 ;
       }
       echo -e "  - \033[32mNGiNX installed\033[0;1m.\033[0m" ; sleep 0.3 ;
       _NGX_INST=1 ;
@@ -408,9 +408,9 @@ _installNGINX() {
 _installNODE() {
   rpm -q nodejs &>/dev/null ;
   if [[ $? -ne 0 ]]; then
-    _NODE_INST=0 ; echo -en "\033[1mInstall NodeJS and update NPM to current version? [\033[0;32mY\033[0;1m/n]\033[0m " ; read -er _NODENPM ;
+    _NODE_INST=0 ; echo -en "\033[1mInstall NodeJS and update NPM to current version? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m " ; read -er _NODENPM ;
   else
-    _NODE_INST=1 ; echo -en "\033[1mNodeJS already installed. Re-install and update to current version? [\033[0;32mY\033[0;1m/n]\033[0m " ; read -er _NODENPM ;
+    _NODE_INST=1 ; echo -en "\033[1mNodeJS already installed. Re-install and update to current version? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m " ; read -er _NODENPM ;
   fi
 
   case "${_NODENPM}" in
@@ -444,8 +444,7 @@ _installCOMMON() {
   echo -e "\033[1mInstalling base packages...\033[0m" ; sleep 0.2 ;
   yum -y install ${_COMMON_PACKAGES} &>/dev/null ;
   export EDITOR=$(which nano) ;
-  systemctl enable iptables &>/dev/null ; systemctl enable ip6tables &>/dev/null ;
-  systemctl start iptables &>/dev/null ; systemctl start ip6tables &>/dev/null ;
+  systemctl enable iptables --now &>/dev/null ; systemctl enable ip6tables --now &>/dev/null ;
   mkdir -p ${HOME}/.parallel && touch ${HOME}/.parallel/will-cite ;
 
   # Perform python-pip commands if installed
@@ -465,8 +464,8 @@ _installCOMMON() {
   }
 
   echo "# Source the bash completion files needed for completion to work" >> ${HOME}/.bashrc ;
-  echo "[[ -f /etc/bash_completion ]] && . /etc/bash_completion" >> ${HOME}/.bashrc ;
-  echo "[[ -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion" >> ${HOME}/.bashrc ;
+  echo "[[ -f /etc/bash_completion ]] && source /etc/bash_completion" >> ${HOME}/.bashrc ;
+  echo "[[ -f /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion" >> ${HOME}/.bashrc ;
   echo -e "  - \033[32mBase packages installed\033[0m." ; sleep 0.3 ;
 }
 
@@ -512,7 +511,7 @@ _checkSSH() {
   # Checking the ssh server port, relying on which port user currently is connected on
   if [[ ${SSH_CLIENT##* } -eq 22 ]]; then
     _showDANGER "SSH IS RUNNING ON PORT 22";
-    echo -en "\033[1mShould We Change SSH Port NOW? [\033[0;32mY\033[0;1m/n]\033[0m " ; read -er _SSHP ;
+    echo -en "\033[1mShould We Change SSH Port NOW? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m " ; read -er _SSHP ;
     case "${_SSHP}" in
       [nN][oO]|[no])
         _showDANGER "SSH PORT UNCHANGED AND STILL ON 22" ; sleep 2 ;

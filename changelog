@@ -356,5 +356,11 @@
    * Fixes broken nanorc file with older nano versions
 
 2018.03.21  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Updates README.md file
+   * MariaDB random pass now 18 chars
+   * Changes the [Y/n] and [y/N] bold color emphasis
    * Adds ioping, iotop and iowatcher to common packages
    * Adds update-wp-cli alias and alias file reauthor, kindof
+   * Minor script changes, copyright date, some rephrasing...
+   * Changes the systemctl start calls to systemctl enable --now 
+     which enables AND starts at the same time
