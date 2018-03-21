@@ -395,7 +395,7 @@ _installNGINX() {
       [[ $? -eq 0 ]] && {
         _NGXPID="$(pidof nginx)" ;
         [[ -z ${_NGXPID} ]] && echo -ne "\033[1mStarting \033[0;32mNGiNX\033[0;1m...\033[0m" && sleep 0.2 ;
-        systemctl enable nginx --now && echo -e "\033[32m NGiNX\033[0;1m started.\033[0m" && sleep 1 ;
+        systemctl enable nginx --now &>/dev/null && echo -e "\033[32m NGiNX\033[0;1m started.\033[0m" && sleep 1 ;
       }
       echo -e "  - \033[32mNGiNX installed\033[0;1m.\033[0m" ; sleep 0.3 ;
       _NGX_INST=1 ;
