@@ -32,8 +32,8 @@ alias cp='cp -i'; alias rm='rm -I'; alias mkdir='mkdir -p';
 #########################
 alias rpm-list-keys='rpm -q gpg-pubkey --qf "%{name}-%{version}-%{release} --> %{summary}\n"';
 alias list-rpm-gpg-keys='rpm-list-keys'; alias rpm-gpg-keys='rpm-list-keys'; alias gpg-list-rpm='rpm-list-keys'; alias rpm-keys-list='rpm-list-keys';
-alias kernel-cleanup='package-cleanup --oldkernels --keepdevel && rm -f /boot/grub2/grubenv && if [[ -f ${HOME}/bin/update-grub ]]; then ${HOME}/bin/update-grub; else grub2-mkconfig -o /boot/grub2/grub.cfg; fi'
-alias update='yum clean all &>/dev/null && yum makecache && yum update && rm -f /boot/grub2/grubenv && if [[ -f ${HOME}/bin/update-grub ]]; then ${HOME}/bin/update-grub; else grub2-mkconfig -o /boot/grub2/grub.cfg; fi';
+alias kernel-cleanup='package-cleanup --oldkernels --keepdevel && rm -f /boot/grub2/grubenv && if [[ -f ~/bin/update-grub ]]; then ~/bin/update-grub; else grub2-mkconfig -o /boot/grub2/grub.cfg; fi'
+alias update='yum clean all &>/dev/null && yum makecache && yum update && rm -f /boot/grub2/grubenv && if [[ -f ~/bin/update-grub ]]; then ~/bin/update-grub; else grub2-mkconfig -o /boot/grub2/grub.cfg; fi';
 alias update-clean='yum clean all &>/dev/null && rm -rf /var/cache/yum && yum makecache && yum update && rm -f /boot/grub2/grubenv && if [[ -f /root/bin/update-grub ]]; then /root/bin/update-grub; else grub2-mkconfig -o /boot/grub2/grub.cfg; fi'; alias clean-update='update-clean';
 
 #########################
@@ -60,7 +60,7 @@ alias ..='cd ..; ll';
 alias ...='cd ../../; ll';
 alias ....='cd ../../../; ll';
 alias back='cd -; ll';
-alias home='cd ${HOME}; ll';
+alias home='cd ~; ll';
 alias l='ll';
 alias lld='ll | grep -E "^d"';
 alias llf='ll | grep -Ev "^d"';
@@ -70,15 +70,15 @@ alias lln='ls -lah --group-directories-first --color=never';
 ###############################################################
 #### Dot files fun (add/source to/from dot files, quickly) ####
 ###############################################################
-alias addalias='${EDITOR:-nano} ${HOME}/.bash_aliases && srcalias';
-alias srcalias='[[ -f ${HOME}/.bash_aliases ]] && source ${HOME}/.bash_aliases';
-alias addexport='${EDITOR:-nano} ${HOME}/.bash_exports && srcexports';
-alias srcexports='[[ -f ${HOME}/.bash_exports ]] && source ${HOME}/.bash_exports'
-alias addfunction='${EDITOR:-nano} ${HOME}/.bash_functions && srcfunctions';
-alias srcfunctions='[[ -f ${HOME}/.bash_functions ]] && source ${HOME}/.bash_functions';
-alias addcolors='${EDITOR:-nano} ${HOME}/.bash_colors && srccolors';
-alias srccolors='[[ -f ${HOME}/.bash_colors ]] && source ${HOME}/.bash_colors';
-alias srcdot='for DFs in $(ls -1p ${HOME}/.bash_* | grep -Ev "history|logout|profile|back|/$"); do source ${HOME}/${DFs}; done';
+alias addalias='${EDITOR:-nano} ~/.bash_aliases && srcalias';
+alias srcalias='[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases';
+alias addexport='${EDITOR:-nano} ~/.bash_exports && srcexports';
+alias srcexports='[[ -f ~/.bash_exports ]] && source ~/.bash_exports'
+alias addfunction='${EDITOR:-nano} ~/.bash_functions && srcfunctions';
+alias srcfunctions='[[ -f ~/.bash_functions ]] && source ~/.bash_functions';
+alias addcolors='${EDITOR:-nano} ~/.bash_colors && srccolors';
+alias srccolors='[[ -f ~/.bash_colors ]] && source ~/.bash_colors';
+alias srcdot='for DFs in $(ls -1p ~/.bash_* | grep -Ev "history|logout|profile|back|/$"); do source ${DFs}; done';
 
 ####################################
 #### Some network watch aliases ####
@@ -99,6 +99,11 @@ alias edit-ip6tables='${EDITOR:-nano} /etc/sysconfig/ip6tables';
 ############################
 alias update-npm='npm i npm -g --upgrade'; alias npm-update='update-npm';
 
+################
+#### FFMpeg ####
+################
+alias ffmpeg='ffmpeg -hide_banner'; alias ffprobe='ffprobe -hide_banner'; alias ffmpeg-10bit='ffmpeg-10bit -hide_banner';
+
 ###################################################################
 #### set-permissions will set PWD files to 664, folders to 775 ####
 #### Outputs command only -CAN FUCK A SYSTEM if ran carelessly ####
@@ -114,32 +119,33 @@ alias mtab='cat /etc/mtab | grep -Ev "^#" | column -t';
 #################################################
 #### NGiNX (awesome) custom aliases/commands ####
 #################################################
-alias ginx='cd /etc/nginx; ll'; alias ginxT='nginx -T 2>&1'; alias ginxv='nginx -v';
+alias ginx='[[ -d /etc/nginx ]] && { cd /etc/nginx; ll }'; alias ginxT='nginx -T 2>&1'; alias ginxv='nginx -v';
 alias ginxt='nginx -t'; alias ginxr='nginx -s reload'; alias ginxl='ginxlog'; alias ginxe='ginxerr';
 
 ##############################################################################################################################
 #### Assuming you are using default log file type, 'ginxs' will fetch the returned http codes since the last log rotation ####
 ##############################################################################################################################
-alias ginxs='[[ -f /var/log/nginx/access.log ]] && { echo -e "Getting \033[1;3;38;5;028mNGiNX\033[0m metrics from access logs... this may take a bit.\n" && cat /var/log/nginx/access.log | cut -f 9 -d" " | sort | uniq -c | grep -Ev "(-|\"|[a-zA-Z]|166$| 0$)" && echo -e "\nDONE."; }';
+alias ginxs='if [ -f /var/log/nginx/access.log ];then echo -e "Getting \033[1;3;38;5;70mNGiNX\033[0m metrics from access logs...\n";cat /var/log/nginx/access.log|cut -d" " -f9|grep -E "[[:digit:]]"|sort|uniq -c|sort -hr;echo -e "\nDONE.";fi';
 alias ginxlog='[[ -f /var/log/nginx/access.log ]] && { tail -n250 /var/log/nginx/access.log | less } || echo -e "\033[1;48;5;196m/var/log/nginx/access.log doesnt exist or is not readable\033[0m"';
-alias ginxerr='[[ -f /var/log/nginx/error.log ]] && { tail -n250 /var/log/nginx/error.log | less } || echo -e "\033[1;48;5;196m/var/log/nginx/access.log doesnt exist or is not readable\033[0m"';
+alias ginxerr='[[ -f /var/log/nginx/error.log ]] && { tail -n250 /var/log/nginx/error.log | less } || echo -e "\033[1;48;5;196m/var/log/nginx/error.log doesnt exist or is not readable\033[0m"';
 
 #######################################################
 #### WordPress Client (wp-cli) alias allowing root ####
 #######################################################
 alias wp='wp-cli'; alias wpcli='wp-cli'; alias wp-cli='wp-cli --allow-root';
-alias update-wp-cli="echo -ne '\033[1mUpdating wp-cli...\033[0m'; curl -4so ${HOME}/bin/wp-cli https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x ${HOME}/bin/wp-cli; echo -e ' \033[1m[\033[1;38;5;40mDONE\033[0;1m]\033[0m'"
+alias update-wp-cli="echo -ne '\033[1mUPDATiNG WP-CLi...\033[0m'; curl -4skLo ~/bin/wp-cli https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x ~/bin/wp-cli; echo -e ' \033[1m[\033[1;38;5;40mDONE\033[0;1m]\033[0m'"
 
 ############################
 #### FFmpeg and related ####
 ############################
 alias ffmpeg='ffmpeg -hide_banner'; alias ffprobe='ffprobe -hide_banner';
+alias ffserver='ffserver -hide_banner'; alias ffmpeg-10bit='ffmpeg-10bit -hide_banner';
 
 #################################################################
 #### Self-destruct aliases (one-shot, self-removing aliases) ####
 #################################################################
-alias parallel="unalias parallel && mkdir -p ${HOME}/.parallel && touch ${HOME}/.parallel/will-cite && sed -i '/alias parallel/d' ${HOME}/.bash_aliases && parallel";
-alias wget='warnwget; &>/dev/null echo'; alias warnwget='echo -e "\033[4;1miMPORTANT iNFORMATiONS REGARDiNG WGET\033[0m\n\nThe current system aliases defines this command as \033[1;3mwget -4\033[0m (ipv4 only).\nIf for such behavior is undesirable, remove or comment the appropriated line in\nyour alias file (${HOME}/.bash_aliases) or run the following now to quickly unalias it\nand comment it out:\n\n# unalias locate; sed -i \"s/alias wget/#alias wget/\" ${HOME}/.bash_aliases\n\nRun the command again for its real result" && sed -i "/warnwget/d" ${HOME}/.bash_aliases && alias wget="wget -4"';
-alias locate='warnlocate; &>/dev/null echo'; alias warnlocate='echo -e "\033[4;1miMPORTANT iNFORMATiONS REGARDiNG LOCATE\033[0m\n\nThe current system aliases defines this command as \033[1;3mlocate -i\033[0m (case insensitive).\nIf for such behavior is undesirable, remove or comment the appropriated line in\nyour alias file (${HOME}/.bash_aliases) or run the following now to quickly unalias it\nand comment it out:\n\n# unalias locate; sed -i \"s/alias locate/#alias locate/\" ${HOME}/.bash_aliases\n\nRun the command again for its real result" && sed -i "/warnlocate/d" ${HOME}/.bash_aliases && alias locate="locate -i"';
-alias ncdu='warnncdu; &>/dev/null echo'; alias warnncdu='echo -e "\033[4;1miMPORTANT iNFORMATiONS REGARDiNG NCDU\033[0m\n\nThe current system aliases defines this command as \033[1;3mncdu -x\033[0m (same filesystem).\nIf for such behavior is undesirable, remove or comment the appropriated line in\nyour alias file (${HOME}/.bash_aliases) or run the following now to quickly unalias it\nand comment it out:\n\n# unalias ncdu; sed -i \"s/alias ncdu/#alias ncdu/\" ${HOME}/.bash_aliases\n\nRun the command again for its real result" && sed -i "/warnncdu/d" ${HOME}/.bash_aliases && alias ncdu="ncdu -x"';
-alias wp-cli='warnwpcli; &>/dev/null echo'; alias warnwpcli='echo -e "Installing \033[1;3mwp-cli\033[0m, please wait..."; curl -4so ${HOME}/bin/wp-cli https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x ${HOME}/bin/wp-cli; rpm -q php &>/dev/null; [[ $? -eq 1 ]] && yum -y install php &>/dev/null; echo -e "\033[4;1miMPORTANT iNFORMATiONS REGARDiNG WP-CLi\033[0m\n\nwp-cli has just been downloaded to \033[1;3m${HOME}/bin/wp-cli\033[0m.\n\n\033[1;4mphp has also been installed to enable you to run it.\033[0m\n\nRun the command again for its real result" && sed -i "/warnwpcli/d" ${HOME}/.bash_aliases && alias wp-cli="wp-cli --allow-root"';
+alias parallel="unalias parallel && mkdir -p ~/.parallel && touch ~/.parallel/will-cite && sed -i '/alias parallel/d' ~/.bash_aliases && parallel";
+alias wget='warnwget; &>/dev/null echo'; alias warnwget='echo -e "\033[4;1miMPORTANT iNFORMATiONS REGARDiNG WGET\033[0m\n\nThe current system aliases defines this command as \033[1;3mwget -4\033[0m (ipv4 only).\nIf for such behavior is undesirable, remove or comment the appropriated line in\nyour alias file (~/.bash_aliases) or run the following now to quickly unalias it\nand comment it out:\n\n# unalias locate; sed -i \"s/alias wget/#alias wget/\" ~/.bash_aliases\n\nRun the command again for its real result" && sed -i "/warnwget/d" ~/.bash_aliases && alias wget="wget -4"';
+alias locate='warnlocate; &>/dev/null echo'; alias warnlocate='echo -e "\033[4;1miMPORTANT iNFORMATiONS REGARDiNG LOCATE\033[0m\n\nThe current system aliases defines this command as \033[1;3mlocate -i\033[0m (case insensitive).\nIf for such behavior is undesirable, remove or comment the appropriated line in\nyour alias file (~/.bash_aliases) or run the following now to quickly unalias it\nand comment it out:\n\n# unalias locate; sed -i \"s/alias locate/#alias locate/\" ~/.bash_aliases\n\nRun the command again for its real result" && sed -i "/warnlocate/d" ~/.bash_aliases && alias locate="locate -i"';
+alias ncdu='warnncdu; &>/dev/null echo'; alias warnncdu='echo -e "\033[4;1miMPORTANT iNFORMATiONS REGARDiNG NCDU\033[0m\n\nThe current system aliases defines this command as \033[1;3mncdu -x\033[0m (same filesystem).\nIf for such behavior is undesirable, remove or comment the appropriated line in\nyour alias file (~/.bash_aliases) or run the following now to quickly unalias it\nand comment it out:\n\n# unalias ncdu; sed -i \"s/alias ncdu/#alias ncdu/\" ~/.bash_aliases\n\nRun the command again for its real result" && sed -i "/warnncdu/d" ~/.bash_aliases && alias ncdu="ncdu -x"';
+alias wp-cli='warnwpcli; &>/dev/null echo'; alias warnwpcli='echo -e "Installing \033[1;3mwp-cli\033[0m, please wait..."; curl -4so ~/bin/wp-cli https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x ~/bin/wp-cli; rpm -q php &>/dev/null; [[ $? -eq 1 ]] && yum -y install php &>/dev/null; echo -e "\033[4;1miMPORTANT iNFORMATiONS REGARDiNG WP-CLi\033[0m\n\nwp-cli has just been downloaded to \033[1;3m~/bin/wp-cli\033[0m.\n\n\033[1;4mphp has also been installed to enable you to run it.\033[0m\n\nRun the command again for its real result" && sed -i "/warnwpcli/d" ~/.bash_aliases && alias wp-cli="wp-cli --allow-root"';

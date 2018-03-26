@@ -363,6 +363,11 @@
    * Adds ioping, iotop and iowatcher to common packages
    * Adds update-wp-cli alias and alias file reauthor, kindof
    * Minor script changes, copyright date, some rephrasing...
-   * Changes the systemctl start calls to systemctl enable --now 
+   * Changes the systemctl start calls to systemctl enable --now
      which enables AND starts at the same time
    * Multiple small fixes and improvements
+
+2018.03.26  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Changes the references to ${HOME} in aliases file
+   * Fixes the ginxs/ginxlog/ginxerr in the aliases file
+   * Adds ffmpeg & family -hide_banner in the aliases file
