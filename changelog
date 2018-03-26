@@ -371,3 +371,4 @@
    * Changes the references to ${HOME} in aliases file
    * Fixes the ginxs/ginxlog/ginxerr in the aliases file
    * Adds ffmpeg & family -hide_banner in the aliases file
+   * Fixes update-npm-all function to get rid of node, npm packages

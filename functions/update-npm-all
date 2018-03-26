@@ -1,7 +1,7 @@
 # Function to update all NPM packages at once - NPM has to be installed, right.
 function update-npm-all() {
   local _TOUPDATE;
-  _TOUPDATE=$(npm outdated -g | grep -Ev "Package|node" | awk '{print $1}');
+  _TOUPDATE=$(npm outdated -g| awk '{print $1}' | grep -Eiv "^Package$|^node$|^npm$|^$");
   [[ ! -z ${_TOUPDATE} ]] && {
     _showINFOS "Updating all NPM packages...";
     echo -e "\033[1mUpdating \033[3mNPM\033[0;1m itself...\033[0m" && npm i npm -g --upgrade; sleep 0.2;
