@@ -378,3 +378,4 @@
    * Adds a function to create .nanorc syntax highlighting files and ~/.nanorc
    * Removes previously added function -- oh well -- and replaces by a function
      that installs nano v2.9.4 from rpm, built for c7repos
+   * Removes the stupid small 'i' wonder why i thought of that...

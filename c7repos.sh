@@ -12,10 +12,10 @@
 # some suggested (at user's will) extra  packages for a clean, practical
 # and usable base server system
 #
-#  EPEL * REMi * NGiNX * NODEJS * EL-REPO * MARiADB * DOCKER(CE) * IUS
+#  EPEL * REMI * NGiNX * NODEJS * EL-REPO * MARIADB * DOCKER(CE) * IUS
 #
 # Some repos  have options that can be enabled in the  repo file itself.
-# REMi, as an  example, has all PHP versions  easily enablable from  the
+# REMI, as an  example, has all PHP versions  easily enablable from  the
 # repo files. EL-REPO's latest kernel  packages, kernel-ml, is also just
 # a digit away  from being enabled. YUM can  also be run with  the extra
 # switch --enablerepo=repo.name,  essentially doing the  same, as a one-
@@ -39,7 +39,7 @@
 #
 # HOWTO
 # ¯¯¯¯¯
-# Preferably from a FRESHLY iNSTALLED CentOS 7 server, c7repos.sh can be
+# Preferably from a FRESHLY INSTALLED CentOS 7 server, c7repos.sh can be
 # called as superuser (root) using one of the following methods:
 #
 #  Method #1
@@ -108,7 +108,7 @@ BRAGURL='https://github.com/mathieu-aubin/c7repos' ;
 tput civis ; tput clear ;
 
 # Resets term upon QUIT/CTRL+C and EXIT signals
-trap "read -rsp $'\n\n\033[1;38;5;196m-- USER-iSSUED CTRL+C. PRESS ENTER TO EXiT --\033[0m\n'; exit 1" SIGINT ;
+trap "read -rsp $'\n\n\033[1;38;5;196m-- USER-ISSUED CTRL+C. PRESS ENTER TO EXIT --\033[0m\n'; exit 1" SIGINT ;
 trap 'tput smam; tput sgr0; tput cnorm' EXIT ;
 
 # Function that displays our header...
@@ -350,23 +350,23 @@ _installMARIADB() {
           [yY][eE][sS]|[yes])
             _RNDPASS=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w18 | head -n1) ; mysqladmin -u root password ${_RNDPASS} ;
             echo -e "\033[1mThe newly created and set MariaDB root password is: \033[1;37;41m  ${_RNDPASS}  \033[0m\n" ; unset _RNDPASS ; sleep 0.3 ;
-            echo -e "\033[1;38;5;196mTAKE NOTE OF iT, iT iS NOT LOGGED ANYWHERE. THiS iS THE ONLY TiME YOU WiLL SEE iT.\033[0m" ; sleep 0.5 ;
-            echo -e "\033[1;38;5;196mTAKE NOTE OF iT, iT iS NOT LOGGED ANYWHERE. THiS iS THE ONLY TiME YOU WiLL SEE iT.\033[0m" ; sleep 0.5 ;
-            echo -e "\033[1;38;5;196mTAKE NOTE OF iT, iT iS NOT LOGGED ANYWHERE. THiS iS THE ONLY TiME YOU WiLL SEE iT.\033[0m" ; sleep 1.5 ;
+            echo -e "\033[1;38;5;196mTAKE NOTE OF IT, IT IS NOT LOGGED ANYWHERE. THIS IS THE ONLY TIME YOU WILL SEE IT.\033[0m" ; sleep 0.5 ;
+            echo -e "\033[1;38;5;196mTAKE NOTE OF IT, IT IS NOT LOGGED ANYWHERE. THIS IS THE ONLY TIME YOU WILL SEE IT.\033[0m" ; sleep 0.5 ;
+            echo -e "\033[1;38;5;196mTAKE NOTE OF IT, IT IS NOT LOGGED ANYWHERE. THIS IS THE ONLY TIME YOU WILL SEE IT.\033[0m" ; sleep 1.5 ;
             echo -e "\033[1mWhen asked for the root password, enter the previously shown password.\033[0m" ; sleep 1.5 ;
             ;;
           *)
             echo -e "\033[1mWhen asked for the root password, if you have not set one yet, just press ENTER.\033[0m" ; sleep 1.5 ;
             ;;
         esac
-        read -rsp $'\033[1;37;41m PRESS ENTER TO CONTiNUE. \033[0m\n' ;
+        read -rsp $'\033[1;37;41m PRESS ENTER TO CONTINUE. \033[0m\n' ;
       fi
 
       echo -e "\n\033[1;38;5;196;4mIMPORTANT INFORMATIONS:\033[0m\n" ;
       echo -e "\033[1mI will open up MariaDB secure installation in a moment.\033[0m" ; sleep 0.5 ;
       echo -e "\033[1mI have already taken one step to secure MariaDB by setting its listening address\nto 127.0.0.1(localhost) so it's NOT exposed to the outside world.\033[0m" ; sleep 1 ;
       echo -e "\033[1mUnless you know precisely what you are doing, all the answers except the first one\nabout root password should be answered by YES or simply by pressing ENTER.\033[0m" ; sleep 1 ;
-      read -rsp $'\033[1;37;41m PRESS ENTER TO CONTiNUE. \033[0m\n' ;
+      read -rsp $'\033[1;37;41m PRESS ENTER TO CONTINUE. \033[0m\n' ;
       echo -e "\033[1mStarting MariaDB secure installation...\033[0m" ; sleep 0.2 ;
       mysql_secure_installation ; echo -e "\n  - \033[32m DONE Securing MariaDB\033[0;1m.\033[0m" ;
       ;;
