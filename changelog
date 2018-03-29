@@ -375,3 +375,4 @@
 
 2018.03.28  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Changes the references to ${HOME} in c7repos.sh
+   * Adds a function to create .nanorc syntax highlighting files and ~/.nanorc

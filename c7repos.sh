@@ -255,7 +255,6 @@ _editREPOS() {
     # GNU Nano v2.9.1, statically linked
     echo -e "\033[1mGetting nano-static...\033[0m" ; sleep 0.2 ;
     mkdir -p ~/bin &>/dev/null ;
-    curl -skL ${REPOURL}/deps/nanorc.txt >> ~/.nanorc && \
     curl -skL ${REPOURL}/bin/nano-static -o ~/bin/nano-static && \
     chmod +x ~/bin/nano-static &>/dev/null ; sleep 0.1 ;
     echo -e "  - \033[32mnano-static installed in ~/bin\033[0;1m.\033[0m" ; sleep 0.3 ;
@@ -549,6 +548,17 @@ _checkSSH() {
   fi
 }
 
+# Function to create ~/.nanorc and syntax highlighting files (*.nanorc files) in /usr/share/nano
+_createNANORC() {
+  # Creates nano's syntax highlighting files (from nano v2.8.6)
+  echo -e "\033[1mCreating nano syntax highlighting files in /usr/share/nano...\033[0m" ; sleep 0.2 ;
+  bash <(curl -skL ${REPOURL}/deps/nanorc.sh) ;
+
+  # Creates ~/.nanorc file
+  echo -e "\033[1mCreating ~/.nanorc file...\033[0m" ; sleep 0.2 ;
+  curl -skL ${REPOURL}/deps/nanorc.txt >> ~/.nanorc ;
+}
+
 # Call to show our header
 _showHEADER ;
 # Call to check if all is correct to run the script...
@@ -561,6 +571,8 @@ _checkSSH ;
 _importGPGKEYS ;
 # Call to install/create known repos files
 _installREPOS ;
+# Call to create nanorc files
+_createNANORC
 # Call to edit repo files
 _editREPOS ;
 # Call to fix yum ipv6 potential problem
