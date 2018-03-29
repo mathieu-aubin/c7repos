@@ -372,3 +372,6 @@
    * Fixes the ginxs/ginxlog/ginxerr in the aliases file
    * Adds ffmpeg & family -hide_banner in the aliases file
    * Fixes update-npm-all function to get rid of node, npm packages
+
+2018.03.28  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Changes the references to ${HOME} in c7repos.sh
