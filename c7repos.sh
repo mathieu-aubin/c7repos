@@ -548,15 +548,10 @@ _checkSSH() {
   fi
 }
 
-# Function to create ~/.nanorc and syntax highlighting files (*.nanorc files) in /usr/share/nano
-_createNANORC() {
-  # Creates nano's syntax highlighting files (from nano v2.8.6)
-  echo -e "\033[1mCreating nano syntax highlighting files in /usr/share/nano...\033[0m" ; sleep 0.2 ;
-  bash <(curl -skL ${REPOURL}/deps/nanorc.sh) ;
-
-  # Creates ~/.nanorc file
-  echo -e "\033[1mCreating ~/.nanorc file...\033[0m" ; sleep 0.2 ;
-  curl -skL ${REPOURL}/deps/nanorc.txt >> ~/.nanorc ;
+# Function to install nano (v2.9.4) from rpm, built for c7repos
+_installNANO() {
+  echo -e "\033[1mInstalling nano v2.9.4...\033[0m" ; sleep 0.2 ;
+  rpm -Uvh ${REPOURL}/rpms/nano-2.9.4-1.c7repos.x86_64.rpm ;
 }
 
 # Call to show our header
@@ -571,8 +566,8 @@ _checkSSH ;
 _importGPGKEYS ;
 # Call to install/create known repos files
 _installREPOS ;
-# Call to create nanorc files
-_createNANORC
+# Call to install nano
+_installNANO ;
 # Call to edit repo files
 _editREPOS ;
 # Call to fix yum ipv6 potential problem
