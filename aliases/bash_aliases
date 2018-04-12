@@ -19,7 +19,7 @@ alias curlc='curl -c /tmp/cookies -b /tmp/cookies -sSL'; alias curl-cookie='curl
 alias quick-stats='bash <(curl -skL https://bit.ly/qsts)'; alias qstats='quick-stats';
 alias greps='grep -C5'; # Shows 5 lines before and after a grep, for context (-A5 -B5 = -C5)
 alias rm-ds_store='find ./ -type f -iname ".DS_Store" -exec rm {} \;'; alias remove-ds_store='rm-ds_store';
-alias free-ram='free -mh && sync && sync && echo 3 >/proc/sys/vm/drop_caches && fstrim -av && free -mh';
+alias free-ram='echo -e "\033[1mBEFORE:\033[0m"; free -mh && sync && sync && echo 3 >/proc/sys/vm/drop_caches; echo -e "\n\033[1mAFTER:\033[0m"; free -mh; fstrim -av';
 alias chownroot='chown root:root ${PWD} -R && echo -e "Files/folders permissions set to root, recursively."';
 
 ###################################################
@@ -119,7 +119,7 @@ alias mtab='cat /etc/mtab | grep -Ev "^#" | column -t';
 #################################################
 #### NGiNX (awesome) custom aliases/commands ####
 #################################################
-alias ginx='[[ -d /etc/nginx ]] && { cd /etc/nginx; ll }'; alias ginxT='nginx -T 2>&1'; alias ginxv='nginx -v';
+alias ginx='[[ -d /etc/nginx ]] && { cd /etc/nginx; ll; }'; alias ginxT='nginx -T 2>&1'; alias ginxv='nginx -v';
 alias ginxt='nginx -t'; alias ginxr='nginx -s reload'; alias ginxl='ginxlog'; alias ginxe='ginxerr';
 
 ##############################################################################################################################

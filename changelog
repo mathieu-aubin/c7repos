@@ -379,3 +379,6 @@
    * Removes previously added function -- oh well -- and replaces by a function
      that installs nano v2.9.4 from rpm, built for c7repos
    * Removes the stupid small 'i' wonder why i thought of that...
+
+2018.04.12  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Fixes 'ginx' alias
