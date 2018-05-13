@@ -390,4 +390,5 @@
    * Updates digall function
 
 2018.05.13  Mathieu Aubin  <mathieu@zeroserieux.com>
-   * Some changes in the aliases file
+   * Removes calls to nano static
+   * Updates the update-tools function
