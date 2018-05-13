@@ -1,14 +1,14 @@
-##
-##      ▄▄▄       ██▓     ██▓ ▄▄▄        ██████ ▓█████   ██████
-##     ▒████▄    ▓██▒    ▓██▒▒████▄    ▒██    ▒ ▓█   ▀ ▒██    ▒
-##     ▒██  ▀█▄  ▒██░    ▒██▒▒██  ▀█▄  ░ ▓██▄   ▒███   ░ ▓██▄
-##     ░██▄▄▄▄██ ▒██░    ░██░░██▄▄▄▄██   ▒   ██▒▒▓█  ▄   ▒   ██▒
-##      ▓█   ▓██▒░██████▒░██░ ▓█   ▓██▒▒██████▒▒░▒████▒▒██████▒▒
-##      ▒▒   ▓▒█░░ ▒░▓  ░░▓   ▒▒   ▓▒█░▒ ▒▓▒ ▒ ░░░ ▒░ ░▒ ▒▓▒ ▒ ░
-##        ▒   ▒▒ ░░ ░ ▒  ░ ▒ ░  ▒   ▒▒ ░░ ░▒  ░ ░ ░ ░  ░░ ░▒  ░ ░
-##       ░   ▒     ░ ░    ▒ ░  ░   ▒   ░  ░  ░     ░   ░  ░  ░
-##           ░  ░    ░  ░ ░        ░  ░      ░     ░  ░      ░
-##
+#
+#      ▄▄▄       ██▓     ██▓ ▄▄▄        ██████ ▓█████   ██████
+#     ▒████▄    ▓██▒    ▓██▒▒████▄    ▒██    ▒ ▓█   ▀ ▒██    ▒
+#     ▒██  ▀█▄  ▒██░    ▒██▒▒██  ▀█▄  ░ ▓██▄   ▒███   ░ ▓██▄
+#     ░██▄▄▄▄██ ▒██░    ░██░░██▄▄▄▄██   ▒   ██▒▒▓█  ▄   ▒   ██▒
+#      ▓█   ▓██▒░██████▒░██░ ▓█   ▓██▒▒██████▒▒░▒████▒▒██████▒▒
+#      ▒▒   ▓▒█░░ ▒░▓  ░░▓   ▒▒   ▓▒█░▒ ▒▓▒ ▒ ░░░ ▒░ ░▒ ▒▓▒ ▒ ░
+#        ▒   ▒▒ ░░ ░ ▒  ░ ▒ ░  ▒   ▒▒ ░░ ░▒  ░ ░ ░ ░  ░░ ░▒  ░ ░
+#       ░   ▒     ░ ░    ▒ ░  ░   ▒   ░  ░  ░     ░   ░  ░  ░
+#           ░  ░    ░  ░ ░        ░  ░      ░     ░  ░      ░
+#
 alias ncdu='ncdu -x';
 alias wget='wget -4';
 alias digs='dig +short';
@@ -17,7 +17,8 @@ alias du='du -kh'; alias df='df -kTh';
 alias columnt='column -t'; # Because i always write it wrong
 alias curlc='curl -c /tmp/cookies -b /tmp/cookies -sSL'; alias curl-cookie='curlc';
 alias quick-stats='bash <(curl -skL https://bit.ly/qsts)'; alias qstats='quick-stats';
-alias greps='grep -C5'; # Shows 5 lines before and after a grep, for context (-A5 -B5 = -C5)
+alias grep='grep --color=auto';
+alias greps='grep -C5';
 alias rm-ds_store='echo -e "\033[1mRemoving ALL .DS_Store files from current directory, recursively...\033[0m"; find ./ -type f -iname ".DS_Store" -exec rm {} \;'; alias remove-ds_store='rm-ds_store';
 alias free-ram='echo -e "\033[1mBEFORE:\033[0m"; sleep 0.5; free -mh && sync && sync && echo 3 >/proc/sys/vm/drop_caches; sleep 0.5; echo -e "\n\033[1mAFTER:\033[0m"; free -mh; fstrim -av';
 alias chownroot='chown root:root ${PWD} -R && echo -e "Current folder ownership recursively set to root:root"';
@@ -30,6 +31,7 @@ alias cp='cp -i'; alias rm='rm -I'; alias mkdir='mkdir -p';
 #########################
 #### RPM/YUM aliases ####
 #########################
+alias yum='yum --color=auto'; alias yum4='yum4 --color=auto'; alias dnf='dnf --color=auto';
 alias rpm-list-keys='rpm -q gpg-pubkey --qf "%{name}-%{version}-%{release} --> %{summary}\n"';
 alias list-rpm-gpg-keys='rpm-list-keys'; alias rpm-gpg-keys='rpm-list-keys'; alias gpg-list-rpm='rpm-list-keys'; alias rpm-keys-list='rpm-list-keys';
 alias kernel-cleanup='package-cleanup --oldkernels --keepdevel && rm -f /boot/grub2/grubenv && if [[ -f ~/bin/update-grub ]]; then ~/bin/update-grub; else grub2-mkconfig -o /boot/grub2/grub.cfg; fi'
@@ -47,8 +49,8 @@ alias lsblk='lsblk --output NAME,MODE,SIZE,TYPE,FSTYPE,UUID,LABEL,MOUNTPOINT';
 ##############################
 #### Some nice ip aliases ####
 ##############################
-alias myip='curl -4skL v4.4ce.ca';
-alias myip6='curl -6skL v6.4ce.ca';
+alias myip='curl -4skL https://v4.4ce.ca';
+alias myip6='curl -6skL https://v6.4ce.ca';
 # Outputs both, if available
 alias myips='myip; myip6';
 
@@ -102,7 +104,9 @@ alias update-npm='npm i npm -g --upgrade'; alias npm-update='update-npm';
 ################
 #### FFMpeg ####
 ################
-alias ffmpeg='ffmpeg -hide_banner'; alias ffprobe='ffprobe -hide_banner'; alias ffmpeg-10bit='ffmpeg-10bit -hide_banner';
+alias ffmpeg='ffmpeg -hide_banner';
+alias ffprobe='ffprobe -hide_banner';
+alias ffmpeg-10bit='ffmpeg-10bit -hide_banner';
 
 ###################################################################
 #### set-permissions will set PWD files to 664, folders to 775 ####
@@ -125,9 +129,9 @@ alias ginxt='nginx -t'; alias ginxr='nginx -s reload'; alias ginxl='ginxlog'; al
 ##############################################################################################################################
 #### Assuming you are using default log file type, 'ginxs' will fetch the returned http codes since the last log rotation ####
 ##############################################################################################################################
-alias ginxs='if [ -f /var/log/nginx/access.log ];then echo -e "Getting \033[1;3;38;5;70mNGiNX\033[0m metrics from access logs...\n";cat /var/log/nginx/access.log|cut -d" " -f9|grep -E "[[:digit:]]"|sort|uniq -c|sort -hr;echo -e "\nDONE.";fi';
-alias ginxlog='[[ -f /var/log/nginx/access.log ]] && { tail -n250 /var/log/nginx/access.log | less } || echo -e "\033[1;48;5;196m/var/log/nginx/access.log doesnt exist or is not readable\033[0m"';
-alias ginxerr='[[ -f /var/log/nginx/error.log ]] && { tail -n250 /var/log/nginx/error.log | less } || echo -e "\033[1;48;5;196m/var/log/nginx/error.log doesnt exist or is not readable\033[0m"';
+alias ginxs='[[ -f /var/log/nginx/access.log ]] && { echo -e "Getting \033[3;32mNGiNX\033[0m metrics from access logs... this may take a bit.\n" && cat /var/log/nginx/access.log | grep --color=no -Pio "HTTP/(\d\.\d)\" \K(\d{3})" | sort | uniq -c | sort -nr; }';
+alias ginxlog='[[ -f /var/log/nginx/access.log ]] && { tail -n250 /var/log/nginx/access.log | less -S } || echo -e "\033[1;48;5;196m/var/log/nginx/access.log doesnt exist or is not readable\033[0m"';
+alias ginxerr='[[ -f /var/log/nginx/error.log ]] && { tail -n250 /var/log/nginx/error.log | less -S } || echo -e "\033[1;48;5;196m/var/log/nginx/error.log doesnt exist or is not readable\033[0m"';
 
 #######################################################
 #### WordPress Client (wp-cli) alias allowing root ####
