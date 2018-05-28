@@ -401,8 +401,8 @@
    * Adds wp-cli bash completion script
    * Removes the download of nano-static
    * Changes all curl calls to ipv4 strict
-   * Adds Yarn repository from official source
    * Removes some comments that were useless, in my opinion
-   * Adds skip_if_unavailable=1 to nodesource-source repository
+   * Adds Yarn (rpm gpg import)repository from official source
+   * Adds skip_if_unavailable=1 to node/yarn/nginx repositories
    * Updates the nginx repository file to reflect the current repo head
    * Installs yarn from source rpm package after having installed nodejs/npm
