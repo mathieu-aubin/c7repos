@@ -392,3 +392,15 @@
 2018.05.13  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Removes calls to nano static
    * Updates the update-tools function
+
+2018.05.28  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Updates nanorc file to remove regexp
+   * Updates NodeJS version to v10
+   * Some changes in the aliases file
+   * Adds wp-cli gpg key to main script
+   * Adds wp-cli bash completion script
+   * Removes the download of nano-static
+   * Changes all curl calls to ipv4 strict
+   * Removes some comments that were useless, in my opinion
+   * Updates the nginx repository file to reflect the current repo head
+   * Installs yarn from source rpm package after having installed nodejs/npm
