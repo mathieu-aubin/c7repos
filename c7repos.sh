@@ -239,6 +239,7 @@ _installREPOS() {
   echo -e "\033[1mInstalling NodeJS repository from official source...\033[0m" ; sleep 0.2 ;
   bash <(curl -4skL https://rpm.nodesource.com/setup_${NODEJSVER}.x) &>/dev/null && \
   echo -e "  - \033[32mNodeJS repository installed\033[0;1m.\033[0m" ; sleep 0.3 ;
+  2>/dev/null echo 'skip_if_unavailable=1' >> /etc/yum.repos.d/nodesource-el7.repo ;
 
   # iUS Community
   echo -e "\033[1mInstalling iUS repository from official source...\033[0m" ; sleep 0.2 ;

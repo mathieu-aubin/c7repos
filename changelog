@@ -402,5 +402,6 @@
    * Removes the download of nano-static
    * Changes all curl calls to ipv4 strict
    * Removes some comments that were useless, in my opinion
+   * Adds skip_if_unavailable=1 to nodesource-source repository
    * Updates the nginx repository file to reflect the current repo head
    * Installs yarn from source rpm package after having installed nodejs/npm
