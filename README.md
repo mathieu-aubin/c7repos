@@ -8,7 +8,7 @@ Installs common/base *CentOS* 7 repositories/programs (___x86_64 ONLY___)
 
 *c7repos.sh* attempts to installs/create the following repositories configurations
 
-##### ___EPEL___ - ___REMi___ - __iUS__ - ___NGiNX___ - ___NODEJS___ - ___EL-REPO___ - ___MARiADB___ - ___DOCKER (CE)___
+##### ___EPEL___ - ___REMi___ - __iUS__ - ___NGiNX___ - ___NODEJS___ - ___EL-REPO___ - ___MARiADB___ - ___DOCKER___ - __YARN__
 
 and some suggested extra packages for a clean, practical and usable base server system. _c7repos.sh_ also defines a bunch of useful system aliases and functions.
 
