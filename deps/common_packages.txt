@@ -66,4 +66,5 @@ usbutils
 wget
 whois
 xauth
+yarn
 zip
