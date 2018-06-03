@@ -22,13 +22,13 @@ The installable script is accessible via the traditionnal [_GitHub_'s raw url](h
 
 ### HOWTO
 
-Preferably from a ___FRESHLY iNSTALLED___ *CentOS* 7 server, _c7repos.sh_ can be called as superuser (_root_) using one of the following methods
+Preferably from a ___FRESHLY INSTALLED___ *CentOS* 7 server, _c7repos.sh_ can be called as superuser (_root_) using one of the following methods
 
 ##### Method #1
 
    - Executing, as root, from a known mirror.
 
-   Example:
+   Examples:
 
     root@host ~ # bash <(curl -4sLk https://bit.ly/c7repos)
     root@host ~ # bash <(curl -4sLk https://c7repos.4ce.ca/raw)
@@ -51,7 +51,7 @@ Preferably from a ___FRESHLY iNSTALLED___ *CentOS* 7 server, _c7repos.sh_ can be
     root@host ~ # wget https://bit.ly/c7repos -O /tmp/c7repos.sh
     root@host ~ # bash /tmp/c7repos.sh
 
-### HOWTO/iNSTALL NOTE
+### HOWTO/INSTALL NOTE
 
 You **MUST** be superuser (_root_) in order to run _c7repos.sh_ (_sudo_ works as well). Using [_Bit.ly_ mirror](https://bit.ly/c7repos) is just about the same as using [_GitHub_'s raw repository url](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh) directly the only difference being that i can potentially monitor the usage at some point and if need be. If you do not want to go thru [_Bit.ly_](https://bit.ly/c7repos) you are free to run directly from either one of _GitHub_'s addresses, [_Git.io_'s short](https://git.io/vd7Ye) or [_GitHub_'s raw](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh) url.
 
@@ -60,7 +60,7 @@ You **MUST** be superuser (_root_) in order to run _c7repos.sh_ (_sudo_ works as
 [_GitHub_'s raw url](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh)
 [_Git.io_'s short url](https://git.io/vd7Ye)
 
-### HiSTORY
+### HISTORY
 
 Originally coded for *CentOS* 6 by _Peggy_ following a request for a simple server configuration script. From there on and some time later, it grew to something a little more actual and practical. (_Peggy_ is a fictitious character)
 
@@ -68,6 +68,6 @@ Originally coded for *CentOS* 6 by _Peggy_ following a request for a simple serv
 
 A changelog is available (and hopefuly up-to-date) on [_GitHub_](https://git.io/vd5aC)
 
-### CONTRiBUTiNG
+### CONTRIBUTING
 
 By all means and please, do not hesitate to send comments, ideas and/or pull requests. Looking forward for your input.
