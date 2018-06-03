@@ -12,7 +12,7 @@
 # some suggested (at user's will) extra  packages for a clean, practical
 # and usable base server system
 #
-#  EPEL * REMI * NGiNX * NODEJS * EL-REPO * MARIADB * DOCKER * IUS * YARN
+# EPEL * REMI * NGiNX * NODEJS * EL-REPO * MARIADB * DOCKER * IUS * YARN
 #
 # Some repos  have options that can be enabled in the  repo file itself.
 # REMI, as an  example, has all PHP versions  easily enablable from  the
@@ -22,20 +22,21 @@
 # shot type deal. Alot more YUM stuff to be read to whom dares using the
 # awesome 'man' command or by visiting
 #
-#      YUM's official webpage --> http://yum.baseurl.org
+#       YUM's official webpage --> http://yum.baseurl.org
 #
 # WHERE
 # ¯¯¯¯¯
 # c7repos.sh code repository is hosted on GitHub at
 #
-#      https://github.com/mathieu-aubin/c7repos
+#       https://github.com/mathieu-aubin/c7repos
 #
 # The installable script (aka the raw script file) is accessible via the
-# traditionnal GitHub's raw url and  is also 'mirrored' using both short
+# traditionnal GitHub's raw url and  is also 'mirrored' using some short
 # url providers.
 #
-#      Git.io --> https://git.io/vd7Ye
-#      Bit.ly --> https://bit.ly/c7repos
+#       4ce.ca --> https://c7repos.4ce.ca/raw
+#       Git.io --> https://git.io/vd7Ye
+#       Bit.ly --> https://bit.ly/c7repos
 #
 # HOWTO
 # ¯¯¯¯¯
@@ -46,14 +47,15 @@
 #  ¯¯¯¯¯¯¯¯¯
 #   - Executing straight from a known mirror. Example:
 #
-#      root@host ~ # bash <(curl -skL https://bit.ly/c7repos)
+#      root@host ~ # bash <(curl -4sLk https://c7repos.4ce.ca/raw)
+#      root@host ~ # bash <(curl -4skL https://bit.ly/c7repos)
 #
 #  Method #2
 #  ¯¯¯¯¯¯¯¯¯
 #   - Piping curl's output to bash's input. Examples:
 #
-#      root@host ~ # curl -skL https://git.io/vd7Ye | bash -
-#    nobody@host ~ $ curl -skL https://git.io/vd7Ye | sudo bash -
+#      root@host ~ # curl -4sLk https://c7repos.4ce.ca/raw | bash -
+#      user@host ~ $ curl -4skL https://git.io/vd7Ye | sudo bash -
 #
 #  Method #3
 #  ¯¯¯¯¯¯¯¯¯
@@ -63,7 +65,7 @@
 #      root@host ~ # wget https://bit.ly/c7repos -O c7repos.sh
 #      root@host ~ # bash c7repos.sh
 #
-# HOWTO NOTE
+# HOWTO/INSTALL NOTE
 # ¯¯¯¯¯¯¯¯¯¯
 # You *MUST* be superuser in order to run the this - sudo works as well.
 #
