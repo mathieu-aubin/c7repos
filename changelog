@@ -406,3 +406,8 @@
    * Adds skip_if_unavailable=1 to node/yarn/nginx repositories
    * Updates the nginx repository file to reflect the current repo head
    * Installs yarn from source rpm package after having installed nodejs/npm
+
+2018.06.08  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Minor fixes
+   * Adds some extra dev libraries
+   * Updates NGiNX repository file creation, adding mainline repo
