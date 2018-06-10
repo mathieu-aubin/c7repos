@@ -5,7 +5,7 @@ bc
 boost
 bind-utils
 bridge-utils
-certbot
+cfg2html
 cifs-utils
 crypto-utils
 curlftpfs
@@ -41,6 +41,7 @@ moreutils
 nano
 nasm
 ncdu
+ncompress
 net-tools
 nfs-utils
 nmap

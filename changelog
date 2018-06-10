@@ -411,3 +411,12 @@
    * Minor fixes
    * Adds some extra dev libraries
    * Updates NGiNX repository file creation, adding mainline repo
+
+2018.06.10  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds cfg2html package as common packages
+   * Adds ncompress package as common packages
+   * Removes certbot from common packages, thus making certain that
+     future versions and/or plugins do not clash with current pip versions
+     *** install via pip install certbot / pip install certbot --upgrade
+
+
