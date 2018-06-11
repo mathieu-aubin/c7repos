@@ -147,7 +147,7 @@ _showDANGER() {
 
 # Function that check all the required things for the script to run
 _preCHECK() {
-  # Checks if we run as super-user... else... a quote from Linus Torvald.
+  # Checks if we run as super-user... else... a quote from Linus Torvalds.
   [[ ${EUID} -ne 0 ]] && >&2 echo '“ You not only have to be a good coder to create a system like Linux, you have to be a sneaky bastard, too. ” -LT' && exit 1 ;
 
   # Checks if we run a x86_64 architecture, else abort.
