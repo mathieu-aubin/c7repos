@@ -1,11 +1,11 @@
 asciinema
+aria2
 bash-completion
 bash-completion-extras
 bc
 boost
 bind-utils
 bridge-utils
-cfg2html
 cifs-utils
 crypto-utils
 curlftpfs
