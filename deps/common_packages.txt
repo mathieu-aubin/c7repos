@@ -51,6 +51,7 @@ perl
 pv
 python-pip
 redhat-lsb-core
+reptyr
 screen
 sharutils
 squashfuse
