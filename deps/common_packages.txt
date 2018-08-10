@@ -18,6 +18,7 @@ fuseiso
 fribidi
 genisoimage
 git
+goaccess
 grub2-tools
 hdparm
 htop

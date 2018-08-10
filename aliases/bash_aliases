@@ -101,13 +101,6 @@ alias edit-ip6tables='${EDITOR:-nano} /etc/sysconfig/ip6tables';
 ############################
 alias update-npm='npm i npm -g --upgrade'; alias npm-update='update-npm';
 
-################
-#### FFMpeg ####
-################
-alias ffmpeg='ffmpeg -hide_banner';
-alias ffprobe='ffprobe -hide_banner';
-alias ffmpeg-10bit='ffmpeg-10bit -hide_banner';
-
 ###################################################################
 #### set-permissions will set PWD files to 664, folders to 775 ####
 #### Outputs command only -CAN FUCK A SYSTEM if ran carelessly ####

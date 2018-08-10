@@ -422,3 +422,7 @@
 2018.06.10  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds aria2 in the common packages
    * Opt to remove cfg2html as its available in DAG repo which is mostly always down
+
+2018.08.10  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Removes ffmpeg duplicate aliases
+   * Adds goaccess log analyzer to common packages
