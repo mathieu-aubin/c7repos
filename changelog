@@ -425,3 +425,7 @@
 
 2018.06.24  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds reptyr to common packages
+
+2018.08.10  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Removes ffmpeg duplicate aliases
+   * Adds goaccess log analyzer to common packages
