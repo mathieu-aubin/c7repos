@@ -429,3 +429,6 @@
 2018.08.10  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Removes ffmpeg duplicate aliases
    * Adds goaccess log analyzer to common packages
+
+2018.08.11  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Tools update function fix/changes
