@@ -432,3 +432,10 @@
 
 2018.08.11  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Tools update function fix/changes
+
+2018.08.14  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * bash_aliases file fix/changes
+     - adds some golang aliases
+     - modifies the ipv4/ipv6 calls
+     - changes ginxlog to 500 lines
+     - plus some other minor changes
