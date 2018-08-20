@@ -439,3 +439,6 @@
      - modifies the ipv4/ipv6 calls
      - changes ginxlog to 500 lines
      - plus some other minor changes
+
+2018.08.20  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds GeoIP and GeoIP-data to common packages

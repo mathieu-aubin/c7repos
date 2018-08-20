@@ -17,6 +17,8 @@ fex
 fuseiso
 fribidi
 genisoimage
+GeoIP
+GeoIP-data
 git
 goaccess
 grub2-tools
