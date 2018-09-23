@@ -2,3 +2,4 @@ temp_*
 *.tmp
 _dev/*
 rpms/_build/**
+__*

@@ -31,7 +31,7 @@ Preferably from a ___FRESHLY INSTALLED___ *CentOS* 7 server, _c7repos.sh_ can be
    Examples:
 
     root@host ~ # bash <(curl -4sLk https://bit.ly/c7repos)
-    root@host ~ # bash <(curl -4sLk https://c7repos.4ce.ca/raw)
+    root@host ~ # bash <(curl -4sLk https://git.io/vd7Ye)
 
 ##### Method #2
 
@@ -39,7 +39,7 @@ Preferably from a ___FRESHLY INSTALLED___ *CentOS* 7 server, _c7repos.sh_ can be
 
    Examples:
 
-    root@host ~ # curl -4sLk https://c7repos.4ce.ca/raw | bash -
+    root@host ~ # curl -4sLk https://bit.ly/c7repos | bash -
     user@host ~ $ curl -4sLk https://git.io/vd7Ye | sudo bash -
 
 ##### Method #3
@@ -55,7 +55,6 @@ Preferably from a ___FRESHLY INSTALLED___ *CentOS* 7 server, _c7repos.sh_ can be
 
 You **MUST** be superuser (_root_) in order to run _c7repos.sh_ (_sudo_ works as well). Using [_Bit.ly_ mirror](https://bit.ly/c7repos) is just about the same as using [_GitHub_'s raw repository url](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh) directly the only difference being that i can potentially monitor the usage at some point and if need be. If you do not want to go thru [_Bit.ly_](https://bit.ly/c7repos) you are free to run directly from either one of _GitHub_'s addresses, [_Git.io_'s short](https://git.io/vd7Ye) or [_GitHub_'s raw](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh) url.
 
-[_4ce.ca_ mirror](https://c7repos.4ce.ca/raw)
 [_Bit.ly_ mirror](https://bit.ly/c7repos)
 [_GitHub_'s raw url](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh)
 [_Git.io_'s short url](https://git.io/vd7Ye)
@@ -70,4 +69,4 @@ A changelog is available (and hopefuly up-to-date) on [_GitHub_](https://git.io/
 
 ### CONTRIBUTING
 
-By all means and please, do not hesitate to send comments, ideas and/or pull requests. Looking forward for your input.
+By all means and please, do not hesitate to send comments, ideas and/or pull requests.
