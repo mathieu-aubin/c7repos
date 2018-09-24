@@ -1,6 +1,10 @@
 theme: jekyll-theme-cayman
+
 plugins:
+  - jekyll-docs
+  - jekyll-redirect-to
   - jekyll-redirect-from
-permalink: /garbage
-redirect_to:
-  - https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh
+
+#permalink: /garbage
+#redirect_to:
+#  - https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh
