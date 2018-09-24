@@ -18,35 +18,35 @@ Some repositories have options that can be enabled directly in the repo files th
 
 _c7repos.sh_ code repository is hosted on [_GitHub_](https://github.com/mathieu-aubin/c7repos).
 
-The installable script is accessible via the traditionnal [_GitHub_'s raw url](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh) and is also 'mirrored' using both short following url providers [_Git.io_](https://git.io/vd7Ye) and [_Bit.ly_](https://bit.ly/c7repos). Its also available via https://c7repos.4ce.ca/raw
+The installable script is accessible via the traditionnal [_GitHub_'s raw url](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh) and is also 'mirrored' using both short following url providers [_Git.io_](https://git.io/vd7Ye) and [_Bit.ly_](https://bit.ly/c7repos). Its also available via [_4ce.ca_](https://c7repos.4ce.ca/raw) but this method cannot be used in conjunction with _curl_/_bash_ (Method \#2, redirect problem).
 
 ### HOWTO
 
 Preferably from a ___FRESHLY INSTALLED___ *CentOS* 7 server, _c7repos.sh_ can be called as superuser (_root_) using one of the following methods
 
-##### Method #1
+#### Method #1
 
    - Executing, as root, from a known mirror.
 
    Examples:
 
     root@host ~ # bash <(curl -4sLk https://bit.ly/c7repos)
-    root@host ~ # bash <(curl -4sLk https://c7repos.4ce.ca/raw)
+    root@host ~ # bash <(curl -4sLk https://git.io/vd7Ye)
 
-##### Method #2
+#### Method #2
 
    - Piping _curl_'s output to _bash_'s input.
 
    Examples:
 
-    root@host ~ # curl -4sLk https://c7repos.4ce.ca/raw | bash -
+    root@host ~ # curl -4sLk https://bit.ly/c7repos | bash -
     user@host ~ $ curl -4sLk https://git.io/vd7Ye | sudo bash -
 
-##### Method #3
+#### Method #3
 
    - Downloading/saving it to a location on the machine and executing with _bash_.
 
-   Example:
+   Examples:
 
     root@host ~ # wget https://bit.ly/c7repos -O /tmp/c7repos.sh
     root@host ~ # bash /tmp/c7repos.sh
@@ -55,10 +55,10 @@ Preferably from a ___FRESHLY INSTALLED___ *CentOS* 7 server, _c7repos.sh_ can be
 
 You **MUST** be superuser (_root_) in order to run _c7repos.sh_ (_sudo_ works as well). Using [_Bit.ly_ mirror](https://bit.ly/c7repos) is just about the same as using [_GitHub_'s raw repository url](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh) directly the only difference being that i can potentially monitor the usage at some point and if need be. If you do not want to go thru [_Bit.ly_](https://bit.ly/c7repos) you are free to run directly from either one of _GitHub_'s addresses, [_Git.io_'s short](https://git.io/vd7Ye) or [_GitHub_'s raw](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh) url.
 
-[_4ce.ca_ mirror](https://c7repos.4ce.ca/raw)
 [_Bit.ly_ mirror](https://bit.ly/c7repos)
 [_GitHub_'s raw url](https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh)
 [_Git.io_'s short url](https://git.io/vd7Ye)
+[_4ce.ca_ gh-pages](https://c7repos.4ce.ca/raw)
 
 ### HISTORY
 
@@ -70,4 +70,4 @@ A changelog is available (and hopefuly up-to-date) on [_GitHub_](https://git.io/
 
 ### CONTRIBUTING
 
-By all means and please, do not hesitate to send comments, ideas and/or pull requests. Looking forward for your input.
+By all means and please, do not hesitate to send comments, ideas and/or pull requests.
