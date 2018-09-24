@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2018.09.24  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Fix wget aliases notification
+
 2018.09.22  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds some comments
    * Invert changelog order
