@@ -115,8 +115,8 @@ PHP_VERSION=${PHP_VERSION:-7.0};
 
 # Repository URL used to fetch ressources
 REPOURL='https://raw.githubusercontent.com/mathieu-aubin/c7repos/master';
-# URL to insert into generated files
-BRAGURL='https://github.com/mathieu-aubin/c7repos';
+# URL to insert into generated files (old BRAGURL='https://github.com/mathieu-aubin/c7repos')
+BRAGURL='https://c7repos.4ce.ca';
 
 # Hides cursor and clears terminal
 tput civis; tput clear;
@@ -329,6 +329,19 @@ _fixYUMV6() {
   echo -e "  - \033[32mYum 'potential' IPv6 problem fixed\033[0;1m.\033[0m"; sleep 0.3;
 }
 
+# Function that adds some small configs to yum config
+_addtoYUMCONF() {
+  echo -e "\033[1mAdding extra Yum configurations...\033[0m"; sleep 0.1;
+	cat <<- __EOF__ >>/etc/yum.conf
+	deltarpm=1
+	deltarpm_percentage=70
+	clean_requirements_on_remove=0
+	#rpmverbosity=debug
+	failovermethod=priority
+	skip_if_unavailable=1
+	__EOF__
+}
+
 # Function to update grub2 bootloader
 _updateGRUB() {
   echo -e "\033[1mGetting 'update-grub' tool...\033[0m"; sleep 0.1;
@@ -352,7 +365,7 @@ _installDEVEL() {
       yum -y groups install "Development Tools" "Fedora Packager" &>/dev/null;
       yum -y install LibRaw-devel bison-devel boost-devel bzip2-devel c-ares-devel glib2-devel glibc-devel gmp-devel koji-utils libcurl-devel libsodium-devel libstdc++-devel libyaml-devel ncurses-devel openssl-devel pcre-devel perl-devel python-devel ruby-devel systemd-devel xz-devel zlib-devel nasm yasm-devel &>/dev/null;
       rpmdev-setuptree &>/dev/null; # Setup the rpm build tree
-      echo -e "  - \033[32mDevelopment tools group package installed\033[0;1m.\033[0m"; sleep 0.3;
+      echo -e "  - \033[32mDevelopment tools package group installed\033[0;1m.\033[0m"; sleep 0.3;
       ;;
   esac
   unset _DEVPACK;
@@ -383,7 +396,7 @@ _installMARIADB() {
         echo -en "\033[1mWould you like me to set a random root password? [y/\033[0;1;38;5;40mN\033[0;1m]\033[0m "; read -er _SQLPASS;
         case "${_SQLPASS}" in
           [yY][eE][sS]|[yes])
-            _RNDPASS=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w18 | head -n1); mysqladmin -u root password ${_RNDPASS};
+            _RNDPASS=$(tr -cd '[:alnum:]' </dev/urandom|fold -w20|head -1); mysqladmin -u root password ${_RNDPASS};
             echo -e "\033[1mThe newly created and set MariaDB root password is: \033[1;37;41m  ${_RNDPASS}  \033[0m\n"; unset _RNDPASS; sleep 0.3;
             echo -e "\033[1;38;5;196mTAKE NOTE OF IT, IT IS NOT LOGGED ANYWHERE. THIS IS THE ONLY TIME YOU WILL SEE IT.\033[0m"; sleep 0.5;
             echo -e "\033[1;38;5;196mTAKE NOTE OF IT, IT IS NOT LOGGED ANYWHERE. THIS IS THE ONLY TIME YOU WILL SEE IT.\033[0m"; sleep 0.5;
@@ -479,6 +492,8 @@ _installCOMMON() {
   yum -y install ${_COMMON_PACKAGES} &>/dev/null;
   export EDITOR=$(which nano);
   systemctl enable iptables --now &>/dev/null; systemctl enable ip6tables --now &>/dev/null;
+  # "Hack" to silence parallel's bibtex thing - Make sure you cite the following publication
+  # https://www.bibsonomy.org/bibtex/2ab8ea12a0dffc7a4f4d5e972c8fb4ad8/fezett
   mkdir -p ~/.parallel && touch ~/.parallel/will-cite;
 
 	# Creates wp-cli bash-completion file
@@ -519,6 +534,8 @@ _installCOMMON() {
   echo "# Source the bash completion files needed for completion to work" >> ~/.bashrc;
   echo "[[ -f /etc/bash_completion ]] && source /etc/bash_completion" >> ~/.bashrc;
   echo "[[ -f /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion" >> ~/.bashrc;
+  [[ ${_PBREW_INST} -eq 1 ]] && echo "[[ -f ~/perl5/perlbrew/etc/bashrc ]] && source ~/perl5/perlbrew/etc/bashrc" >> ~/.bashrc;
+
   echo -e "  - \033[32mBase packages installed\033[0m."; sleep 0.3;
 }
 
@@ -526,7 +543,7 @@ _installCOMMON() {
 _createDOTFILES() {
   # Append some stuff to .bashrc
   echo -e "\033[1mAppending to ~/.bashrc...\033[0m"; sleep 0.1;
-  #echo -e "\nshopt -s checkwinsize\nshopt -s histappend\nexport HISTIGNORE='&:exit:x:l:history:editenv:[h ]*:[ \\\t]*:?:??:w -i:pwd:srcalias*:srcexports*:srcfunctions*:srccolors*:srcdot*:env:quit:popd*:ginx*:chownwww*:yum clean*:yum makecache*'\nexport HISTCONTROL=ignoreboth\nexport HISTSIZE=20000\nexport HISTFILESIZE=100000\nexport HISTTIMEFORMAT=\"%Y/%m/%d %T \"" >> ~/.bashrc;
+  #echo -e "\nshopt -s checkwinsize\nshopt -s histappend\nexport HISTIGNORE='&:exit:x:l:history:editenv:[h ]*:[ \\\t]*:?:??:w -i:pwd:srcalias*:srcexports*:srcfunctions*:srccolors*:srcdot*:env:quit:popd*:ginx*:chownwww*:yum clean*:yum makecache*'\nexport HISTCONTROL=ignoreboth\nexport HISTSIZE=20000\nexport HISTFILESIZE=-1\nexport HISTTIMEFORMAT=\"%Y/%m/%d %T \"" >> ~/.bashrc;
   echo -e "\n# Source ~/.bash_* files not excluded by the grep command" >> ~/.bashrc;
   echo 'for DFs in $(ls -1p ~/.bash_* | \grep -Ev "save$|bak$|~$|history|logout|profile|back|/$"); do source ${DFs}; done' >> ~/.bashrc;
 
@@ -554,7 +571,7 @@ _createDOTFILES() {
   echo -e "# .bash_exports - Export file created by an awesome script on $(date +"%F %R:%S")\n# Get it at ${BRAGURL}\n#" >> ~/.bash_exports;
   echo -e "export PS1=\"${_RNDPS1}\";" >> ~/.bash_exports;
   echo -e "export EDITOR=\$(which nano);" >> ~/.bash_exports;
-  echo -e '\nshopt -s checkwinsize\nshopt -s histappend\nexport HISTCONTROL=ignoreboth\nexport HISTSIZE=20000\nexport HISTFILESIZE=100000\nexport HISTTIMEFORMAT="%Y/%m/%d %T "' >> ~/.bash_exports;
+  echo -e '\nshopt -s checkwinsize\nshopt -s histappend\nexport HISTCONTROL=ignoreboth\nexport HISTSIZE=20000\nexport HISTFILESIZE=-1\nexport HISTTIMEFORMAT="%Y/%m/%d %T "' >> ~/.bash_exports;
   echo -e '  - \033[32mRandom PS1 added to the exports\033[0;1m'; sleep 0.3;
 }
 
@@ -576,12 +593,10 @@ _checkSSH() {
           # Add a new Port line, with our new port
           echo -e "\nPort ${_SSHPC}" >> /etc/ssh/sshd_config;
           systemctl restart sshd; unset SSH_CLIENT;
-
           # Fix BOTH iptables default files with new port
           yum -y install iptables ip6tables iptables-services &>/dev/null;
           [[ -f /etc/sysconfig/ip6tables ]] && sed -i "s#--dport 22#--dport ${_SSHPC}#" /etc/sysconfig/ip6tables;
           [[ -f /etc/sysconfig/iptables ]] && sed -i "s#--dport 22#--dport ${_SSHPC}#" /etc/sysconfig/iptables;
-
           systemctl disable firewalld --now &>/dev/null;
           systemctl enable iptables --now &>/dev/null;
           systemctl enable ip6tables --now &>/dev/null;
@@ -605,6 +620,48 @@ _installNANO() {
   rpm -Uvh ${REPOURL}/rpms/nano-2.9.4-1.c7repos.x86_64.rpm &>/dev/null;
 }
 
+# Function that creates getaddrinfo configuration (favors ipv4 vs ipv6)
+_createGAICONF() {
+  echo -e "\033[1mCreating getaddrinfo (GAI) config...\033[0m"; sleep 0.1;
+  if [[ -f /etc/gai.conf ]]; then
+    echo -e "  - \033[32mGAI config file already exist, skipping\033[0;1m.\033[0m"; sleep 0.3;
+  else
+    # Get gai.conf from the repo
+    curl -4skL ${REPOURL}/deps/gai.conf >/etc/gai.conf;
+    chmod 644 /etc/gai.conf &>/dev/null;
+    echo -e "  - \033[32mGAI config file created\033[0;1m.\033[0m"; sleep 0.3;
+  fi
+}
+
+# Function to install Perlbrew (https://github.com/gugod/App-perlbrew)
+_installPERLBREW() {
+  echo -en "\033[1mInstall Perlbrew? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _PERLB;
+
+  case "${_PERLB}" in
+    [nN][oO]|[no])
+      sleep 0.3;
+      ;;
+    *)
+      echo -e "\033[1mInstalling Perlbrew...\033[0m"; sleep 0.1;
+      # Installs perlbrew from the git.io redirect url
+      bash <(curl -4sLk https://git.io/perlbrew-install) &>/dev/null
+      if [[ -e ~/perl5/perlbrew/etc/bashrc ]]; then
+        _PBREW_INST=1;
+        source ~/perl5/perlbrew/etc/bashrc &>/dev/null;
+        perlbrew init &>/dev/null;
+        echo -e 'y\n'|perlbrew install-patchperl &>/dev/null;
+        # Creates Perlbrew bash-completion file
+        echo -e "# Perlbrew bash completion file, generated by an awesome script on $(date +"%F %R:%S")\n# Get it at ${BRAGURL}\n#" >/usr/share/bash-completion/completions/perlbrew;
+        curl -4skL https://git.io/perlbrew-completion >>/usr/share/bash-completion/completions/perlbrew 2>/dev/null;
+        echo -e "  - \033[32mPerlbrew installed\033[0;1m.\033[0m"; sleep 0.3;
+      else
+        echo -e "  - \033[1;38;5;196;4mPerlbrew installation problem... \033[0;1mskipped.\033[0m"; sleep 2;
+      fi
+      ;;
+  esac
+  unset _PERLB;
+}
+
 # Call to show our header
 _showHEADER;
 # Call to check if all is correct to run the script...
@@ -613,6 +670,8 @@ _preCHECK;
 _doSELINUX;
 # Call to check SSH port and change if needed/wanted
 _checkSSH;
+# Call to create getaddressinfo config which favors ipv4
+_createGAICONF;
 # Call to import the repo gpg keys
 _importGPGKEYS;
 # Call to install/create known repos files
@@ -623,9 +682,11 @@ _installNANO;
 _editREPOS;
 # Call to fix yum ipv6 potential problem
 _fixYUMV6;
-# Call to update sys packages
+# Call to add some extra yum configs
+_addtoYUMCONF;
+# Call to update system packages
 _updateSYSTEM;
-# Call to update grub2 bootloader
+# Call to update Grub2 bootloader config
 _updateGRUB;
 # Call to install devel packages
 _installDEVEL;
@@ -635,6 +696,8 @@ _installMARIADB;
 _installNGINX;
 # Call to install NODEJS
 _installNODE;
+# Call to install PERLBREW
+_installPERLBREW;
 # Call to install common packages
 _installCOMMON;
 # Call to create aliase and function

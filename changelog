@@ -5,6 +5,15 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2018.09.29  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Small aesthetic changes
+   * Adds Perlbrew installation option
+   * Adds extra configuration options to yum
+   * Changes bragurl to https://c7repos.4ce.ca
+   * Set bash HISTFILESIZE to unlimited size (-1)
+   * Creates getaddrinfo config (favors ipv4 vs ipv6, /etc/gai.conf)
+   * Adds GNU Parallel author's bibtex url with a note about citing it [:guilty:]
+
 2018.09.24  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Fix wget aliases notification
 
