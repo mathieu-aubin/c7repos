@@ -53,6 +53,7 @@ parallel
 perl
 pv
 python-pip
+python2-httpie
 redhat-lsb-core
 reptyr
 screen
