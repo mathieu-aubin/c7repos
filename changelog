@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2018.10.02  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds uni2ascii to common packages
+
 2018.09.29  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Small aesthetic changes
    * Adds httpie to common packages

@@ -68,6 +68,7 @@ telnet
 tree
 unar
 unzip
+uni2ascii
 usbutils
 wget
 whois
