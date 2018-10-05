@@ -6,9 +6,11 @@
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
 2018.10.05  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Typo fix
    * Changes to update-grub bin
    * Adds Golang installation option
-   * Adds Perlbrew installation option
+   * Fixes Perlbrew installation option
+   * Adds cpanm to Perlbrew installation
    * Changes the whole dot files creation routine
    * Small fixes here and there, and after testing
    * Changes 'get it at' to 'check it out at' for the bragline
