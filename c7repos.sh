@@ -548,31 +548,61 @@ _createDOTFILES() {
   echo 'for DFs in $(ls -1p ~/.bash_* | \grep -Ev "save$|bak$|~$|history|logout|profile|back|/$"); do source ${DFs}; done' >> ~/.bashrc;
 
   # Creates the functions file
-  echo -e "\033[1mCreating functions file at ~/.bash_functions...\033[0m"; sleep 0.1;
-  echo -e "# .bash_functions - Functions file added by an awesome script on $(date +"%F %R:%S")\n# Get it at ${BRAGURL}\n#" >> ~/.bash_functions;
+  echo -e "\033[1mCreating bash functions file...\033[0m"; sleep 0.1;
+    echo -e "# .bash_functions - Functions file added by an awesome script on $(date +"%F %R:%S")\n# Get it at ${BRAGURL}\n#" >> ~/.bash_functions;
     # Get the functions raw files from the repo
-    curl -4skL ${REPOURL}/deps/functions_list.txt > /tmp/fl.txt;
+    _TMPFILE=$(mktemp -t c7rf.XXXXXXXXXX);
+    curl -4skL ${REPOURL}/deps/functions_list.txt >${_TMPFILE};
     while read _FSRC; do
       curl -4skL ${REPOURL}/functions/${_FSRC} >> ~/.bash_functions;
       echo '' >> ~/.bash_functions;
-    done < /tmp/fl.txt
-    rm -f /tmp/fl.txt;
+    done < ${_TMPFILE}
+    [[ -f ${_TMPFILE} ]] && rm -f ${_TMPFILE};
+  echo -e "  - \033[32mFunctions file created\033[0;1m.\033[0m"; sleep 0.2;
 
   # Creates the aliases file
-  echo -e "\033[1mCreating alias file at ~/.bash_aliases...\033[0m"; sleep 0.1;
-  echo -e "# .bash_aliases - Aliases file created by an awesome script on $(date +"%F %R:%S")\n# Get it at ${BRAGURL}\n#" >> ~/.bash_aliases;
+  echo -e "\033[1mCreating bash aliases file...\033[0m"; sleep 0.1;
+    echo -e "# .bash_aliases - Aliases file created by an awesome script on $(date +"%F %R:%S")\n# Get it at ${BRAGURL}\n#" >> ~/.bash_aliases;
     curl -4skL ${REPOURL}/aliases/bash_aliases >> ~/.bash_aliases;
-  echo -e "  - \033[32mBash aliases/functions files created\033[0;1m.\n    They will be sourced automatically upon next login.\033[0m"; sleep 0.3;
+  echo -e "  - \033[32mAliases file created\033[0;1m.\033[0m"; sleep 0.2;
 
   # Creates the export file
-  echo -e "\033[1mAdding a random colored PS1 to exports...\033[0m"; sleep 0.1;
-  _RND=$(shuf -n3 -i 21-231); _C1=$(echo ${_RND}|cut -d' ' -f1); _C2=$(echo ${_RND}|cut -d' ' -f2); _C3=$(echo ${_RND}|cut -d' ' -f3);
-  _RNDPS1="\[\033[1m\][\[\033[1;38;5;${_C1}m\]\u\[\033[0m\]@\[\033[1;38;5;${_C2}m\]\H\[\033[0;1m\]] \[\033[1;38;5;${_C3}m\]\w\[\033[0;1m\] \\$\[\033[0m\] "
   echo -e "# .bash_exports - Export file created by an awesome script on $(date +"%F %R:%S")\n# Get it at ${BRAGURL}\n#" >> ~/.bash_exports;
+  echo -e "\033[1mAdding a random colored PS1 to export file...\033[0m"; sleep 0.1;
+  _C1=$(shuf -n1 -i 21-231); _C2=$(shuf -n1 -i 21-231); _C3=$(shuf -n1 -i 21-231);
+  _RNDPS1="\[\033[1m\][\[\033[1;38;5;${_C1}m\]\u\[\033[0m\]@\[\033[1;38;5;${_C2}m\]\H\[\033[0;1m\]] \[\033[1;38;5;${_C3}m\]\w\[\033[0;1m\] \\$\[\033[0m\] "
+
   echo -e "export PS1=\"${_RNDPS1}\";" >> ~/.bash_exports;
-  echo -e "export EDITOR=\$(which nano);" >> ~/.bash_exports;
-  echo -e '\nshopt -s checkwinsize\nshopt -s histappend\nexport HISTCONTROL=ignoreboth\nexport HISTSIZE=20000\nexport HISTFILESIZE=-1\nexport HISTTIMEFORMAT="%Y/%m/%d %T "' >> ~/.bash_exports;
-  echo -e '  - \033[32mRandom PS1 added to the exports\033[0;1m'; sleep 0.3;
+  echo -e '  - \033[32mRandom PS1 added to exports\033[0;1m'; sleep 0.3;
+
+	# Writes general export values to export file
+	cat <<- "__EOF__" >> ~/.bash_exports
+	shopt -s checkwinsize;
+	shopt -s histappend;
+	export HISTCONTROL=ignoreboth;
+	export HISTSIZE=20000;
+	export HISTFILESIZE=-1;
+	export HISTTIMEFORMAT='%Y/%m/%d %T ';
+	export EDITOR=$(which nano);
+	__EOF__
+  echo -e '  - \033[32mAdded general exports\033[0;1m'; sleep 0.3;
+
+  # Check if golang was installed
+  if [[ ${_GOLANG_INST} -eq 1 ]]; then
+	# Writes golang env variables to export file
+	cat <<- "__EOF__" >> ~/.bash_exports
+	# Golang env variables (more infos: go help env)
+	export GOOS=linux;
+	export GOPATH=~/go;
+	export GOARCH=amd64;
+	export GOROOT=/opt/go;
+	export GOBIN=${GOPATH}/bin;
+	export GOTOOLDIR=${GOROOT}/pkg/tool/${GOOS}_${GOARCH};
+	export CGO_ENABLED=0;
+	__EOF__
+    echo -e '  - \033[32mAdded Golang exports\033[0;1m'; sleep 0.3;
+  fi
+
 }
 
 # Function to check for current running ssh port - Might have some issues with proper detection
@@ -662,6 +692,29 @@ _installPERLBREW() {
   unset _PERLB;
 }
 
+# Function to install Golang
+_installGOLANG() {
+  echo -en "\033[1mInstall Golang? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _GOLNG;
+
+  case "${_GOLNG}" in
+    [nN][oO]|[no])
+      sleep 0.3;
+      ;;
+    *)
+      _GOVER=$(curl -4skL 'https://golang.org/VERSION?m=text');
+      echo -e "\033[1mInstalling ${_GOVER}...\033[0m"; sleep 0.1;
+      curl -4sLk https://dl.google.com/go/${_GOVER}.linux-amd64.tar.gz | tar -xz -C /opt &>/dev/null
+      if [[ -x /opt/go/bin/go ]]; then
+        _GOLANG_INST=1;
+        echo -e "  - \033[32mGolang installed\033[0;1m.\033[0m"; sleep 0.3;
+      else
+        echo -e "  - \033[1;38;5;196;4mGolang installation problem... \033[0;1mskipped.\033[0m"; sleep 2;
+      fi
+      ;;
+  esac
+  unset _GOLNG;
+}
+
 # Call to show our header
 _showHEADER;
 # Call to check if all is correct to run the script...
@@ -698,6 +751,8 @@ _installNGINX;
 _installNODE;
 # Call to install PERLBREW
 _installPERLBREW;
+# Call to install GOLANG
+_installGOLANG;
 # Call to install common packages
 _installCOMMON;
 # Call to create aliase and function
