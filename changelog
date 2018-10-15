@@ -5,6 +5,11 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2018.10.15  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds GoLang and Perlbrew in README.md file
+   * Some minor changes to aliases file/c7repos.sh
+   * Adds 'erasedups' to HISTCONTROL in .bash_exports
+
 2018.10.05  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Typo fix
    * Changes to update-grub bin

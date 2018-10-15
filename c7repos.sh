@@ -593,7 +593,7 @@ _createDOTFILES() {
 	cat <<- "__EOF__" >> ~/.bash_exports
 	shopt -s checkwinsize;
 	shopt -s histappend;
-	export HISTCONTROL=ignoreboth;
+	export HISTCONTROL=ignoreboth:erasedups;
 	export HISTSIZE=20000;
 	export HISTFILESIZE=-1;
 	export HISTTIMEFORMAT='%Y/%m/%d %T ';
@@ -690,7 +690,7 @@ _installPERLBREW() {
       ;;
     *)
       echo -e "\033[1mInstalling Perlbrew...\033[0m"; sleep 0.1;
-      # Installs perlbrew from the git.io redirect url
+      # Installs Perlbrew from the Git.io redirect url
       bash <(curl -4sLk https://git.io/perlbrew-install) &>/dev/null
       if [[ -e ~/perl5/perlbrew/etc/bashrc ]]; then
         _PBREW_INST=1;
@@ -710,7 +710,7 @@ _installPERLBREW() {
   unset _PERLB;
 }
 
-# Function to install Golang
+# Function to install latest Golang from src (https://golang.org/doc/)
 _installGOLANG() {
   echo -en "\033[1mInstall Golang? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _GOLNG;
 
@@ -725,7 +725,7 @@ _installGOLANG() {
       curl -4sLk https://dl.google.com/go/${_GOVER}.linux-amd64.tar.gz | tar --strip-components=1 -xzC /opt/${_GOVER} &>/dev/null
       if [[ -x /opt/${_GOVER}/bin/go ]]; then
         _GOLANG_INST=1;
-        # Create a symlink to
+        # Link to installed Golang version
 	ln -s /opt/${_GOVER}/ /opt/go;
         echo -e "  - \033[32mGolang installed\033[0;1m.\033[0m"; sleep 0.3;
       else
