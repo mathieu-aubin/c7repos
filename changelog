@@ -5,6 +5,10 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2018.11.01  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Sets an alias for crontab to 'crontab -i' to prevent
+     infamous mistyped 'crontab -r'.
+
 2018.10.15  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds GoLang and Perlbrew in README.md file
    * Some minor changes to aliases file/c7repos.sh

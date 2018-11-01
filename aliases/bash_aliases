@@ -13,6 +13,7 @@ alias ncdu='ncdu -x';
 alias wget='wget -4';
 alias digs='dig +short';
 alias locate='locate -i';
+alias crontab='crontab -i';
 alias du='du -kh'; alias df='df -kTh';
 alias columnt='column -t'; # Because i always write it wrong
 alias curlc='curl -c /tmp/cookies -b /tmp/cookies -sSL'; alias curl-cookie='curlc';
