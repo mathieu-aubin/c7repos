@@ -14,8 +14,9 @@ alias wget='wget -4';
 alias digs='dig +short';
 alias locate='locate -i';
 alias crontab='crontab -i';
-alias du='du -kh'; alias df='df -kTh';
-alias columnt='column -t'; # Because i always write it wrong
+alias du='du -kh';
+alias df='df -kTh';
+alias columnt='column -t';
 alias curlc='curl -c /tmp/cookies -b /tmp/cookies -sSL'; alias curl-cookie='curlc';
 alias quick-stats='bash <(curl -skL https://bit.ly/qsts)'; alias qstats='quick-stats';
 alias grep='grep --color=auto'; alias greps='grep -C5';
@@ -119,15 +120,15 @@ alias mtab='cat /etc/mtab | grep -Ev "^#" | column -t';
 #################################################
 alias ginx='[[ -d /etc/nginx ]] && { pushd /etc/nginx &>/dev/null; ll; }';
 alias ginxe='ginxerr'; alias ginxl='ginxlog';
-alias ginxr='nginx -s reload'; alias ginxt='nginx -t';
+alias ginxr='[[ -d /etc/nginx ]] && { nginx -s reload; }'; qalias ginxt='nginx -t';
 alias ginxT='nginx -T 2>&1'; alias ginxv='nginx -v';
 
 ##############################################################################################################################
 #### Assuming you are using default log file type, 'ginxs' will fetch the returned http codes since the last log rotation ####
 ##############################################################################################################################
 alias ginxs='[[ -f /var/log/nginx/access.log ]] && { echo -e "Getting current \033[3;32mNGiNX\033[0m\nstatus codes count...\n" && cat /var/log/nginx/access.log | \grep --color=never -Pio "HTTP/(\d\.\d)\" \K(\d{3})" | sort | uniq -c | sort -nr; }';
-alias ginxlog='[[ -f /var/log/nginx/access.log ]] && { tail -n500 /var/log/nginx/access.log | less -S; } || echo -e "\033[1;48;5;196m/var/log/nginx/access.log doesnt exist or is not readable\033[0m"';
-alias ginxerr='[[ -f /var/log/nginx/error.log ]] && { tail -n500 /var/log/nginx/error.log | less -S; } || echo -e "\033[1;48;5;196m/var/log/nginx/error.log doesnt exist or is not readable\033[0m"';
+alias ginxlog='[[ -f /var/log/nginx/access.log ]] && { tail -n500 /var/log/nginx/access.log | \less -RS; } || echo -e "\033[1;48;5;196m/var/log/nginx/access.log doesnt exist or is not readable\033[0m"';
+alias ginxerr='[[ -f /var/log/nginx/error.log ]] && { tail -n500 /var/log/nginx/error.log | \less -RS; } || echo -e "\033[1;48;5;196m/var/log/nginx/error.log doesnt exist or is not readable\033[0m"';
 
 #######################################################
 #### WordPress Client (wp-cli) alias allowing root ####

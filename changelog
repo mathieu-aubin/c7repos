@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2018.11.11  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Changes some aliases
+
 2018.11.01  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Sets an alias for crontab to 'crontab -i' to prevent
      infamous mistyped 'crontab -r'.
