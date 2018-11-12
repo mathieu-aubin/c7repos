@@ -101,7 +101,7 @@
 
 # NodeJS - Must be a valid version number
 #	Reference: https://github.com/nodesource/distributions
-NODEJS_VERSION=${NODEJS_VERSION:-10};
+NODEJS_VERSION=${NODEJS_VERSION:-11};
 
 # MariaDB - Must be a valid version number (stable release)
 #	Reference: https://mariadb.com/kb/en/library/library-mariadb-releases/
@@ -145,23 +145,19 @@ _showHEADER() {
 	tput sgr0; tput civis; sleep 1.75;
 }
 
-# Function that displays potential danger situation, with a danger msg centered.
+# Function that displays potential danger situation, with a 'danger' msg, centered.
 _showDANGER() {
   local _dangerMSG _dangerASCII;
-  _dangerMSG=${1:-POTENTIAL DANGER};
-  _dangerASCII=$(base64 -id <<< 'G1sxOzM4OzU7MTk2bV9fX19fX19fX19fXyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgX19fX19fX18bWzBtChtbMTszODs1OzE5Nm0gX19fX19fICBfXyBcX19fX18gX19fX19fX19fX19fX18gX19fX19fX19fX19fX19fICAvG1swbQobWzE7Mzg7NTsxOTZtICBfX19fICAvIC8gLyAgX18gYC9fICBfXyBcXyAgX18gYC8gIF8gXF8gIF9fXy9fICAvG1swbQobWzE7Mzg7NTsxOTZtICAgX18gIC9fLyAvLyAvXy8gL18gIC8gLyAvICAvXy8gLy8gIF9fLyAgLyAgICAvXy8bWzBtChtbMTszODs1OzE5Nm0gICAgL19fX19fLyBcX18sXy8gL18vIC9fL19cX18sIC8gXF9fXy8vXy8gICAgKF8pG1swbQobWzE7Mzg7NTsxOTZtICAgICAgICAgICAgICAgICAgICAgICAgICAvX19fXy8bWzBtChtbMTszODs1OzE5Nm0gICAgICAgG1s0bVBPVEVOVElBTCBEQU5HRVIbWzBtCg==');
-  echo "${_dangerASCII}";
-  echo -ne "\033[1;38;5;196m" && \
-  printf "%*s\n" $(((${#_dangerMSG}+50)/2)) "${_dangerMSG}" && \
-  echo -e "\033[0m";
+  _dangerASCII=$(base64 -id <<< 'G1sxOzM4OzU7MTk2bV9fX19fX19fX19fXyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgX19fX19fX18bWzBtChtbMTszODs1OzE5Nm0gX19fX19fICBfXyBcX19fX18gX19fX19fX19fX19fX18gX19fX19fX19fX19fX19fICAvG1swbQobWzE7Mzg7NTsxOTZtICBfX19fICAvIC8gLyAgX18gYC9fICBfXyBcXyAgX18gYC8gIF8gXF8gIF9fXy9fICAvG1swbQobWzE7Mzg7NTsxOTZtICAgX18gIC9fLyAvLyAvXy8gL18gIC8gLyAvICAvXy8gLy8gIF9fLyAgLyAgICAvXy8bWzBtChtbMTszODs1OzE5Nm0gICAgL19fX19fLyBcX18sXy8gL18vIC9fL19cX18sIC8gXF9fXy8vXy8gICAgKF8pG1swbQobWzE7Mzg7NTsxOTZtICAgICAgICAgICAgICAgICAgICAgICAgICAvX19fXy8bWzBtChtbNTsxOzM4OzU7MTk2bSAgICAgICAbWzRtUE9URU5USUFMIERBTkdFUhtbMG0=');
+  [[ ! ${#@} -eq 0 ]] && { _dangerMSG="${@}"; echo "${_dangerASCII}"; echo -ne "\033[1;38;5;196m" && printf "\n%*s\n" $(((${#_dangerMSG}+50)/2)) "${_dangerMSG}" && echo -e "\033[0m"; }
 }
 
 # Function that check all the required things for the script to run
 _preCHECK() {
-  # Checks if we run as super-user... else... a quote from Linus Torvalds.
+  # Check if we run as super-user... else... a quote from Linus Torvalds.
   [[ ${EUID} -ne 0 ]] && >&2 echo '“ You not only have to be a good coder to create a system like Linux, you have to be a sneaky bastard, too. ” -LT' && exit 1;
 
-  # Checks if we run a x86_64 architecture, else abort.
+  # Check if we run a x86_64 architecture, else abort.
   _ARCH_TYPE=$(uname -m);
   [[ "${_ARCH_TYPE}" != "x86_64" ]] && >&2 echo -e "\033[1;38;5;196mERROR\033[0;1m: This system is not x86_64 compatible, aborting.\033[0m" && exit 1;
 

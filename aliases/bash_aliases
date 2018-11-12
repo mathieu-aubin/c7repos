@@ -120,7 +120,7 @@ alias mtab='cat /etc/mtab | grep -Ev "^#" | column -t';
 #################################################
 alias ginx='[[ -d /etc/nginx ]] && { pushd /etc/nginx &>/dev/null; ll; }';
 alias ginxe='ginxerr'; alias ginxl='ginxlog';
-alias ginxr='[[ -d /etc/nginx ]] && { nginx -s reload; }'; alias ginxt='nginx -t';
+alias ginxr='[[ -d /etc/nginx ]] && nginx -s reload'; alias ginxt='nginx -t';
 alias ginxT='nginx -T 2>&1'; alias ginxv='nginx -v';
 
 ##############################################################################################################################
