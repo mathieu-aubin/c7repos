@@ -9,6 +9,7 @@
    * Updates nodejs to v11
    * Again stupid aliases...
    * Updates _showDANGER function
+   * Tries to fix kmod-nvidia issue by running common packages twice
 
 2018.11.11  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Changes some aliases

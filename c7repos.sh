@@ -490,7 +490,12 @@ _installCOMMON() {
   _COMMON_PACKAGES=$(curl -4skL ${REPOURL}/deps/common_packages.txt);
 
   echo -e "\033[1mInstalling base packages...\033[0m"; sleep 0.1;
+
+  # Running this twice should help mitigate the kmod-nvidia issue
+  # by installing whatever it can first, then running it again...
+  yum -y --disablerepo=elrepo install ${_COMMON_PACKAGES} &>/dev/null;
   yum -y install ${_COMMON_PACKAGES} &>/dev/null;
+
   export EDITOR=$(which nano);
   systemctl enable iptables --now &>/dev/null; systemctl enable ip6tables --now &>/dev/null;
   # "Hack" to silence parallel's bibtex thing - Make sure you cite the following publication
