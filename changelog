@@ -6,6 +6,10 @@
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
 2018.11.12  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds exiv2 to common packages
+   * Adds zbackup to common packages
+
+2018.11.12  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Updates nodejs to v11
    * Again stupid aliases...
    * Updates _showDANGER function
