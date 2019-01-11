@@ -24,6 +24,7 @@ git
 goaccess
 grub2-tools
 hdparm
+hping3
 htop
 inkscape
 ImageMagick
