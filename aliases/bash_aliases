@@ -9,6 +9,7 @@
 #       ░   ▒     ░ ░    ▒ ░  ░   ▒   ░  ░  ░     ░   ░  ░  ░
 #           ░  ░    ░  ░ ░        ░  ░      ░     ░  ░      ░
 #
+alias ldd='ldd -v';
 alias file='file -p';
 alias ncdu='ncdu -x';
 #alias wget='wget -4';
