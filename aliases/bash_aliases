@@ -9,10 +9,11 @@
 #       ░   ▒     ░ ░    ▒ ░  ░   ▒   ░  ░  ░     ░   ░  ░  ░
 #           ░  ░    ░  ░ ░        ░  ░      ░     ░  ░      ░
 #
+alias file='file -p';
 alias ncdu='ncdu -x';
-alias wget='wget -4';
+#alias wget='wget -4';
 alias digs='dig +short';
-alias locate='locate -i';
+alias locate='locate -i';<
 alias crontab='crontab -i';
 alias du='du -kh';
 alias df='df -kTh';
@@ -21,18 +22,22 @@ alias curlc='curl -c /tmp/cookies -b /tmp/cookies -sSL'; alias curl-cookie='curl
 alias quick-stats='bash <(curl -skL https://bit.ly/qsts)'; alias qstats='quick-stats';
 alias grep='grep --color=auto'; alias greps='grep -C5';
 alias rm-ds_store='echo -e "\033[1mRemoving ALL .DS_Store files from current directory, recursively...\033[0m"; find ./ -type f -iname ".DS_Store" -exec rm {} \;'; alias remove-ds_store='rm-ds_store';
-alias free-ram='echo -e "\033[1mBEFORE:\033[0m"; sleep 0.5; free -mh && sync && sync && echo 3 >/proc/sys/vm/drop_caches; sleep 0.5; echo -e "\n\033[1mAFTER:\033[0m"; free -mh; fstrim -av';
+alias free-ram='echo -e "\033[1mBEFORE:\033[0m"; sleep 0.5; free -mh && sync && sync && echo 3 >/proc/sys/vm/drop_caches; sleep 0.5; echo -e "\n\033[1mAFTER:\033[0m"; free -mh; fstrim -av 2>/dev/null';
 alias chownroot='chown root:root ${PWD} -R && echo -e "Current folder ownership recursively set to root:root"';
 
 ###################################################
 #### Overrides the default cp/rm/mkdir aliases ####
 ###################################################
-alias cp='cp -i'; alias rm='rm -I'; alias mkdir='mkdir -p';
+alias cp='cp -i';
+alias rm='rm -I';
+alias mkdir='mkdir -p';
 
 #########################
 #### RPM/YUM aliases ####
 #########################
-alias yum='yum --color=auto'; alias yum4='yum4 --color=auto'; alias dnf='dnf --color=auto';
+alias dnf='dnf --color=auto';
+alias yum='yum --color=auto';
+alias yum4='yum4 --color=auto';
 alias rpm-list-keys='rpm -q gpg-pubkey --qf "%{name}-%{version}-%{release} --> %{summary}\n"';
 alias list-rpm-gpg-keys='rpm-list-keys'; alias rpm-gpg-keys='rpm-list-keys'; alias gpg-list-rpm='rpm-list-keys'; alias rpm-keys-list='rpm-list-keys';
 alias kernel-cleanup='package-cleanup --oldkernels --keepdevel && rm -f /boot/grub2/grubenv; [[ -x ~/bin/update-grub ]] && ~/bin/update-grub || grub2-mkconfig -o /boot/grub2/grub.cfg'
@@ -50,6 +55,7 @@ alias lsblk='lsblk --output NAME,MODE,SIZE,TYPE,FSTYPE,UUID,LABEL,MOUNTPOINT';
 ##############################
 #### Some nice ip aliases ####
 ##############################
+# Quickly retrieve your public ip addresses
 alias myip='curl -A "curl `hostname`" -4skL https://v4.4ce.ca';
 alias myip6='curl -A "curl `hostname`" -6skL https://v6.4ce.ca';
 # Outputs both, if available
@@ -64,7 +70,7 @@ alias ...='cd ../../; ll';
 alias ....='cd ../../../; ll';
 alias back='cd -; ll';
 alias home='cd ~; ll';
-alias l='ll';
+alias l='ll'; # because, shit happens
 alias lld='ll | grep -E "^d"';
 alias llf='ll | grep -Ev "^d"';
 alias ll='ls -lah --color=auto --group-directories-first';
@@ -97,6 +103,7 @@ alias watch-netstat='watch -cn1 '\''\netstat -peanut | grep -Ev "WAIT|AWK|SYN"'\
 ##########################################################
 alias edit-iptables='${EDITOR:-nano} /etc/sysconfig/iptables';
 alias edit-ip6tables='${EDITOR:-nano} /etc/sysconfig/ip6tables';
+alias edit-iptables-all='${EDITOR:-nano} /etc/sysconfig/ip*tables';
 
 ############################
 #### NodeJS/NPM updater ####

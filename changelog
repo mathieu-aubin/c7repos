@@ -5,6 +5,11 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.02.15  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Some mods to gai.conf
+   * Plays a bit with the aliases file, mainly adding 'file -p' as to
+     not modify access times on files
+
 2019.02.14  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds a clean toggle to view-source function to clean output
      from empty lines (using sed)
