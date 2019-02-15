@@ -5,6 +5,10 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.02.14  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds a clean toggle to view-source function to clean output
+     from empty lines (using sed)
+
 2019.01.11  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds hping3 to common packages
 

@@ -1,19 +1,25 @@
-# Function to view WEB sources from given urls
+# Function to view source html from given urls (without js processing...)
 function view-source() {
+  cleansrc=0;
+  if [[ "${1}" == "-c" || "${1}" == "--clean" ]]; then
+    cleansrc=1; shift;
+  fi
   [[ $# -ge 1 ]] && {
-    tmp=$(mktemp) || return;
+    tmp=$(mktemp -t vstmp_XXXXXX.html) || return 1;
     trap 'rm -f "${tmp}"' RETURN
     while (($#)); do
       local url="${1}";
-      echo -e "### WEBSOURCE: ${url^^} ###\n" >> ${tmp};
-      curl -sLk -# "${url}" >> ${tmp};
+      echo -e "###### HTML SOURCE: ${url^^} ######\n" >> ${tmp};
+      curl -#Lk "${url}" >> ${tmp} || return 1;
       echo -e "\n" >> ${tmp};
       shift;
     done
+    [[ ${cleansrc} -eq 1 ]] && sed -i '/^ *$/d' "${tmp}";
     ${VISUAL:-${EDITOR:-vi}} "${tmp}";
   } || {
-    echo -e "\033[1;4mUSAGE:\033[0m\n\t \033[3m${FUNCNAME}\033[0m URL1 URL2 URL3.."
+    echo -e "\033[1;4mUSAGE:\033[0m\n\t \033[3m${FUNCNAME}\033[0m [-c|--clean] URL1 URL2 URL3.."
+    echo -e "\n\033[1;4mOPTIONS:\033[0m\n\t -c, --clean\tcleans up empty spaces/lines from output";
     echo -e "\n\033[1;4mEXAMPLE:\033[0m\n\t \033[3m${FUNCNAME}\033[0m https://shared.zeroserieux.com/Tmp/ascii/vs_fnc.ascii";
-    echo -e "\t \033[3m${FUNCNAME}\033[0m https://zeroserieux.com linux.speedinternet.ca/c7repos chocolatsanssucre.fr/robots.txt";
+    echo -e "\t \033[3m${FUNCNAME}\033[0m -c https://zeroserieux.com linux.speedinternet.ca/c7repos chocolatsanssucre.fr/robots.txt";
   }
 }; alias html-source='view-source'; alias view-html-source='view-source';
