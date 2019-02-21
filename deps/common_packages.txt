@@ -20,6 +20,7 @@ fribidi
 genisoimage
 GeoIP
 GeoIP-data
+GeoIP-devel
 git
 goaccess
 grub2-tools

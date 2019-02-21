@@ -5,6 +5,10 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.02.21  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * adds GeoIP-devel to common packages
+   * deps function file must have a trailing newline
+
 2019.02.15  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Some mods to gai.conf
    * Adds 'ldd -v' to aliases file
