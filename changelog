@@ -5,6 +5,10 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.03.19  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Executable bit on c7repos.sh
+   * Adds atop to common packages
+
 2019.02.21  Mathieu Aubin  <mathieu@zeroserieux.com>
    * adds GeoIP-devel to common packages
    * deps function file must have a trailing newline

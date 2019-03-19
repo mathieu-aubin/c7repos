@@ -1,5 +1,6 @@
 asciinema
 aria2
+atop
 bash-completion
 bash-completion-extras
 bc
