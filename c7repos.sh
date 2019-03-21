@@ -12,7 +12,7 @@
 # some suggested (at user's will) extra  packages for a clean, practical
 # and usable base server system
 #
-# EPEL * REMI * NGiNX * NODEJS * EL-REPO * MARIADB * DOCKER * IUS * YARN
+# EPEL * REMI * NGINX * NODEJS * EL-REPO * MARIADB * DOCKER * IUS * YARN
 #
 # Some repos  have options that can be enabled in the  repo file itself.
 # REMI, as an  example, has all PHP versions  easily enablable from  the
@@ -424,13 +424,13 @@ _installMARIADB() {
   unset _MARIADB _MARIADB_INST _SQLPASS _RNDPASS;
 }
 
-# Function to install/enable NGiNX
+# Function to install/enable NGINX
 _installNGINX() {
   rpm -q nginx &>/dev/null;
   if [[ $? -ne 0 ]]; then
-    _NGX_INST=0; echo -en "\033[1mInstall \033[0;32mNGiNX\033[0;1m? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _GINX;
+    _NGX_INST=0; echo -en "\033[1mInstall \033[0;32mNGINX\033[0;1m? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _GINX;
   else
-    _NGX_INST=1; echo -en "\033[0;32mNGiNX\033[0;1m already installed. Re-install? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _GINX;
+    _NGX_INST=1; echo -en "\033[0;32mNGINX\033[0;1m already installed. Re-install? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _GINX;
   fi
 
   case "${_GINX}" in
@@ -438,15 +438,15 @@ _installNGINX() {
       sleep 0.3;
       ;;
     *)
-      [[ ${_NGX_INST} -eq 0 ]] && echo -e "\033[1mInstalling \033[0;32mNGiNX\033[0;1m...\033[0m" || echo -e "\033[1mRe-installing \033[0;32mNGiNX\033[0;1m...\033[0m"; sleep 0.1;
+      [[ ${_NGX_INST} -eq 0 ]] && echo -e "\033[1mInstalling \033[0;32mNGINX\033[0;1m...\033[0m" || echo -e "\033[1mRe-installing \033[0;32mNGINX\033[0;1m...\033[0m"; sleep 0.1;
       [[ ${_NGX_INST} -eq 0 ]] && yum -y install nginx &>/dev/null || yum -y reinstall nginx &>/dev/null;
       nginx -t &>/dev/null;
       [[ $? -eq 0 ]] && {
         _NGXPID="$(pidof nginx)";
-        [[ -z ${_NGXPID} ]] && echo -ne "\033[1mStarting \033[0;32mNGiNX\033[0;1m...\033[0m" && sleep 0.1;
-        systemctl enable nginx --now &>/dev/null && echo -e "\033[32m NGiNX\033[0;1m started.\033[0m" && sleep 1;
+        [[ -z ${_NGXPID} ]] && echo -ne "\033[1mStarting \033[0;32mNGINX\033[0;1m...\033[0m" && sleep 0.1;
+        systemctl enable nginx --now &>/dev/null && echo -e "\033[32m NGINX\033[0;1m started.\033[0m" && sleep 1;
       }
-      echo -e "  - \033[32mNGiNX installed\033[0;1m.\033[0m"; sleep 0.3;
+      echo -e "  - \033[32mNGINX installed\033[0;1m.\033[0m"; sleep 0.3;
       _NGX_INST=1;
       ;;
   esac
@@ -774,7 +774,7 @@ _updateGRUB;
 _installDEVEL;
 # Call to install MariaDB
 _installMARIADB;
-# Call to install NGiNX
+# Call to install NGINX
 _installNGINX;
 # Call to install NODEJS
 _installNODE;
