@@ -7,6 +7,10 @@
 
 2019.03.21  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Copyright date ++ in c7repos.sh
+   * Removes parellel alias (useless) and add it's stuff to a
+     function in the main script instead
+   * Some little fixes here and there (formatting)
+   * Changed most (if not all) instances of the l337 small i's
 
 2019.03.19  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Executable bit on c7repos.sh
