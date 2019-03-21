@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.03.21  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Copyright date ++ in c7repos.sh
+
 2019.03.19  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Executable bit on c7repos.sh
    * Adds atop to common packages

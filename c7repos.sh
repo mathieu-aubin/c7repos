@@ -2,7 +2,7 @@
 #
 # c7repos.sh
 #
-# Copyright © 2017-2018 Mathieu Aubin <mathieu@zeroserieux.com>
+# Copyright © 2017-2019 Mathieu Aubin <mathieu@zeroserieux.com>
 #
 # Installs common/base CentOS7 repositories/programs (x86_64 ONLY)
 #
