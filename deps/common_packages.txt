@@ -53,6 +53,7 @@ net-tools
 nfs-utils
 nmap
 nmap-ncat
+nscd
 parallel
 perl
 pv

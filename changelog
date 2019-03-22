@@ -5,6 +5,11 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.03.22  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds nscd to common packages (domain resolution hack
+     for ffmpeg-static releases compiled by John Van Sickle
+     available at https://www.johnvansickle.com/ffmpeg)
+
 2019.03.21  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Copyright date ++ in c7repos.sh
    * Removes parellel alias (useless) and add it's stuff to a
