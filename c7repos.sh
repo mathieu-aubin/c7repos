@@ -738,6 +738,24 @@ _installGOLANG() {
   unset _GOLNG _GOVER;
 }
 
+# Function to create a ssh key/pair
+_createSSHKEYS() {
+  if [[ ! -f ~/.ssh/id_rsa || ! -f ~/.ssh/id_rsa.pub ]]; then
+    echo -en "\033[1mCreate a new ssh key pair? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _SSHP;
+
+    case "${_SSHP}" in
+      [nN][oO]|[no])
+        sleep 0.3;
+        ;;
+      *)
+      mkdir -p ~/.ssh;
+      ssh-keygen -f ~/.ssh/id_rsa -t rsa -N '';
+      ;;
+    esac
+  fi
+  unset _SSHP;
+}
+
 # Function to cheat gnu parallel into thinking we have read the citation (sorry)
 _cheatPARALLEL() {
   mkdir -p ~/.parallel;
@@ -754,6 +772,8 @@ _doSELINUX;
 _checkSSH;
 # Call to create getaddressinfo config which favors ipv4
 _createGAICONF;
+# Call to create ssh key pair
+_createSSHKEYS;
 # Call to import the repo gpg keys
 _importGPGKEYS;
 # Call to install/create known repos files
