@@ -5,6 +5,10 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.04.07  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds a function to check the current OOM score of
+     running processes
+
 2019.03.23  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds a function to create a ssh key pair
 

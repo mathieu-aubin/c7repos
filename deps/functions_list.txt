@@ -1,6 +1,7 @@
 _showDANGER
 _showINFOS
 bash-colors
+checkOOM
 chownwww
 digall
 echoerr
