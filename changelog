@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.04.10  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds a function to list the most used commands from history
+
 2019.04.07  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds a function to check the current OOM score of
      running processes

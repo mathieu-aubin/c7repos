@@ -1,0 +1,21 @@
+# Function that shows the most used commands out of history
+# Pass a number to it in order to determine the amount of items shown
+# Greatly inspired from https://www.commandlinefu.com/commands/view/604/
+#
+function most-used() {
+  local DEFITEMS COUNT;
+  DEFITEMS=12; COUNT=${1};
+  if [[ -z ${COUNT##+(0)} ]]; then
+    >&2 echo -e "\\033[1;4mUsage:\\033[0m\\n\\n    ${FUNCNAME} ITEM_COUNT (optional, default: ${DEFITEMS} items)\\n";
+    HISTTIMEFORMAT= history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head -n${DEFITEMS}
+  elif [[ ${COUNT} == '-h' || ${COUNT} == '--help' ]]; then
+    echo -e "\\033[1;4mUsage:\\033[0m\\n\\n    ${FUNCNAME} ITEM_COUNT (optional, default: ${DEFITEMS} items)";
+  else
+    if [[ ${COUNT##+(0)} =~ ^[0-9]+$ ]]; then
+      HISTTIMEFORMAT= history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head -n${COUNT}
+    else
+      echo -e "\\033[1;38;5;160mERROR\\033[0;1m:\\033[0m Invalid input. Must be of integer value.";
+      return 1;      
+    fi
+  fi
+}; alias mostused='most-used';
