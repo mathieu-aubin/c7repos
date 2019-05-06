@@ -14,6 +14,7 @@ deltarpm
 device-mapper-persistent-data
 dialog
 dos2unix
+enca
 exiv2
 fex
 fuseiso
@@ -44,6 +45,7 @@ lftp
 lvm2
 mc
 mlocate
+mmv
 moreutils
 nano
 nasm
@@ -56,6 +58,7 @@ nmap-ncat
 nscd
 parallel
 perl
+prename
 pv
 python2-pip
 python2-httpie

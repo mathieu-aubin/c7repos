@@ -5,6 +5,21 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.05.06  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds mmv to common packages
+   * Adds enca to common packages
+   * Adds prename to common packages
+   * Adds GO111MODULE=on to export file
+   * Some formatting fixes here and there
+   * Adds bzip2-devel to development packages
+   * Now enables most of the useful (if not all?) repositories
+     automatically using yum-config-manager (about f*** time)...
+   * Changes Golang install directory to /opt/go and link
+     it from ~/.go (for use with getgo to easily update)
+   * Adds http_caching (commented) to yum config for faster
+     troubleshooting and problem solving
+   * Updates PHP_VERSION to 73 to auto-enable remi-php$PHP_VERSION
+
 2019.04.10  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds a function to list the most used commands from history
 
@@ -13,7 +28,7 @@
      running processes
 
 2019.03.23  Mathieu Aubin  <mathieu@zeroserieux.com>
-   * Adds a function to create a ssh key pair
+   * Adds a function to create a ssh key pair into c7repos.sh
 
 2019.03.22  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds nscd to common packages (domain resolution hack
