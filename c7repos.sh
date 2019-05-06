@@ -426,7 +426,7 @@ _installMARIADB() {
       systemctl enable mariadb --now && echo -e "\033[32m MariaDB started\033[0;1m.\033[0m"; sleep 1;
 
       if [ ${_MARIADB_INST} -eq 0 ]; then
-        echo -en "\033[1mWould you like me to set a random root password? [y/\033[0;1;38;5;40mN\033[0;1m]\033[0m "; read -er _SQLPASS;
+        echo -en "\033[1mWould you like me to set a random SQL root password? [y/\033[0;1;38;5;40mN\033[0;1m]\033[0m "; read -er _SQLPASS;
         case "${_SQLPASS}" in
           [yY][eE][sS]|[yes])
             _RNDPASS=$(tr -cd '[:alnum:]' </dev/urandom|fold -w20|head -1); mysqladmin -u root password ${_RNDPASS};
@@ -434,10 +434,10 @@ _installMARIADB() {
             echo -e "\033[1;38;5;196mTAKE NOTE OF IT, IT IS NOT LOGGED ANYWHERE. THIS IS THE ONLY TIME YOU WILL SEE IT.\033[0m"; sleep 0.5;
             echo -e "\033[1;38;5;196mTAKE NOTE OF IT, IT IS NOT LOGGED ANYWHERE. THIS IS THE ONLY TIME YOU WILL SEE IT.\033[0m"; sleep 0.5;
             echo -e "\033[1;38;5;196mTAKE NOTE OF IT, IT IS NOT LOGGED ANYWHERE. THIS IS THE ONLY TIME YOU WILL SEE IT.\033[0m"; sleep 1.5;
-            echo -e "\033[1mWhen asked for the root password, enter the previously shown password.\033[0m"; sleep 1.5;
+            echo -e "\033[1mWhen asked for the SQL root password, enter the previously shown password.\033[0m"; sleep 1.5;
             ;;
           *)
-            echo -e "\033[1mWhen asked for the root password, if you have not set one yet, just press ENTER.\033[0m"; sleep 1.5;
+            echo -e "\033[1mWhen asked for the SQL root password, if you have not set one yet, just press ENTER.\033[0m"; sleep 1.5;
             ;;
         esac
         read -rsp $'\033[1;37;41m PRESS ENTER TO CONTINUE. \033[0m\n';
