@@ -35,6 +35,7 @@
 # url providers.
 #
 #       Git.io --> https://git.io/vd7Ye
+#       Git.io --> https://git.io/c7repos-install
 #       Bit.ly --> https://bit.ly/c7repos
 #
 # HOWTO
@@ -47,6 +48,7 @@
 #   - Executing straight from a known mirror. Example:
 #
 #      root@host ~ # bash <(curl -4sLk https://git.io/vd7Ye)
+#      root@host ~ # bash <(curl -4sLk https://git.io/c7repos-install)
 #      root@host ~ # bash <(curl -4sLk https://bit.ly/c7repos)
 #
 #  Method #2
@@ -55,6 +57,7 @@
 #
 #      root@host ~ # curl -4sLk https://bit.ly/c7repos | bash -
 #      user@host ~ $ curl -4skL https://git.io/vd7Ye | sudo bash -
+#      user@host ~ $ curl -4skL https://git.io/c7repos-install | sudo bash -
 #
 #  Method #3
 #  ¯¯¯¯¯¯¯¯¯
@@ -76,6 +79,7 @@
 # either one of GitHub's addresses, Git.io's mirror or the raw url.
 #
 # https://git.io/vd7Ye (git.io mirror/short url)
+# https://git.io/c7repos-install (git.io mirror/short url)
 # https://raw.githubusercontent.com/mathieu-aubin/c7repos/master/c7repos.sh
 #
 # HISTORY
@@ -101,7 +105,7 @@
 
 # NodeJS - Must be a valid version number
 #	Reference: https://github.com/nodesource/distributions
-NODEJS_VERSION=${NODEJS_VERSION:-11};
+NODEJS_VERSION=${NODEJS_VERSION:-12};
 
 # MariaDB - Must be a valid version number (stable release)
 #	Reference: https://mariadb.com/kb/en/library/library-mariadb-releases/

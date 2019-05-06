@@ -8,11 +8,13 @@
 2019.05.06  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds mmv to common packages
    * Adds enca to common packages
+   * Updates nodejs version to 12
    * Adds prename to common packages
    * Adds GO111MODULE=on to export file
    * Some formatting fixes here and there
    * Adds bzip2-devel to development packages
    * Clarifies the bit about setting a root password for SQL
+   * Adds git.io/c7repos-install to the list of available mirrors
    * Now enables most of the useful (if not all?) repositories
      automatically using yum-config-manager (about f*** time)...
    * Changes Golang install directory to /opt/go and link
