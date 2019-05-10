@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.05.10  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds 'serve' to npm base apps
+
 2019.05.06  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds mmv to common packages
    * Adds enca to common packages
