@@ -637,6 +637,8 @@ _createDOTFILES() {
 	export HISTFILESIZE=-1;
 	export HISTTIMEFORMAT='%Y/%m/%d %T ';
 	export EDITOR=$(which nano);
+	export VISUAL=${EDITOR};
+	export SYSTEMD_PAGER=;
 
 	__EOF__
   echo -e '  - \033[32mAdded general exports\033[0m'; sleep 0.3;

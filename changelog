@@ -5,6 +5,10 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.05.11  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Adds VISUAL to exports
+   * Get rid of systemd pager with SYSTEMD_PAGER= in exports
+
 2019.05.10  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds 'serve' to npm base apps
 
