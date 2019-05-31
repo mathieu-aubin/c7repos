@@ -2,8 +2,10 @@ theme: jekyll-theme-cayman
 
 plugins:
   - jekyll-docs
-  - jekyll-redirect-to
-  - jekyll-redirect-from
+#  - jekyll-redirect-from
+
+timezone: 'America/New_York'
+site.gaaccount: 'UA-140424942-1'
 
 #permalink: /garbage
 #redirect_to:
