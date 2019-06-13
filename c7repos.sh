@@ -55,9 +55,9 @@
 #  ¯¯¯¯¯¯¯¯¯
 #   - Piping curl's output to bash's input. Examples:
 #
-#      root@host ~ # curl -4sLk https://bit.ly/c7repos | bash -
-#      user@host ~ $ curl -4skL https://git.io/vd7Ye | sudo bash -
-#      user@host ~ $ curl -4skL https://git.io/c7repos-install | sudo bash -
+#      root@host ~ # curl -4sLko- https://bit.ly/c7repos | bash -
+#      user@host ~ $ curl -4skLo- https://git.io/vd7Ye | sudo bash -
+#      user@host ~ $ curl -4skLo- https://git.io/c7repos-install | sudo bash -
 #
 #  Method #3
 #  ¯¯¯¯¯¯¯¯¯

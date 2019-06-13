@@ -5,6 +5,13 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.06.13  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Minor fixes in c7repos.sh
+   * Adds jpg2a and zmap to common packages
+   * Modifies update-npm-all function to now use npx and
+     mitigate the 'property of "lenght" undefined' problem
+     while also not updating npm when running the function
+
 2019.05.11  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Adds VISUAL to exports
    * Get rid of systemd pager with SYSTEMD_PAGER= in exports

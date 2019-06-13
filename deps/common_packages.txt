@@ -40,6 +40,7 @@ iptables
 ip6tables
 iptables-services
 java
+jp2a
 jwhois
 lftp
 lvm2
@@ -83,4 +84,5 @@ whois
 xauth
 yarn
 zbackup
+zmap
 zip
