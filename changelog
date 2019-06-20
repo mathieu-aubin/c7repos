@@ -5,6 +5,10 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.06.20  Mathieu Aubin  <mathieu@zeroserieux.com>
+   * Updates MariaDB version to 10.4
+   * Adds SRPMS for MariaDB 10.4
+
 2019.06.13  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Minor fixes in c7repos.sh
    * Adds jpg2a and zmap to common packages

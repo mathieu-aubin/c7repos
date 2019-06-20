@@ -109,7 +109,7 @@ NODEJS_VERSION=${NODEJS_VERSION:-12};
 
 # MariaDB - Must be a valid version number (stable release)
 #	Reference: https://mariadb.com/kb/en/library/library-mariadb-releases/
-MARIADB_VERSION=${MARIADB_VERSION:-10.3};
+MARIADB_VERSION=${MARIADB_VERSION:-10.4};
 
 # TODO: Add a php installer thing
 
@@ -227,6 +227,15 @@ _installREPOS() {
 	gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 	gpgcheck=1
 	enabled=1
+	skip_if_unavailable=1
+
+	[mariadb-source]
+	name=MariaDB ${MARIADB_VERSION} Source repository for CentOS \$releasever
+	baseurl=https://yum.mariadb.org/${MARIADB_VERSION}/centos\$releasever-amd64/srpms
+	gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+	gpgcheck=1
+	enabled=0
+	skip_if_unavailable=1
 	__EOF__
 	echo -e "  - \033[32mRepository file for MariaDB ${MARIADB_VERSION} created\033[0;1m.\033[0m"; sleep 0.3;
 
