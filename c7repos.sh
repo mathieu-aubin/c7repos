@@ -211,7 +211,7 @@ _importGPGKEYS() {
 _installREPOS() {
   echo -e "\033[1mInstalling repository packages for available ones...\033[0m ";
   rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm &>/dev/null; sleep 0.1;
-  rpm -Uvh https://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm &>/dev/null; sleep 0.1;
+  rpm -Uvh https://www.elrepo.org/elrepo-release-7.0-4.el7.elrepo.noarch.rpm &>/dev/null; sleep 0.1;
   rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-7.rpm &>/dev/null; sleep 0.1;
   echo -e "  - \033[32mRepository packages installed\033[0;1m.\033[0m"; sleep 0.3;
 
