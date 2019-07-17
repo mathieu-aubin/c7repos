@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.07.16  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Update elrepo from 7.0.3 to 7.0.4
+
 2019.06.20  Mathieu Aubin  <mathieu@zeroserieux.com>
    * Updates MariaDB version to 10.4
    * Adds SRPMS for MariaDB 10.4
