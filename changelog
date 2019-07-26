@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.07.26  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds functions lastfail and lastfail-today
+
 2019.07.16  Mathieu Aubin <mathieu@zeroserieux.com>
    * Update elrepo from 7.0.3 to 7.0.4
 
