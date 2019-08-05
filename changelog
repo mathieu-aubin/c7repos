@@ -5,6 +5,13 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.08.05  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Changes the way we negotiate ssh port change by sed replacement
+   * Makes certain that in the event of selinux being reactivated
+     new port is added to semanage list ports for ssh_port_t
+   * Adds AcceptEnv for history related environment variables
+   * Minor changes in the display
+
 2019.07.26  Mathieu Aubin <mathieu@zeroserieux.com>
    * Adds functions lastfail and lastfail-today
 

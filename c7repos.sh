@@ -679,26 +679,28 @@ _checkSSH() {
   # Checking the ssh server port, relying on which port user currently is connected on
   if [[ ${SSH_CLIENT##* } -eq 22 ]]; then
     _showDANGER "SSH IS RUNNING ON PORT 22";
-    echo -en "\033[1mShould We Change SSH Port NOW? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _SSHP;
+    echo -en "\033[1mShould we change SSH port NOW? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _SSHP;
     case "${_SSHP}" in
       [nN][oO]|[no])
         _showDANGER "SSH PORT UNCHANGED AND STILL ON 22"; sleep 2;
         ;;
       *)
-        echo -en "\033[1mChange SSH To Which Port (integers only)? \033[0m"; read -er _SSHPC; _SSHPC=${_SSHPC##*[!0-9]*};
+        echo -en "\033[1mChange SSH to which port (integers only)? \033[0m"; read -er _SSHPC; _SSHPC=${_SSHPC##*[!0-9]*};
         if ! [[ -z ${_SSHPC} || ${_SSHPC} -eq 22 ]]; then
-          # Delete the Port line, commented or not.
-          sed -i '/Port 22/d' /etc/ssh/sshd_config;
-          # Add a new Port line, with our new port
-          echo -e "\nPort ${_SSHPC}" >> /etc/ssh/sshd_config;
+          # Replace the port line by commenting it and adding new port infos
+          sed -i "s/^\(Port 22\)$/# Original port was 22\nPort ${_SSHPC}/" /etc/ssh/sshd_config;
+          # Dont take any chances and add port to selinux policy
+          >&2 semanage port -a -t ssh_port_t -p tcp ${_SSHPC};
+          # Adds AcceptEnv line to accept history env variables
+          sed -i 's/\(XMODIFIERS\)$/\1\n\n# Accept history-related environment variables\nAcceptEnv HISTFILE HISTIGNORE HISTCONTROL/' /etc/ssh/sshd_config;
           systemctl restart sshd; unset SSH_CLIENT;
           # Fix BOTH iptables default files with new port
           yum -y install iptables ip6tables iptables-services &>/dev/null;
           [[ -f /etc/sysconfig/ip6tables ]] && sed -i "s#--dport 22#--dport ${_SSHPC}#" /etc/sysconfig/ip6tables;
           [[ -f /etc/sysconfig/iptables ]] && sed -i "s#--dport 22#--dport ${_SSHPC}#" /etc/sysconfig/iptables;
+          # Since i hate firewalld, disable it and use straight iptables instead
           systemctl disable firewalld --now &>/dev/null;
-          systemctl enable iptables --now &>/dev/null;
-          systemctl enable ip6tables --now &>/dev/null;
+          systemctl enable iptables ip6tables --now &>/dev/null;
           systemctl restart iptables &>/dev/null;
           echo -e "  - \033[32mSSH port changed\033[0;1m.\033[0m"; sleep 0.3;
           echo -e "\n\033[1;38;5;196;4mMAKE SURE YOU REMEMBER IT AS IT IS IN EFFECT NOW.\033[0m"; sleep 2;
