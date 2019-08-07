@@ -19,6 +19,7 @@ alias crontab='crontab -i';
 alias du='du -kh';
 alias df='df -kTh';
 alias columnt='column -t';
+alias idn='idn --allow-unassigned';
 alias gpg='gpg -a --keyserver pool.sks-keyservers.net';
 alias curl='curl -A "Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0"';
 alias curlc='curl -c /tmp/cookies -b /tmp/cookies -sSL'; alias curl-cookie='curlc';
