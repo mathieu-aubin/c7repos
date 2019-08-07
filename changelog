@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.08.07  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Some aliases changes/additions
+
 2019.08.05  Mathieu Aubin <mathieu@zeroserieux.com>
    * Changes the way we negotiate ssh port change by sed replacement
    * Makes certain that in the event of selinux being reactivated
