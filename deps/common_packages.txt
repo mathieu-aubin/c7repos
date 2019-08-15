@@ -1,6 +1,7 @@
 asciinema
 aria2
 atop
+autofs
 bash-completion
 bash-completion-extras
 bc

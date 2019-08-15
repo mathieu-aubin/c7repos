@@ -5,6 +5,10 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.08.15  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds please in aliases
+   * Adds autofs in common/base packages
+
 2019.08.07  Mathieu Aubin <mathieu@zeroserieux.com>
    * Some aliases changes/additions
 
