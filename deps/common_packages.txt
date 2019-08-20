@@ -30,6 +30,7 @@ grub2-tools
 hdparm
 hping3
 htop
+icoutils
 inkscape
 ImageMagick
 ImageMagick-c++
