@@ -9,6 +9,7 @@ boost
 bind-utils
 bridge-utils
 cifs-utils
+convmv
 crypto-utils
 curlftpfs
 deltarpm

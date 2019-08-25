@@ -820,6 +820,17 @@ _cheatPARALLEL() {
   mkdir -p ~/.parallel && touch ~/.parallel/will-cite;
 }
 
+# Function to add support for some filetypes for command-line coloring (webp for now)
+_addCOLORS() {
+  echo -e "\033[1mAdding support for WEBP file coloring to DIR_COLORS files...\033[0m"; sleep 0.1;
+    # Remove any previous webp declaration to avoid duplicates
+    sed -i '/^.webp/d' DIR_COLORS DIR_COLORS.256color DIR_COLORS.lightbgcolor;
+    echo -e '\n# Support for WEBP images\n.webp 01;35\n' >> DIR_COLORS
+    echo -e '\n# Support for WEBP images\n.webp 38;5;13\n' >> DIR_COLORS.256color
+    echo -e '\n# Support for WEBP images\n.webp 00;35\n' >> DIR_COLORS.lightbgcolor
+  echo -e "  - \033[32mDIR_COLORS files modified\033[0;1m.\033[0m"; sleep 0.3;
+}
+
 # Call to show our header
 _showHEADER;
 # Call to check if all is correct to run the script...
@@ -864,6 +875,8 @@ _installPERLBREW;
 _installGOLANG;
 # Call to create aliase and function
 _createDOTFILES;
+# Call to add to DIR_COLORS* files
+_addCOLORS; # Adds webp support
 # Call to cheat parallel citation (sorry)
 _cheatPARALLEL;
 

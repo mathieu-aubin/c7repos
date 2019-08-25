@@ -1,0 +1,31 @@
+# Function that returns a random network interface out of a bunch of
+# alias interfaces, per example, eth0:23 or ens9:2. This effectively
+# helps in using a different ip/interface for whatever needs...
+# Excludes local interface lo and because i use it, loc0
+# Part of or a full interface name can be excluded by calling the
+# function with a parameter. Like so: random-interface eth0
+#
+# Example (would return your ip)
+#
+#	curl -A "cURL/randif.test" -sLk --interface $(random-interface) https://v4.4ce.ca
+#	# To return from all interfaces, except local and all eth0*
+#	curl -A "cURL/randif.test" -sLk --interface $(random-interface eth0) https://v4.4ce.ca
+#	# To return from all interfaces, except local ONLY 'eth0'
+#	curl -A "cURL/randif.test" -sLk --interface $(random-interface ^eth0$) https://v4.4ce.ca
+#
+function random-interface() {
+	local RANDIF IFEX;
+	# If part of or a interface name is specified on the command-line,
+	# then exclude it from the list of returned interfaces.
+	[[ ! -z ${1} ]] && IFEX="${1}" || IFEX="^$";
+	# Get all interfaces list then process it and add found interfaces to RANDIF variable, except for input
+	for I in $(ifconfig | cut -d' ' -f1 | sed 's/: /\n/g' | awk NF | sed 's/:$//g' | grep -Ev "lo|loc0|${IFEX}"); do
+		RANDIF+=("${I}");
+	done
+	if [[ -z ${RANDIF} ]]; then
+		>&2 echo -e "\\033[1;38;5;160mERROR\\033[0;1m:\\033[0m No interfaces available.";
+	else
+		echo ${RANDIF[$(( ${RANDOM} % ${#RANDIF[@]} ))]};
+	fi
+}
+alias randif='random-interface';
