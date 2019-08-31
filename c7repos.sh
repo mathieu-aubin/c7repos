@@ -689,6 +689,7 @@ _checkSSH() {
         if ! [[ -z ${_SSHPC} || ${_SSHPC} -eq 22 ]]; then
           # Replace the port line by commenting it and adding new port infos
           sed -i "s/^\(Port 22\)$/# Original port was 22\nPort ${_SSHPC}/" /etc/ssh/sshd_config;
+          sed -i "s/^\(#Port 22\)$/# Original port was 22\nPort ${_SSHPC}/" /etc/ssh/sshd_config;
           # Dont take any chances and add port to selinux policy
           semanage port -a -t ssh_port_t -p tcp ${_SSHPC} &>/dev/null;
           # Adds AcceptEnv line to accept history env variables
