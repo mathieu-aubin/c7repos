@@ -292,7 +292,7 @@ _installREPOS() {
   echo -e "  - \033[32mDocker CE repository installed (disabled by default)\033[0;1m.\033[0m"; sleep 0.3;
 
   echo -e "\033[1mEnabling repositories...\033[0m"; sleep 0.1;
-  for R in {centosplus,cr,elrepo,elrepo-extras,epel,extras,fasttrack,ius,mariadb,nginx-stable,nodesource,remi,remi-safe,remi-php$PHP_VERSION,yarn}; do
+  for R in {centosplus,elrepo,elrepo-extras,elrepo-kernel,epel,extras,fasttrack,ius,mariadb,nginx-stable,nodesource,remi,remi-safe,remi-php$PHP_VERSION,yarn}; do
     yum-config-manager --enable ${R} &>/dev/null;
     echo -e "  - \033[32mRepository ${R} enabled\033[0;1m.\033[0m"; sleep 0.3;
   done
@@ -322,7 +322,7 @@ _updateSYSTEM() {
   yum makecache &>/dev/null; echo -e "\033[32m DONE\033[0;1m.\033[0m";
   # installing Yum-Axelget
   echo -e "\033[1mInstalling yum-axelget...\033[0m"; sleep 0.1;
-  yum -y install yum-axelget &>/dev/null
+  yum -y install --disablerepo=\* --enablerepo=epel yum-axelget &>/dev/null
   echo -e "  - \033[32mPackages installed\033[0;1m.\033[0m"; sleep 0.3;
   # System update
   echo -e "\033[1mInstalling system updates (please wait)...\033[0m"; sleep 0.1;
@@ -824,10 +824,10 @@ _cheatPARALLEL() {
 _addCOLORS() {
   echo -e "\033[1mAdding support for WEBP file coloring to DIR_COLORS files...\033[0m"; sleep 0.1;
     # Remove any previous webp declaration to avoid duplicates
-    sed -i '/^.webp/d' DIR_COLORS DIR_COLORS.256color DIR_COLORS.lightbgcolor;
-    echo -e '\n# Support for WEBP images\n.webp 01;35\n' >> DIR_COLORS
-    echo -e '\n# Support for WEBP images\n.webp 38;5;13\n' >> DIR_COLORS.256color
-    echo -e '\n# Support for WEBP images\n.webp 00;35\n' >> DIR_COLORS.lightbgcolor
+    sed -i '/^.webp/d' /etc/DIR_COLORS /etc/DIR_COLORS.256color /etc/DIR_COLORS.lightbgcolor;
+    echo -e '\n# Support for WEBP images\n.webp 01;35\n' >> /etc/DIR_COLORS
+    echo -e '\n# Support for WEBP images\n.webp 38;5;13\n' >> /etc/DIR_COLORS.256color
+    echo -e '\n# Support for WEBP images\n.webp 00;35\n' >> /etc/DIR_COLORS.lightbgcolor
   echo -e "  - \033[32mDIR_COLORS files modified\033[0;1m.\033[0m"; sleep 0.3;
 }
 
