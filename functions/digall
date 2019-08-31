@@ -1,16 +1,21 @@
 # Function to retrieve most of DIG (A,AAAA,CAA,CNAME,DS,LOC,MX,NS,PTR,SPF,SRV,HINFO,ISDN,TXT,SOA) if available.
+# You can set a resolver with enironment variable DIGALL_RESOLVER
+# DIGALL_RESOLVER=8.8.8.8 digall example.com
 function digall() {
-  if ! [[ -z ${1} ]]; then
-    local DOMAIN=${1,,}; local RL;
-    host ${DOMAIN} &>/dev/null; if [[ $? -eq 0 ]]; then
-      for DQ in {A,AAAA,CAA,CNAME,DS,LOC,MX,NS,PTR,SPF,SRV,HINFO,ISDN,TXT,SOA}; do
-        RL=$(dig ${DQ} +nocmd +multiline +noall +answer ${DOMAIN} | sed -e "s/${DOMAIN}.\t*/TTL: /");
-        [[ ! -z "${RL}" ]] && echo -e "\033[1;3;4;38;5;90m${DOMAIN^^} ${DQ} RECORDS\033[0m\n${RL}\n";
-      done
-    else
-      echo -e "\033[1;38;5;196mERROR\033[0m: \033[1m${DOMAIN^^}\033[0m is NOT valid." && return 1;
-    fi
-  else
-    echo -e "\033[1;38;5;196mERROR\033[0m: no domain specified." && return 1;
-  fi
-}; alias dig-all='digall';
+	local RESOLVER=${DIGALL_RESOLVER:-1.1.1.1};
+	if ! [[ -z ${1} ]]; then
+		local DOMAIN=${1,,}; local RL;
+		host ${DOMAIN} &>/dev/null;
+		if [[ $? -eq 0 ]]; then
+			for DQ in {A,AAAA,CAA,CNAME,DS,LOC,MX,NS,PTR,SPF,SRV,HINFO,ISDN,TXT,SOA}; do
+				RL=$(dig @${DIGALL_RESOLVER} ${DQ} +nocmd +multiline +noall +answer ${DOMAIN} | sed -e "s/${DOMAIN}.\t*/TTL: /");
+				[[ ! -z "${RL}" ]] && echo -e "\033[1;3;4;38;5;90m${DOMAIN^^} ${DQ} RECORDS\033[0m\n${RL}\n";
+			done
+		else
+			echo -e "\033[1;38;5;196mERROR\033[0m: \033[1m${DOMAIN^^}\033[0m is NOT valid." && return 1;
+		fi
+	else
+		echo -e "\033[1;38;5;196mERROR\033[0m: No domain specified." && return 1;
+	fi
+}
+alias dig-all='digall';

@@ -585,7 +585,7 @@ _installCOMMON() {
   # Install some npm utils if installed
   hash npm &>/dev/null;
   [[ $? -eq 0 ]] && {
-    npm i serve http-server tinypng-cli webpagetest -g &>/dev/null;
+    npm i serve http-server xtinypng-cli webpagetest -g &>/dev/null;
   }
 
   echo -e "  - \033[32mBase packages installed\033[0m."; sleep 0.3;

@@ -11,6 +11,7 @@ lastfail
 most-used
 netstat-count
 pidof-parent
+random-interface
 speedtest
 update-npm-all
 update-tools

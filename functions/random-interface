@@ -5,6 +5,8 @@
 # Part of or a full interface name can be excluded by calling the
 # function with a parameter. Like so: random-interface eth0
 #
+# You can check it out here: https://asciinema.org/a/264411
+#
 # Example (would return your ip)
 #
 #	curl -A "cURL/randif.test" -sLk --interface $(random-interface) https://v4.4ce.ca
@@ -19,7 +21,7 @@ function random-interface() {
 	# then exclude it from the list of returned interfaces.
 	[[ ! -z ${1} ]] && IFEX="${1}" || IFEX="^$";
 	# Get all interfaces list then process it and add found interfaces to RANDIF variable, except for input
-	for I in $(ifconfig | cut -d' ' -f1 | sed 's/: /\n/g' | awk NF | sed 's/:$//g' | grep -Ev "lo|loc0|${IFEX}"); do
+	for I in $(ifconfig | cut -d' ' -f1 | sed 's/: /\n/g' | awk NF | sed 's/:$//g' | grep -Ev "lo|loc0|loopback|00:00:00:00:00:00|${IFEX}"); do
 		RANDIF+=("${I}");
 	done
 	if [[ -z ${RANDIF} ]]; then

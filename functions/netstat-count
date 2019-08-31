@@ -1,4 +1,6 @@
-# Function that counts and displays current netstat status
+# Function that counts and displays current netstat connections
+# This is not very reliable but it gives an idea of the status
 function netstat-count() {
-  \netstat -nat 2>&1 | awk '{print $6}' | sed '/established/d' | sed '/Foreign/d' | sort | uniq -c | sort -n;
-}; alias count-netstat='netstat-count';
+	\netstat -nat 2>&1 | awk '{print $6}' | sed '/established/d' | sed '/Foreign/d' | sort | uniq -c | sort -n;
+}
+alias count-netstat='netstat-count';

@@ -5,6 +5,17 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.08.31  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds expect to common/base packages
+   * Adds missing functions listing for random-interface
+   * Adds npm package xtinypng-cli (https://www.npmjs.com/package/xtinypng-cli)
+   * Modifies somes functions a little, cause i ffinnn can
+
+2019.08.25  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds convmv to common/base packages
+   * Adds function random-interface to the functions list
+   * Adds webp to DIR_COLORS file to associate extension as image
+
 2019.08.20  Mathieu Aubin <mathieu@zeroserieux.com>
    * Adds icoutils in common/base packages
 

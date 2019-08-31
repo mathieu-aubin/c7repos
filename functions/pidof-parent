@@ -1,8 +1,18 @@
 # Function to retrieve a process's parent pid. Simply call with any
 # process name to retrieve it's PPID. 'pidof-parent nginx' per example.
+#
+# Todo: at some point check if input is numerical
+#
 function pidof-parent() {
-  [[ -z ${1} ]] && { >&2 echo -e "\033[1;38;5;196mERROR\033[0m: no process name specified." && return 1; }
-  local _PROC=$(echo "${1}"); local _PPID=$(ps hf -o pid -C "${_PROC}" | awk '{print $1; exit}' 2>/dev/null);
-  [[ -z ${_PPID} ]] && { >&2 echo -e "\033[1;38;5;196mERROR\033[0m: no such process."; return 1; }
-  echo ${_PPID};
+	local _PROC _PPID;
+	if [[ -z ${1} ]]; then
+		>&2 echo -e "\033[1;38;5;196mERROR\033[0m: No process name specified."; return 1;
+	else
+		_PROC=$(echo "${1}"); _PPID=$(ps hf -o pid -C "${_PROC}" | awk '{print $1; exit}' 2>/dev/null);
+
+		if [[ -z ${_PPID} ]]; then
+			>&2 echo -e "\033[1;38;5;196mERROR\033[0m: No such process."; return 1;
+		fi
+		echo ${_PPID};
+	fi
 }

@@ -1,7 +1,16 @@
 # Starts a network speed test with the help of Matt Martz nice python
 # script, speedtest-cli -- https://github.com/sivel/speedtest-cli
+#
+# Also works with custom mini servers
+#
+#	speedtest-cli --simple --mini https://tools.data-analyst.biz
+#
 function speedtest() {
-  echo -e "\033[1mStarting a \033[0;32mSpeedTest\033[0;1m...\033[0m";
-  speedtest-cli --simple --share --secure && \
-  echo -e "\033[32mShare this link and show-off your results! \033[0m"
+	if ! command -v speedtest-cli &>/dev/null; then
+		pip install speedtest-cli -U;
+	fi
+	echo -e "\\033[1mStarting a \\033[0;32mSpeedTest\\033[0;1m...\\033[0m";
+	speedtest-cli --simple --share --secure && \
+	echo -e "\\033[32mShare this link and show-off your results! \\033[0m"
+
 }

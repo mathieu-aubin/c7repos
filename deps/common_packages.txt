@@ -18,6 +18,7 @@ dialog
 dos2unix
 enca
 exiv2
+expect
 fex
 fuseiso
 fribidi
