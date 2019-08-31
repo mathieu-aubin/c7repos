@@ -292,7 +292,7 @@ _installREPOS() {
   echo -e "  - \033[32mDocker CE repository installed (disabled by default)\033[0;1m.\033[0m"; sleep 0.3;
 
   echo -e "\033[1mEnabling repositories...\033[0m"; sleep 0.1;
-  for R in {centosplus,elrepo,elrepo-extras,elrepo-kernel,epel,extras,fasttrack,ius,mariadb,nginx-stable,nodesource,remi,remi-safe,remi-php$PHP_VERSION,yarn}; do
+  for R in {centosplus,elrepo,elrepo-extras,elrepo-kernel,epel,extras,fasttrack,ius,mariadb,nginx-stable,nodesource,remi,remi-safe,remi-php${PHP_VERSION},yarn}; do
     yum-config-manager --enable ${R} &>/dev/null;
     echo -e "  - \033[32mRepository ${R} enabled\033[0;1m.\033[0m"; sleep 0.3;
   done
@@ -690,7 +690,7 @@ _checkSSH() {
           # Replace the port line by commenting it and adding new port infos
           sed -i "s/^\(Port 22\)$/# Original port was 22\nPort ${_SSHPC}/" /etc/ssh/sshd_config;
           # Dont take any chances and add port to selinux policy
-          >&2 semanage port -a -t ssh_port_t -p tcp ${_SSHPC};
+          semanage port -a -t ssh_port_t -p tcp ${_SSHPC} &>/dev/null;
           # Adds AcceptEnv line to accept history env variables
           sed -i 's/\(XMODIFIERS\)$/\1\n\n# Accept history-related environment variables\nAcceptEnv HISTFILE HISTIGNORE HISTCONTROL/' /etc/ssh/sshd_config;
           systemctl restart sshd; unset SSH_CLIENT;

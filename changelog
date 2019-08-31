@@ -6,10 +6,12 @@
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
 2019.08.31  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Silence semanage command
    * Enabled elrepo-kernel by default
    * Changes yum-axelget install command
    * Adds expect to common/base packages
    * Fixes directory for DIR_COLORS files
+   * Adds policycoreutils-python to common/base packages
    * Adds missing functions listing for random-interface
    * Adds npm package xtinypng-cli (https://www.npmjs.com/package/xtinypng-cli)
    * Modifies somes functions a little, cause i ffinnn can
