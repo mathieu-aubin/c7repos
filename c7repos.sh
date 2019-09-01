@@ -691,14 +691,14 @@ _checkSSH() {
           sed -i "s/^\(Port 22\)$/# Original port was 22\nPort ${_SSHPC}/" /etc/ssh/sshd_config;
           sed -i "s/^\(#Port 22\)$/# Original port was 22\nPort ${_SSHPC}/" /etc/ssh/sshd_config;
           # Dont take any chances and add port to selinux policy
-          semanage port -a -t ssh_port_t -p tcp ${_SSHPC} &>/dev/null;
+          [[ $(command -v semanage) ]] && semanage port -a -t ssh_port_t -p tcp ${_SSHPC} &>/dev/null;
           # Adds AcceptEnv line to accept history env variables
           sed -i 's/\(XMODIFIERS\)$/\1\n\n# Accept history-related environment variables\nAcceptEnv HISTFILE HISTIGNORE HISTCONTROL/' /etc/ssh/sshd_config;
           systemctl restart sshd; unset SSH_CLIENT;
           # Fix BOTH iptables default files with new port
           yum -y install iptables ip6tables iptables-services &>/dev/null;
-          [[ -f /etc/sysconfig/ip6tables ]] && sed -i "s#--dport 22#--dport ${_SSHPC}#" /etc/sysconfig/ip6tables;
-          [[ -f /etc/sysconfig/iptables ]] && sed -i "s#--dport 22#--dport ${_SSHPC}#" /etc/sysconfig/iptables;
+          [[ -f /etc/sysconfig/ip6tables ]] && sed -i "s/--dport 22 /--dport ${_SSHPC} /" /etc/sysconfig/ip6tables;
+          [[ -f /etc/sysconfig/iptables ]] && sed -i "s/--dport 22 /--dport ${_SSHPC} /" /etc/sysconfig/iptables;
           # Since i hate firewalld, disable it and use straight iptables instead
           systemctl disable firewalld --now &>/dev/null;
           systemctl enable iptables ip6tables --now &>/dev/null;

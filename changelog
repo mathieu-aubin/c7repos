@@ -5,6 +5,13 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.09.02  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds mtr to common/base packages
+   * Check semanage before even trying to run it
+   * Fixes an issue with ssh port change in iptables config file when, per example
+     we go from port 22 to port 2222, restart sshd, abort the c7repo script and re
+     start it. Port would become 222222 in iptables files.
+
 2019.08.31  Mathieu Aubin <mathieu@zeroserieux.com>
    * Silence semanage command
    * Enabled elrepo-kernel by default
