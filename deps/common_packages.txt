@@ -63,6 +63,7 @@ nmap
 nmap-ncat
 nscd
 parallel
+pcre-tools
 perl
 prename
 pv

@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.09.04  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds pcre-tools to common/base packages
+
 2019.09.02  Mathieu Aubin <mathieu@zeroserieux.com>
    * Adds mtr to common/base packages
    * Check semanage before even trying to run it
