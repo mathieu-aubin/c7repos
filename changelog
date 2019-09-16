@@ -6,7 +6,19 @@
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
 2019.09.16  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds a new function, show-ssh-port which does what it's name says..
+   * Uses tabulations thru the whole scripts instead of 2 spaces at line starts
+   * Adds Midnight Commander repository from Laurent Wandrebeck
+   * Installs yum-plugin-post-transaction-actions in order to run grub updater
+     upon changing anything related to kernel.
+   * Adds yum post-transaction action running on all kernel-related actions
    * Updates version of update-grub binary so it also runs on CloudLinux
+   * Added more devel packages when choosing to install group development
+   * Made sure we install at least what we can from the previous by adding
+     --skip-broken to the yum command in case of problems, better install
+     some then fail and install none... my opinion anyways.
+   * The function that adds to .bashrc now also adds to /etc/skel/.bashrc in
+     order to also do the wonders that it does, like sourcing all ~/.bash_* files
 
 2019.09.05  Mathieu Aubin <mathieu@zeroserieux.com>
    * Fixes curl aliasing -> curla = with user agent

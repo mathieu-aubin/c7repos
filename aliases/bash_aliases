@@ -28,8 +28,7 @@ alias grep='grep --color=auto'; alias greps='grep -C5';
 alias rm-ds_store='echo -e "\033[1mRemoving ALL .DS_Store files from current directory, recursively...\033[0m"; find ./ -type f -iname ".DS_Store" -exec rm {} \;'; alias remove-ds_store='rm-ds_store';
 alias free-ram='echo -e "\033[1mBEFORE:\033[0m"; sleep 0.5; free -mh && sync && sync && echo 3 >/proc/sys/vm/drop_caches; sleep 0.5; echo -e "\n\033[1mAFTER:\033[0m"; free -mh; fstrim -av 2>/dev/null';
 alias chownroot='chown root:root ${PWD} -R && echo -e "Current folder ownership recursively set to root:root"';
-# Because it's funny... even if not needed
-# https://4ce.ca/sudoplease
+# Because it's funny... even if not needed. See https://4ce.ca/sudoplease
 alias please='sudo';
 
 ###################################################

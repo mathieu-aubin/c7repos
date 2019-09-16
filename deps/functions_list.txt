@@ -12,6 +12,7 @@ most-used
 netstat-count
 pidof-parent
 random-interface
+show-ssh-port
 speedtest
 update-npm-all
 update-tools
