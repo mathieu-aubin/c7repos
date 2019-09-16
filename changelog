@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.09.16  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Updates version of update-grub binary so it also runs on CloudLinux
+
 2019.09.05  Mathieu Aubin <mathieu@zeroserieux.com>
    * Fixes curl aliasing -> curla = with user agent
 
