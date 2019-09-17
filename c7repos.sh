@@ -634,7 +634,7 @@ _createDOTFILES() {
 	echo -e "\033[1mAppending to ~/.bashrc and /etc/skel/.bashrc...\033[0m"; sleep 0.1;
 
 	# Apply modifications to both ~/.bashrc and /etc/skel/.bashrc
-	for BASHRCFILE in ~/.bashrc /etc/skel/.bashrc do;
+	for BASHRCFILE in /root/.bashrc /etc/skel/.bashrc do;
 		#echo -e "\nexport HISTIGNORE='&:exit:x:l:history:editenv:[h ]*:[ \\\t]*:?:??:w -i:pwd:srcalias*:srcexports*:srcfunctions*:srccolors*:srcdot*:env:quit:popd*:ginx*:chownwww*:yum clean*:yum makecache*'" >> ${BASHRCFILE};
 
 		# Make sure we only have the source line once (if script is run multiple times per example)
