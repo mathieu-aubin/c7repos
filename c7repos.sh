@@ -876,7 +876,7 @@ _createSSHKEYS() {
 # Also applies it to new users via skeleton files at /etc/skel
 _cheatPARALLEL() {
 	mkdir -p ~/.parallel && touch ~/.parallel/will-cite;
-	mkdir -p /etc/skel/.parallel && touch /etc/skell/.parallel/will-cite;
+	mkdir -p /etc/skel/.parallel && touch /etc/skel/.parallel/will-cite;
 }
 
 # Function to add support for some filetypes for command-line coloring (webp for now)
