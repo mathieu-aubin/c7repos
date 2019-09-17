@@ -6,6 +6,7 @@
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
 2019.09.16  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Fix a bash if that was not properly written
    * Adds a new function, show-ssh-port which does what it's name says..
    * Uses tabulations thru the whole scripts instead of 2 spaces at line starts
    * Adds Midnight Commander repository from Laurent Wandrebeck
