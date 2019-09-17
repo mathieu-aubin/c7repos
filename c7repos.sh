@@ -356,7 +356,7 @@ function _updateSYSTEM() {
 	# installing Yum-Axelget
 	echo -e "\033[1mInstalling yum-axelget...\033[0m"; sleep 0.1;
 	yum -y install --disablerepo=\* --enablerepo=epel yum-axelget &>/dev/null
-	echo -e "  - \033[32mPackages installed\033[0;1m.\033[0m"; sleep 0.3;
+	echo -e "  - \033[32mPackage installed\033[0;1m.\033[0m"; sleep 0.3;
 	# System update
 	echo -e "\033[1mInstalling system updates (please wait)...\033[0m"; sleep 0.1;
 	yum -y update &>/dev/null;
