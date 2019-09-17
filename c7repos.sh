@@ -841,7 +841,7 @@ _installGOLANG() {
 			if [[ -x /opt/go/bin/go ]]; then
 				_GOLANG_INST=1;
 				# Allows for using 'getgo' to update - https://go.googlesource.com/tools/+/master/cmd/getgo/
-				ln -s /opt/go ~/.go; mkdir -p ~/go/{bin/src/pkg};
+				ln -s /opt/go ~/.go; mkdir -p ~/go/{bin,src,pkg};
 				echo -e "  - \033[32mGolang installed\033[0;1m.\033[0m"; sleep 0.3;
 			else
 				echo -e "  - \033[1;38;5;196;4mGolang installation problem... \033[0;1mskipped.\033[0m"; sleep 2;
