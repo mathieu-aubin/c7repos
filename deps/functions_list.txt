@@ -8,6 +8,7 @@ echoerr
 echostatus
 generate-password
 lastfail
+load-check
 most-used
 netstat-count
 pidof-parent

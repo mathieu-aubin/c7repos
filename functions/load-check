@@ -1,0 +1,13 @@
+# Function that checks the current load of the server and displays
+# it in a human-friendly way. Altho this is very nice as a pointer
+# it should not be taken as  100% reliable. It helps with figuring
+# server loads when not  too sure what to make up of the typ. form
+function load-check() {
+	local CPN LDA;
+	CPN=$(nproc); LDA=$(cat /proc/loadavg | cut -c 1-4);
+	echo -n $(echo "scale=2; ( ${LDA} / ${CPN} ) * 100" | bc -l);
+	>&2 echo -e "% cpu (${CPN}) load";
+	>&2 echo -e "\033[1mThis is VERY corse and DOES NOT reflect true loads.\033[0m";
+	>&2 echo -e "\033[1mIt's purpose is to better understand load averages.\033[0m";
+}
+alias checkload='load-check'; alias loadcheck='load-check'; alias check-load='load-check';

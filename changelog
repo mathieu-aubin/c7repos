@@ -6,6 +6,10 @@
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
 2019.09.17  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds a new function called load-check which is used to display the
+     load averages in a more human way. Altho easier to understand, the
+     new function is also not as precise as understanding the real load
+     averages and how they are affected by the server environment.
    * Adds 'function' before each functions names
    * Changes/sets installonly_limit to 3 in yum.conf
    * Adds an empty line in the first cat modification of yum.conf
