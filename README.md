@@ -8,11 +8,11 @@ Installs common/base *CentOS* 7 repositories/programs (___x86_64___)
 
 *c7repos.sh* attempts to installs/create the following repositories configurations
 
-##### ___EPEL___ - ___REMi___ - __iUS__ - ___NGiNX___ - ___NODEJS___ - ___EL-REPO___ - ___MARiADB___ - ___DOCKER___ - ___YARN___ - __GOLANG__ - __PERLBREW__
+##### ___EPEL___ - ___REMI___ - __IUS__ - ___NGINX___ - ___NODEJS___ - ___EL-REPO___ - ___MARIADB___ - ___DOCKER___ - ___YARN___ - ___GOLANG___ - ___PERLBREW___ - ___MIDNIGHT COMMANDER___
 
 and some suggested extra packages for a clean, practical and usable base server system. _c7repos.sh_ also defines a bunch of useful system aliases and functions.
 
-Some repositories have options that can be enabled directly in the repo files themselves (located in /etc/yum.repos.d/). _REMi_, per example, contains all _PHP_ versions easily enableable from the repository files. Per example, _EL-REPO_'s latest kernel packages _kernel-ml_, is also just a digit away from being enabled. [_YUM_](http://yum.baseurl.org) can also be run with the extra switch `--enablerepo=repo.name`, essentially doing the same. Alot more [_YUM_](http://yum.baseurl.org) stuff to be read in the manual or by visiting [_YUM_'s Official webpage](http://yum.baseurl.org)
+Some repositories have options that can be enabled directly in the repo files themselves (located in /etc/yum.repos.d/). _REMI_, per example, contains all _PHP_ versions easily enableable from the repository files. Per example, _EL-REPO_'s latest kernel packages _kernel-ml_, is also just a digit away from being enabled. [_YUM_](http://yum.baseurl.org) can also be run with the extra switch `--enablerepo=repo.name`, essentially doing the same. Alot more [_YUM_](http://yum.baseurl.org) stuff to be read in the manual or by visiting [_YUM_'s Official webpage](http://yum.baseurl.org)
 
 ### WHERE
 
