@@ -5,6 +5,17 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.09.17  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds 'function' before each functions names
+   * Changes/sets installonly_limit to 3 in yum.conf
+   * Adds an empty line in the first cat modification of yum.conf
+   * Adss a function that asks to set the HOSTNAME for server/instance
+   * Adds comments about 'update-grub' tool and how it now runs automatically
+   * Changed the trap line that sourced .bashrc to now source .bash_profile
+   * Adds a definite exit code at the end of the script in order to trigger
+     previously set 'trap' - Essentially used to source ~/.bash_profile
+   * Goodbye message now multiline, with a pre clear and post exit 0
+
 2019.09.16  Mathieu Aubin <mathieu@zeroserieux.com>
    * Fix a bash if that was not properly written
    * Adds a new function, show-ssh-port which does what it's name says..

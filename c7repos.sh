@@ -138,7 +138,7 @@ tput civis; tput clear;
 
 # Resets term upon QUIT/CTRL+C and EXIT signals
 trap "read -rsp $'\n\n\033[1;38;5;196m--- USER-ISSUED CTRL+C. PRESS ENTER TO EXIT ---\033[0m\n'; exit 1" SIGINT;
-trap 'tput smam; tput sgr0; tput cnorm; source ~/.bashrc' EXIT;
+trap 'tput smam; tput sgr0; tput cnorm; source ~/.bash_profile' EXIT;
 
 # Function that displays our header...
 function _showHEADER() {
@@ -168,7 +168,7 @@ function _showDANGER() {
 }
 
 # Function that check all the required things for the script to run
-_preCHECK() {
+function _preCHECK() {
 	 # Check if we run as super-user... else... a quote from Linus Torvalds.
 	[[ ${EUID} -ne 0 ]] && >&2 echo '“ You not only have to be a good coder to create a system like Linux, you have to be a sneaky bastard, too. ” -LT' && exit 1;
 
@@ -185,7 +185,7 @@ _preCHECK() {
 }
 
 # Function to disable SELinux
-_doSELINUX() {
+function _doSELINUX() {
 	echo -en "\033[1mDisable SELinux? (required to continue) [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _SEL;
 	case "${_SEL}" in
 		[nN][oO]|[no])
@@ -204,7 +204,7 @@ _doSELINUX() {
 }
 
 # Function that imports repo gpg signing keys
-_importGPGKEYS() {
+function _importGPGKEYS() {
 	echo -e "\033[1mImporting repositories GPG keys...\033[0m ";
 	rpm --import https://nginx.org/keys/nginx_signing.key; sleep 0.01;
 	rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi; sleep 0.01;
@@ -220,7 +220,7 @@ _importGPGKEYS() {
 }
 
 # Function to install repos that we want/should/must have
-_installREPOS() {
+function _installREPOS() {
 	echo -e "\033[1mInstalling repository packages for available ones...\033[0m ";
 	rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm &>/dev/null; sleep 0.1;
 	rpm -Uvh https://www.elrepo.org/elrepo-release-7.0-4.el7.elrepo.noarch.rpm &>/dev/null; sleep 0.1;
@@ -333,7 +333,7 @@ _installREPOS() {
 }
 
 # Function to edit repo files
-_editREPOS() {
+function _editREPOS() {
 	echo -en "\033[1mManually edit repositories files? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _EDITREPOS;
 	case "${_EDITREPOS}" in
 		[nN][oO]|[no])
@@ -347,7 +347,7 @@ _editREPOS() {
 }
 
 # Function to update system packages
-_updateSYSTEM() {
+function _updateSYSTEM() {
 	# Clear/refresh Yum cache
 	echo -ne "\033[1mCleaning YUM cache...\033[0m"; sleep 0.1;
 	yum clean all &>/dev/null; echo -e "\033[32m DONE\033[0;1m.\033[0m";
@@ -368,12 +368,13 @@ _updateSYSTEM() {
 }
 
 # Function to fix Yum to only use ipv4
-_fixYUMV6() {
+function _fixYUMV6() {
 	# This comes from a problem i faced on fedora and c7 with epel throwing garbage at ipv6 requests, making any
 	# update attemps unsuccessful... that fucked me good but the guys there fixed it quick after i told them.
 	# You do whatever. I rather disable ipv6 for Yum than swear, even for only a few seconds.
 	echo -e "\033[1mFixing 'potential' IPv6 problem with some repos...\033[0m"; sleep 0.1;
 	cat <<- __EOF__ >> /etc/yum.conf
+
 		# This might not behave as intended, potentially lowering
 		# your server's download speeds when updating packages...
 		# If you get up here and have noticed many failed updates
@@ -385,12 +386,13 @@ _fixYUMV6() {
 }
 
 # Function that adds to Yum default configuration
-_addtoYUMCONF() {
+function _addtoYUMCONF() {
 	_fixYUMV6;
 	echo -e "\033[1mAdding extra Yum configurations...\033[0m"; sleep 0.1;
 	# Modify default options
 	sed -i '/keepcache=/s/=.*/=1/' /etc/yum.conf;
 	sed -i '/debuglevel=/s/=.*/=4/' /etc/yum.conf;
+	sed -i '/installonly_limit=/s/=.*/=3/' /etc/yum.conf;
 
 	cat <<- __EOF__ >> /etc/yum.conf
 
@@ -422,7 +424,10 @@ _addtoYUMCONF() {
 }
 
 # Function to update grub2 bootloader
-_updateGRUB() {
+# This handy tool now runs whenever an action to a kernel* package is done to
+# ensure your bootloader is updated everytime. Thanks to Yum post actions plugin
+# To know more about 'update-grub' you can run it with -h or --help
+function _updateGRUB() {
 	echo -e "\033[1mGetting 'update-grub' tool...\033[0m"; sleep 0.1;
 	mkdir -p ~/bin &>/dev/null;
 	curl -4skL ${REPOURL}/bin/update-grub -o ~/bin/update-grub;
@@ -432,7 +437,7 @@ _updateGRUB() {
 }
 
 # Function to install development group packages and some other dev libs
-_installDEVEL() {
+function _installDEVEL() {
 	echo -en "\033[1mInstall development tools package group (plus extra packages)? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _DEVPACK;
 
 	case "${_DEVPACK}" in
@@ -451,7 +456,7 @@ _installDEVEL() {
 }
 
 # Function to install/enable MariaDB
-_installMARIADB() {
+function _installMARIADB() {
 	rpm -q MariaDB-server &>/dev/null;
 	if [[ $? -ne 0 ]]; then
 		_MARIADB_INST=0; echo -en "\033[1mInstall MariaDB server? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m ";
@@ -502,7 +507,7 @@ _installMARIADB() {
 }
 
 # Function to install/enable NGINX
-_installNGINX() {
+function _installNGINX() {
 	rpm -q nginx &>/dev/null;
 	if [[ $? -ne 0 ]]; then
 		_NGX_INST=0; echo -en "\033[1mInstall \033[0;32mNGINX\033[0;1m? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _GINX;
@@ -531,7 +536,7 @@ _installNGINX() {
 }
 
 # Function to install NodeJS/NPM
-_installNODE() {
+function _installNODE() {
 	rpm -q nodejs &>/dev/null;
 	if [[ $? -ne 0 ]]; then
 		_NODE_INST=0; echo -en "\033[1mInstall NodeJS and update NPM to current version? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _NODENPM;
@@ -563,7 +568,7 @@ _installNODE() {
 }
 
 # Function to install the common packages/applications
-_installCOMMON() {
+function _installCOMMON() {
 	# Set of commonly used packages and utilities to be installed
 	_COMMON_PACKAGES=$(curl -4skL ${REPOURL}/deps/common_packages.txt);
 
@@ -629,7 +634,7 @@ _installCOMMON() {
 }
 
 # Function to create our dotfiles
-_createDOTFILES() {
+function _createDOTFILES() {
 	# Append some stuff to .bashrc and skeleton for new users
 	echo -e "\033[1mAppending to ~/.bashrc and /etc/skel/.bashrc...\033[0m"; sleep 0.1;
 
@@ -728,7 +733,7 @@ _createDOTFILES() {
 }
 
 # Function to check for current running ssh port - Might have some issues with proper detection
-_checkSSH() {
+function _checkSSH() {
 	# Checking the ssh server port, relying on which port user currently is connected on
 	if [[ ${SSH_CLIENT##* } -eq 22 ]]; then
 		_showDANGER "SSH IS RUNNING ON PORT 22";
@@ -770,13 +775,13 @@ _checkSSH() {
 }
 
 # Function to install nano (v2.9.4) from rpm, built for c7repos
-_installNANO() {
+function _installNANO() {
 	echo -e "\033[1mInstalling nano-editor v2.9.4...\033[0m"; sleep 0.1;
 	rpm -Uvh ${REPOURL}/rpms/nano-2.9.4-1.c7repos.x86_64.rpm &>/dev/null;
 }
 
 # Function that creates getaddrinfo configuration (favors ipv4 vs ipv6)
-_createGAICONF() {
+function _createGAICONF() {
 	echo -e "\033[1mCreating getaddrinfo (GAI) config...\033[0m"; sleep 0.1;
 	if [[ -f /etc/gai.conf ]]; then
 		echo -e "  - \033[32mGAI config file \033[0;1m/etc/gai.conf\033[0;32m already exist, skipping\033[0;1m.\033[0m"; sleep 0.3;
@@ -789,14 +794,14 @@ _createGAICONF() {
 }
 
 # Function that installs Yum-utils/fastestmirror/deltarpm
-_installYUMSTUFF() {
+function _installYUMSTUFF() {
 	echo -e "\033[1mInstalling yum-utils/fastestmirror/deltarpm,post-actions...\033[0m"; sleep 0.1;
 	yum --disablerepo=\* --enablerepo=base install yum-utils yum-plugin-fastestmirror yum-plugin-post-transaction-actions deltarpm -y &>/dev/null &&
 	echo -e "  - \033[32mYum stuff installed\033[0;1m.\033[0m"; sleep 0.3;
 }
 
 # Function to install Perlbrew (https://github.com/gugod/App-perlbrew)
-_installPERLBREW() {
+function _installPERLBREW() {
 	echo -en "\033[1mInstall Perlbrew? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _PERLB;
 
 	case "${_PERLB}" in
@@ -826,7 +831,7 @@ _installPERLBREW() {
 }
 
 # Function to install latest Golang from src (https://golang.org/doc/)
-_installGOLANG() {
+function _installGOLANG() {
 	echo -en "\033[1mInstall Golang? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _GOLNG;
 
 	case "${_GOLNG}" in
@@ -852,7 +857,7 @@ _installGOLANG() {
 }
 
 # Function to create a ssh key/pair
-_createSSHKEYS() {
+function _createSSHKEYS() {
 	if [[ ! -f ~/.ssh/id_rsa || ! -f ~/.ssh/id_rsa.pub ]]; then
 		echo -en "\033[1mCreate a new ssh key pair? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _SSHP;
 
@@ -874,13 +879,13 @@ _createSSHKEYS() {
 
 # Function to cheat gnu parallel into thinking we have read the citation (sorry)
 # Also applies it to new users via skeleton files at /etc/skel
-_cheatPARALLEL() {
+function _cheatPARALLEL() {
 	mkdir -p ~/.parallel && touch ~/.parallel/will-cite;
 	mkdir -p /etc/skel/.parallel && touch /etc/skel/.parallel/will-cite;
 }
 
 # Function to add support for some filetypes for command-line coloring (webp for now)
-_addCOLORS() {
+function _addCOLORS() {
 	echo -e "\033[1mAdding support for WEBP file coloring to DIR_COLORS files...\033[0m"; sleep 0.1;
 	# Remove any previous webp declaration to avoid duplicates
 	sed -i '/^.webp/d' /etc/DIR_COLORS /etc/DIR_COLORS.256color /etc/DIR_COLORS.lightbgcolor;
@@ -891,13 +896,36 @@ _addCOLORS() {
 }
 
 # Function to create a yum post install/update/remove action on all kernel-related packages
-_createYUMPOST() {
+function _createYUMPOST() {
 	cat <<- __EOF__ >/etc/yum/post-actions/kernel.action
 		# This runs update-grub after any kernel modification (install, update, remove).
 		# If 'update-grub' cannot be found in the typical c7repos location, directly run
 		# the command as in 'rm -f /boot/grub2/grubenv; grub2-mkconfig -o /boot/grub2/grub.cfg'
 		kernel*:any:>&2 echo; if [ -x /root/bin/update-grub ]; then >&2 /root/bin/update-grub; elif [ -x /usr/sbin/grub2-mkconfig ]; then rm -f /boot/grub2/grubenv; /usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg; fi; >&2 echo;
 	__EOF__
+}
+
+# Function that sets the hostname according to user input
+# I don't care if the user sets a bad hostname, he should be
+# more careful next time as i don't want to manage that input
+function _setHOSTNAME() {
+        echo -en "\033[1mSet a HOSTNAME for this server? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _HSTNM;
+
+	case "${_HSTNM}" in
+		[nN][oO]|[no])
+			sleep 0.3;
+			;;
+		*)
+			read -rp $"Please enter the HOSTNAME you want for this server: " _HOSTNAME;
+			if ${_HOSTNAME}; then
+				hostnamectl set-hostname "${_HOSTNAME}";
+				echo -e "  - \033[32mHOSTNAME set to '${_HOSTNAME}'\033[0;1m.\033[0m"; sleep 0.3;
+			else
+				echo -e "  - \033[1;38;5;196;4mThe hostname cannot be null... \033[0;1mAborting.\033[0m"; sleep 2;
+			fi
+			;;
+	esac
+	unset _HSTNM _HOSTNAME;
 }
 
 # Call to show our header
@@ -910,6 +938,8 @@ _doSELINUX;
 _checkSSH;
 # Call to create getaddressinfo config which favors ipv4
 _createGAICONF;
+# Call to set a HOSTNAME for the server/instance
+_setHOSTNAME;
 # Call to create ssh key pair
 _createSSHKEYS;
 # Call to install Yum-utils/fastestmirror/deltapm/yum-plugin-post-transaction-actions
@@ -951,4 +981,14 @@ _addCOLORS; # Adds webp support
 # Call to cheat parallel citation (sorry)
 _cheatPARALLEL;
 
-echo -e "\n\033[1mDone with this CentOS 7 auto install script.\nConsider checking your firewall, SSH config and the likes.\nA reboot wouldn't hurt, after initial install...\n\nHave a nice day.\033[0m";
+sleep 1; clear;
+echo;
+echo -e "\033[1mDone with this CentOS 7 auto install script.\033[0m";
+echo -e "\033[1mConsider checking your firewall, SSH configs and the likes.\033[0m";
+echo -e "\033[1mAlso, a reboot wouldn't hurt, after initial install...\033[0m";
+echo;
+echo -e "\033[1mHave a nice day.\033[0m";
+sleep 5;
+# Ensure a definite exit code in order for the initially set trap
+# to be executed - Essentially, to source ~/.bash_profile at exit
+exit 0;
