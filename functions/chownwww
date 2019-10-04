@@ -1,9 +1,21 @@
-# Sets PWD ownership's to nginx user (takes care of potential CRLF in nginx.conf, too)
+# Sets PWD ownership's to nginx user (also checks for CRLF in nginx.conf)
+# There is some  sort of protection  against wrongful  usage by  checking
+# current directory against  some of the really bad  locations  where one
+# would  NEVER  want such a potentially  destructive  command to  be ran.
+# Also, sleep for 5 seconds in order to allow for CTRL+C to be issued....
 function chownwww() {
 	local NGX_USR;
-	[[ ! -f /etc/nginx/nginx.conf ]] && : || {
-		NGX_USR=$(cat /etc/nginx/nginx.conf | grep -E "^user" | grep -Eo "[[:alnum:][:punct:]]*;$" | sed -e 's/ *//' -e 's/\t*//' -e 's/;//' -e 's/\r//');
-		_showDANGER "RECURSIVELY SETTING OWNERSHIP OF CURRENT DIR. TO \033[3m${NGX_USR}\033[0m" "MAKE SURE THERE ARE NO SECURITY RISKS INVOLVED." && sleep 1;
-		chown ${NGX_USR}:${NGX_USR} ${PWD} -R; echo -e "\033[1m     DONE SETTING PWD OWNERSHIP TO USER \033[3m${NGX_USR}\033[0m.\033[0m";
-	}
+	[[ ! -n "${PWD}" ]] && export PWD=$(pwd);
+	if [[ -f /etc/nginx/nginx.conf ]]; then
+		if [[ ${PWD} == / || "${PWD}" == "/usr"* || "${PWD}" == "/bin"* || "${PWD}" == "/lib"* ]]; then
+			echo -e "\\033[1;38;5;196mERROR\\033[0;1m:\\033[0m Impossible for me to change ownership of the current directory without potentially breaking this system.";
+		else
+			NGX_USR=$(cat /etc/nginx/nginx.conf | grep -E "^user" | grep -Eo "[[:alnum:][:punct:]]*;$" | sed -e 's/ *//' -e 's/\t*//' -e 's/;//' -e 's/\r//');
+			_showDANGER "RECURSIVELY SETTING OWNERSHIP OF CURRENT DIR. TO \\033[3m${NGX_USR}\\033[0m" "MAKE SURE THERE ARE NO SECURITY RISKS INVOLVED." && sleep 5;
+			chown ${NGX_USR}:${NGX_USR} ${PWD} -R;
+			echo -e "\\033[1m     DONE SETTING PWD OWNERSHIP TO USER \\033[3m${NGX_USR}\\033[0m.\\033[0m";
+		fi
+	else
+		echo -e "\\033[1;38;5;196mERROR\\033[0;1m:\\033[0m Config file /etc/nginx/nginx.conf does not exist.";
+	fi
 }

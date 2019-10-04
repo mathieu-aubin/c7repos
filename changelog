@@ -5,6 +5,10 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.10.04  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Changes some functions
+   * Rephrase a changelog line that seems to make no sense
+
 2019.09.17  Mathieu Aubin <mathieu@zeroserieux.com>
    * Removes the curl warning since curl alias has been removed
    * Fix 'packages installed' for yum-axelget install to singular
@@ -23,7 +27,7 @@
    * Goodbye message now multiline, with a pre clear and post exit 0
 
 2019.09.16  Mathieu Aubin <mathieu@zeroserieux.com>
-   * Fix a bash if that was not properly written
+   * Fix a bash 'if' conditionnal that was poorly written
    * Adds a new function, show-ssh-port which does what it's name says..
    * Uses tabulations thru the whole scripts instead of 2 spaces at line starts
    * Adds Midnight Commander repository from Laurent Wandrebeck

@@ -5,8 +5,8 @@ function update-npm-all() {
 	_TOUPDATE=$(npx npm@next outdated -g| awk '{print $1}' | grep -Eiv "^Package$|^node$|^$");
 	if [[ ! -z ${_TOUPDATE} ]]; then
 		_showINFOS "Updating all global NPM packages...";
-		#echo -e "\033[1mUpdating \033[3mNPM\033[0;1m itself...\033[0m" && npm i npm -g --upgrade; sleep 0.2;
-		echo -e "${_TOUPDATE}" | xargs -n1 bash -c 'echo -e "\\033[1mUpdating \\033[3mNPM\\033[0;1m package ${0^^}...\\033[0m"; npm i ${0} -g --upgrade';
+		#echo -e "\\033[1mUpdating \\033[3mNPM\\033[0;1m itself...\\033[0m" && npm i npm -g --upgrade; sleep 0.2;
+		echo -e "${_TOUPDATE}" | \xargs -n1 bash -c 'echo -e "\\033[1mUpdating \\033[3mNPM\\033[0;1m package ${0^^}...\\033[0m"; npm i ${0} -g --upgrade';
 	else
 		_showINFOS "NPM has no packages to update, AWESOME.";
 	fi

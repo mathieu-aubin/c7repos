@@ -1,5 +1,5 @@
-# Function checking if $SSH_CLIENT is set and not empty
-# to display currently connected/in use ssh port.
+# Function checking if $SSH_CLIENT is set and not empty to display currently
+# connected/in use ssh port and the currently set port from sshd_config file
 function show-ssh-port() {
 	# Check for SSH_CLIENT environment variable and if
 	# set, use it to display the information we need.
@@ -14,7 +14,5 @@ function show-ssh-port() {
 	>&2 echo -n "According to sshd_config, SSH port is: ";
 	cat /etc/ssh/sshd_config | grep -Po --color=never '^Port \K(\d+)'
 }
-alias get-ssh-port='show-ssh-port';
-alias view-ssh-port='show-ssh-port';
-alias display-ssh-port='show-ssh-port';
-
+alias get-ssh-port='show-ssh-port'; alias chec-ssh-port='show-ssh-port';
+alias view-ssh-port='show-ssh-port'; alias display-ssh-port='show-ssh-port';
