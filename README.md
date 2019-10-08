@@ -31,7 +31,7 @@ Preferably from a ___FRESHLY INSTALLED___ *CentOS* 7 server, _c7repos.sh_ can be
    Examples:
 
     root@host ~ # bash <(curl -4sLk https://bit.ly/c7repos)
-    root@host ~ # bash <(curl -4sLk https://bit.ly/c7repos-install)
+    root@host ~ # bash <(curl -4sLk https://git.io/c7repos-install)
     root@host ~ # bash <(curl -4sLk https://git.io/vd7Ye)
 
 #### Method #2
@@ -41,7 +41,7 @@ Preferably from a ___FRESHLY INSTALLED___ *CentOS* 7 server, _c7repos.sh_ can be
    Examples:
 
     root@host ~ # curl -4sLk https://bit.ly/c7repos | bash -
-    root@host ~ # curl -4sLk https://bit.ly/c7repos-install | bash -
+    root@host ~ # curl -4sLk https://git.io/c7repos-install | bash -
     user@host ~ $ curl -4sLk https://git.io/vd7Ye | sudo bash -
 
 #### Method #3
