@@ -5,6 +5,11 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.10.11  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Changes aliases for myip and myip6
+   * Changes aliases for update,update-clean and kernel-cleanup so they do not
+     run 'update-grub' as it is being ran using yum post-transaction-actions
+
 2019.10.04  Mathieu Aubin <mathieu@zeroserieux.com>
    * Changes some functions
    * Rephrase a changelog line that seems to make no sense

@@ -41,14 +41,12 @@ alias mkdir='mkdir -p';
 #########################
 #### RPM/YUM aliases ####
 #########################
-alias dnf='dnf --color=auto';
-alias yum='yum --color=auto';
-alias yum4='yum4 --color=auto';
+alias dnf='dnf --color=auto'; alias yum='yum --color=auto'; alias yum4='yum4 --color=auto';
+alias kernel-cleanup='package-cleanup --oldkernels --keepdevel'
+alias update='yum clean metadata &>/dev/null && yum makecache fast && yum update; kernel-cleanup';
+alias update-clean='rm -rf /var/cache/yum && yum makecache && yum update; kernel-cleanup'; alias clean-update='update-clean';
 alias rpm-list-keys='rpm -q gpg-pubkey --qf "%{name}-%{version}-%{release} --> %{summary}\n"';
 alias list-rpm-gpg-keys='rpm-list-keys'; alias rpm-gpg-keys='rpm-list-keys'; alias gpg-list-rpm='rpm-list-keys'; alias rpm-keys-list='rpm-list-keys';
-alias kernel-cleanup='package-cleanup --oldkernels --keepdevel && rm -f /boot/grub2/grubenv; [[ -x ~/bin/update-grub ]] && ~/bin/update-grub || grub2-mkconfig -o /boot/grub2/grub.cfg'
-alias update='yum clean metadata &>/dev/null && yum makecache fast && yum update && rm -f /boot/grub2/grubenv; [[ -x ~/bin/update-grub ]] && ~/bin/update-grub || grub2-mkconfig -o /boot/grub2/grub.cfg';
-alias update-clean='rm -rf /var/cache/yum && yum makecache && yum update && rm -f /boot/grub2/grubenv; [[ -x ~/bin/update-grub ]] && ~/bin/update-grub || grub2-mkconfig -o /boot/grub2/grub.cfg'; alias clean-update='update-clean';
 
 #########################
 #### System commands ####
@@ -62,8 +60,8 @@ alias lsblk='lsblk --output NAME,MODE,SIZE,TYPE,FSTYPE,UUID,LABEL,MOUNTPOINT';
 #### Some nice ip aliases ####
 ##############################
 # Quickly retrieve your public ip addresses
-alias myip='\curl -A "curl `hostname`" -4skL https://v4.4ce.ca';
-alias myip6='\curl -A "curl `hostname`" -6skL https://v6.4ce.ca';
+alias myip='\curl -A "curl `hostname`" -4skLm7 https://v4.4ce.ca';
+alias myip6='\curl -A "curl `hostname`" -6skLm7 https://v6.4ce.ca';
 # Outputs both, if available
 alias myips='myip; myip6';
 
@@ -74,6 +72,7 @@ alias cd..='cd ..; ll';
 alias ..='cd ..; ll';
 alias ...='cd ../../; ll';
 alias ....='cd ../../../; ll';
+alias .....='cd ../../../../; ll';
 alias back='cd -; ll';
 alias home='cd ~; ll';
 alias lld='ll | grep -E "^d"';
