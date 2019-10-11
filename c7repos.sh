@@ -909,7 +909,7 @@ function _createYUMPOST() {
 # I don't care if the user sets a bad hostname, he should be
 # more careful next time as i don't want to manage that input
 function _setHOSTNAME() {
-        echo -en "\033[1mSet a HOSTNAME for this server? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _HSTNM;
+	echo -en "\033[1mSet a HOSTNAME for this server? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _HSTNM;
 
 	case "${_HSTNM}" in
 		[nN][oO]|[no])
