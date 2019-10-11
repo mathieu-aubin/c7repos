@@ -47,6 +47,7 @@ java
 jp2a
 jwhois
 lftp
+libssh2
 lvm2
 mc
 mlocate
