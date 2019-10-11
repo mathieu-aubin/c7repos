@@ -6,6 +6,7 @@
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
 2019.10.11  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Fixes the _setHOSTNAME function
    * Changes aliases for myip and myip6
    * Changes aliases for update,update-clean and kernel-cleanup so they do not
      run 'update-grub' as it is being ran using yum post-transaction-actions

@@ -917,7 +917,7 @@ function _setHOSTNAME() {
 			;;
 		*)
 			read -rp $"Please enter the HOSTNAME you want for this server: " _HOSTNAME;
-			if ${_HOSTNAME}; then
+			if [[ -n "${_HOSTNAME}" ]]; then
 				hostnamectl set-hostname "${_HOSTNAME}";
 				echo -e "  - \033[32mHOSTNAME set to '${_HOSTNAME}'\033[0;1m.\033[0m"; sleep 0.3;
 			else
