@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.10.12  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Removes 'fast' from yum makecache to mitigate errors with using dnf instead
+
 2019.10.11  Mathieu Aubin <mathieu@zeroserieux.com>
    * Fixes the _setHOSTNAME function
    * Changes aliases for myip and myip6
