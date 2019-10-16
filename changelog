@@ -5,6 +5,10 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.10.16  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Happy birthday to me. Yayy
+   * Changes $? to ${?}. Why? Not certain. I think i like it better.
+
 2019.10.12  Mathieu Aubin <mathieu@zeroserieux.com>
    * Removes 'fast' from yum makecache to mitigate errors with using dnf instead
 

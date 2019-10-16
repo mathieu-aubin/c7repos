@@ -458,7 +458,7 @@ function _installDEVEL() {
 # Function to install/enable MariaDB
 function _installMARIADB() {
 	rpm -q MariaDB-server &>/dev/null;
-	if [[ $? -ne 0 ]]; then
+	if [[ ${?} -ne 0 ]]; then
 		_MARIADB_INST=0; echo -en "\033[1mInstall MariaDB server? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m ";
 	else
 		_MARIADB_INST=1; echo -en "\033[1mMariaDB already installed. Re-install MariaDB server? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m ";
@@ -509,7 +509,7 @@ function _installMARIADB() {
 # Function to install/enable NGINX
 function _installNGINX() {
 	rpm -q nginx &>/dev/null;
-	if [[ $? -ne 0 ]]; then
+	if [[ ${?} -ne 0 ]]; then
 		_NGX_INST=0; echo -en "\033[1mInstall \033[0;32mNGINX\033[0;1m? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _GINX;
 	else
 		_NGX_INST=1; echo -en "\033[0;32mNGINX\033[0;1m already installed. Re-install? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _GINX;
@@ -523,7 +523,7 @@ function _installNGINX() {
 			[[ ${_NGX_INST} -eq 0 ]] && echo -e "\033[1mInstalling \033[0;32mNGINX\033[0;1m...\033[0m" || echo -e "\033[1mRe-installing \033[0;32mNGINX\033[0;1m...\033[0m"; sleep 0.1;
 			[[ ${_NGX_INST} -eq 0 ]] && yum -y install nginx &>/dev/null || yum -y reinstall nginx &>/dev/null;
 			nginx -t &>/dev/null;
-			[[ $? -eq 0 ]] && {
+			[[ ${?} -eq 0 ]] && {
 				_NGXPID="$(pidof nginx)";
 				[[ -z ${_NGXPID} ]] && echo -ne "\033[1mStarting \033[0;32mNGINX\033[0;1m...\033[0m" && sleep 0.1;
 				systemctl enable nginx --now &>/dev/null && echo -e "\033[32m NGINX\033[0;1m started.\033[0m" && sleep 1;
@@ -538,7 +538,7 @@ function _installNGINX() {
 # Function to install NodeJS/NPM
 function _installNODE() {
 	rpm -q nodejs &>/dev/null;
-	if [[ $? -ne 0 ]]; then
+	if [[ ${?} -ne 0 ]]; then
 		_NODE_INST=0; echo -en "\033[1mInstall NodeJS and update NPM to current version? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _NODENPM;
 	else
 		_NODE_INST=1; echo -en "\033[1mNodeJS already installed. Re-install and update to current version? [\033[0;1;38;5;40mY\033[0;1m/n]\033[0m "; read -er _NODENPM;
@@ -612,7 +612,7 @@ function _installCOMMON() {
 
 	# Perform python2-pip commands if installed
 	rpm -q python2-pip &>/dev/null;
-	[[ $? -eq 0 ]] && {
+	[[ ${?} -eq 0 ]] && {
 		echo -e "\033[1mUpgrading and creating python PIP completion file...\033[0m"; sleep 0.1;
 		# Upgrades pip to latest version
 		pip install pip --upgrade &>/dev/null;
@@ -626,7 +626,7 @@ function _installCOMMON() {
 
 	# Install some npm utils if installed
 	hash npm &>/dev/null;
-	[[ $? -eq 0 ]] && {
+	[[ ${?} -eq 0 ]] && {
 		npm install serve http-server xtinypng-cli webpagetest -g &>/dev/null;
 	}
 
