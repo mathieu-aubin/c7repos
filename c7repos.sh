@@ -4,7 +4,7 @@
 #
 # Copyright © 2017-2019 Mathieu Aubin <mathieu@zeroserieux.com>
 #
-# Installs common/base CentOS7 repositories/programs (x86_64 ONLY)
+# Installs common/base CentOS 7 repositories/programs (x86_64 ONLY)
 #
 # WHAT
 # ¯¯¯¯
@@ -126,7 +126,7 @@ MARIADB_VERSION=${MARIADB_VERSION:-10.4};
 
 # PHP - Must be a valid remi repo version
 #	Reference: https://blog.remirepo.net/pages/Config-en
-PHP_VERSION=${PHP_VERSION:-73};
+PHP_VERSION=${PHP_VERSION:-74};
 
 # Repository URL used to fetch ressources from
 REPOURL='https://raw.githubusercontent.com/mathieu-aubin/c7repos/master';

@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.12.03  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Sets php 7.4 as default
+
 2019.10.16  Mathieu Aubin <mathieu@zeroserieux.com>
    * Happy birthday to me. Yayy
    * Changes $? to ${?}. Why? Not certain. I think i like it better.
