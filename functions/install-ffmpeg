@@ -15,7 +15,7 @@ function install-ffmpeg() {
 			# Check if file exist in current directory (after extract)
 			if [[ -f "${TARGET}" ]]; then
 				# Move to folder
-				mv $(TARGET} /usr/local/bin;
+				mv ${TARGET} /usr/local/bin;
 			else
 				# If file doesn't exit, assume it's ffmpeg-10bit and create a link instead
 				ln -s /usr/local/bin/ffmpeg /usr/local/bin/${TARGET};
