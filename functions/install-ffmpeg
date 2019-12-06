@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Function that installs latest copy of ffmpeg to your /usr/local/bin directory
+# including the provided models. Thanks to https://johnvansickle.com for his
+# quality releases of statically compiled ffmpeg!
+function install-ffmpeg() {
+	# Create directory and move
+	mkdir /tmp/ffmpeg-new && pushd /tmp/ffmpeg-new &>/dev/null && \
+		curl -sLko ffmpeg-new.tar.xz https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz && \
+		tar xf ffmpeg-new.tar.xz --strip-component=1 &&
+		rm -rf /usr/local/share/model /usr/local/bin/*ffmpeg-*-64bit-static && \
+		mv model /usr/local/share;
+		for TARGET in {ffserver,ffmpeg,ffmpeg-10bit,ffprobe,qt-faststart}; do
+			unlink /usr/local/bin/${TARGET} &>/dev/null;
+			# Check if file exist in current directory (after extract)
+			if [[ -f "${TARGET}" ]]; then
+				# Move to folder
+				mv $(TARGET} /usr/local/bin;
+			else
+				# If file doesn't exit, assume it's ffmpeg-10bit and create a link instead
+				ln -s /usr/local/bin/ffmpeg /usr/local/bin/${TARGET};
+			fi
+		done
+
+	popd &>/dev/null;
+
+	# Cleanup
+	rm -rf /tmp/ffmpeg-new;
+}; alias update-ffmpeg='install-ffmpeg';
+

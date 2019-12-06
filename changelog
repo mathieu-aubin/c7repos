@@ -5,6 +5,10 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.12.06  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds a function to install ffmpeg static releases
+     *** Thanks to John Van Sickle - FFmpeg Static Builds ***
+
 2019.12.03  Mathieu Aubin <mathieu@zeroserieux.com>
    * Sets php 7.4 as default
 
