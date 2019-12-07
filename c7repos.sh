@@ -690,9 +690,8 @@ function _createDOTFILES() {
 
 	# Writes general export values to export file
 	cat <<- "__EOF__" >> ~/.bash_exports
-		shopt -s checkwinsize;
-		shopt -s histappend;
-		shopt -s globstar;
+		shopt -s checkwinsize; shopt -s histappend;
+		shopt -s globstar; shopt -s dotglob;
 		export HISTCONTROL=ignoreboth:erasedups;
 		export HISTSIZE=20000;
 		export HISTFILESIZE=-1;
@@ -705,7 +704,7 @@ function _createDOTFILES() {
 		# Source tinykeys to get a new API code to use with 'xtinypng' every login
 		# More informations at https://ghub.io/xtinypng-cli (thanks ghub.io)
 		# DO NOT ENABLE IF YOU HAVE NOT RUN tinykeys ONCE TO SET YOUR PASSWORD FIRST
-		#[[ -x /root/bin/tinykeys ]] && source $(/root/bin/tinykeys --env);
+		#[[ -x $(which tinykeys) ]] && source $(tinykeys --env);
 
 	__EOF__
 	echo -e '  - \033[32mAdded general exports\033[0m'; sleep 0.3;

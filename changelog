@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.12.07  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds dotglob to exports, finally
+
 2019.12.06  Mathieu Aubin <mathieu@zeroserieux.com>
    * Adds a function to install ffmpeg static releases
      *** Thanks to John Van Sickle - FFmpeg Static Builds ***
