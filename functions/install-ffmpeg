@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Function that installs latest copy of ffmpeg to your /usr/local/bin directory
 # including the provided models. Thanks to https://johnvansickle.com for his
 # quality releases of statically compiled ffmpeg!
@@ -27,4 +25,3 @@ function install-ffmpeg() {
 	# Cleanup
 	rm -rf /tmp/ffmpeg-new;
 }; alias update-ffmpeg='install-ffmpeg';
-
