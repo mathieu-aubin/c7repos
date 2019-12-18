@@ -5,7 +5,12 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.12.17  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Updates nodejs version from 12.x to 13.x as per distribution repo
+     at https://github.com/nodesource/distributions
+
 2019.12.11  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Fixes bash-colors function
    * Updates digall function to add more dns entries to search for
    * Fixes a stupid mistake with install-ffmpeg function, which had a shebang..
 

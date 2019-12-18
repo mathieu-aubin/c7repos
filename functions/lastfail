@@ -12,4 +12,3 @@ function lastfail() {
 	sort | uniq -c | sort -n
 }
 alias failed-logins='lastfail';
-

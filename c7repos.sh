@@ -113,7 +113,7 @@
 #
 # NodeJS - Must be a valid version number
 #	Reference: https://github.com/nodesource/distributions
-NODEJS_VERSION=${NODEJS_VERSION:-12};
+NODEJS_VERSION=${NODEJS_VERSION:-13};
 
 # MariaDB - Must be a valid version number (stable release)
 #	Reference: https://mariadb.com/kb/en/library/library-mariadb-releases/
