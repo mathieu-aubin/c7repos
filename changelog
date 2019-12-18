@@ -5,7 +5,11 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.12.18  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Changes df alias to exclude tmpfs/devtmpfs from output
+
 2019.12.17  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Removes extra empty line in last-fail function
    * Updates nodejs version from 12.x to 13.x as per distribution repo
      at https://github.com/nodesource/distributions
 
