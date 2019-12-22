@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2019.12.22  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds both upx and xargs new aliases
+
 2019.12.18  Mathieu Aubin <mathieu@zeroserieux.com>
    * Changes df alias to exclude tmpfs/devtmpfs from output
 

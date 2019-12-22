@@ -22,14 +22,16 @@ alias columnt='column -t';
 alias idn='idn --allow-unassigned';
 alias gpg='gpg -a --keyserver pool.sks-keyservers.net';
 alias curla='curl -A "Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0"';
-alias curlc='curl -c /tmp/cookies -b /tmp/cookies -sSL'; alias curl-cookie='curlc';
+alias curlc='curla -c /tmp/cookies -b /tmp/cookies -sSL'; alias curl-cookie='curlc';
 alias quick-stats='bash <(curl -skL https://bit.ly/qsts)'; alias qstats='quick-stats';
-alias grep='grep --color=auto'; alias greps='grep -C5';
+alias greps='grep -C5'; alias grep='grep --color=auto';
 alias rm-ds_store='echo -e "\033[1mRemoving ALL .DS_Store files from current directory, recursively...\033[0m"; find ./ -type f -iname ".DS_Store" -exec rm {} \;'; alias remove-ds_store='rm-ds_store';
 alias free-ram='echo -e "\033[1mBEFORE:\033[0m"; sleep 0.5; free -mh && sync && sync && echo 3 >/proc/sys/vm/drop_caches; sleep 0.5; echo -e "\n\033[1mAFTER:\033[0m"; free -mh; fstrim -av 2>/dev/null';
 alias chownroot='chown root:root ${PWD} -R && echo -e "Current folder ownership recursively set to root:root"';
+alias upx='nice -n -20 upx --8mib-ram --best --brute --ultra-brute -9';
 # Because it's funny... even if not needed. See https://4ce.ca/sudoplease
 alias please='sudo';
+alias xargs='xargs -r';
 
 ###################################################
 #### Overrides the default cp/rm/mkdir aliases ####
