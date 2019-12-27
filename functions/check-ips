@@ -1,0 +1,16 @@
+# Check all ip's given on command line for ping response
+function check-ips() { 
+	local IPS;
+	for IPS in $@; do
+		if [[ "${IPS}" == *":"* ]]; then
+			ping6 -q -c1 -w3 ${IPS} &>/dev/null && \
+			echo -e "  \\033[1;38;5;76mOK\\033[0;1m:\\033[0m ${IPS}" || echo -e "\\033[1;38;5;160mFAIL\\033[0;1m:\\033[0m ${IPS}" >&2;
+		elif [[ "${IPS}" == *"."* ]]; then
+			ping -q -c1 -w3 ${IPS} &>/dev/null && \
+			echo -e "  \\033[1;38;5;76mOK\\033[0;1m:\\033[0m ${IPS}" || echo -e "\\033[1;38;5;160mFAIL\\033[0;1m:\\033[0m ${IPS}" >&2;
+		else
+			echo -e "\\033[1;38;5;160mERROR\\033[0;1m:\\033[0m Invalid IP: ${IPS}" >&2;
+		fi
+	done
+}
+alias ping-ips="check-ips";

@@ -1,6 +1,7 @@
 _showDANGER
 _showINFOS
 bash-colors
+check-ips
 checkOOM
 chownwww
 digall
