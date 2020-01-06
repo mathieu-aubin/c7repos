@@ -17,6 +17,7 @@ pidof-parent
 random-interface
 show-ssh-port
 speedtest
+update-go
 update-npm-all
 update-tools
 view-source

@@ -1,0 +1,47 @@
+# Function to update Golang from a previous version
+function update-go() {
+	local _IVER _CVER _UGO;
+
+	# Get locally installed Go version
+	_IVER=$(go version 2>/dev/null | grep -Pio --color=never 'go\K\S+');
+	# Get current distribution Go version
+	_CVER=$(curl -skL 'https://golang.org/VERSION?m=text' | grep -Pio --color=never 'go\K\S+');
+
+	# Check if installed version is less than current distribution version
+	if [[ ${_IVER} < ${_CVER} ]]; then
+		echo -en "\\033[1mUpdate Go from ${_IVER} to ${_CVER}? [\\033[0;1;38;5;40mY\\033[0;1m/n]\\033[0m "; read -er _UGO;
+
+		# Check for response from user
+		case "${_UGO}" in
+			# Response is negative
+			[nN][oO]|[no])
+				echo -e "\\033[1;38;5;196;4mNot updating Go based on request\\033[0m";
+				sleep 0.3;
+				;;
+			# Response is not negative, hence positive
+			*)
+				# Create/cleanup go base directory
+				mkdir -p /opt/go;
+				rm -rf /opt/go/*;
+				echo -e "\\033[1mInstalling/updating Go to version ${_CVER}...\\033[0m";
+				sleep 0.1;
+				curl -#Lk https://dl.google.com/go/${_CVER}.linux-amd64.tar.gz | tar --strip-components=1 -xzC /opt/go &>/dev/null
+				if [[ -x /opt/go/bin/go ]]; then
+					# Allows for using 'getgo' to update
+					# https://go.googlesource.com/tools/+/master/cmd/getgo/
+					ln -s /opt/go ~/.go &>/dev/null; mkdir -p ~/go/{bin,src,pkg};
+					echo -e "\\033[32mGo updated from version ${_IVER} to ${_CVER}\\033[0;1m.\\033[0m";
+					sleep 0.3;
+				else
+					>&2 echo -e "\\033[1;38;5;196;4mGo update problem...\\033[0m";
+					sleep 2;
+				fi
+				;;
+		esac
+	else
+		echo -e "\\033[32mGo is up to date \\033[0;1m(version ${_IVER})\\033[0m";
+	fi
+	unset _UGO _IVER _CVER;
+}
+alias update-golang='update-go'; alias golang-update='update-go';
+alias go-update='update-go'; alias go-updater='update-go';
