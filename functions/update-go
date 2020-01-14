@@ -1,7 +1,8 @@
 # Function to update Golang from a previous version
 function update-go() {
-	local _IVER _CVER _UGO;
-
+	local _IVER _CVER _UGO _COLS _TMPDIR;
+	# Get current colums from terminal
+	_COLS=$(tput cols);
 	# Get locally installed Go version
 	_IVER=$(go version 2>/dev/null | grep -Pio --color=never 'go\K\S+');
 	# Get current distribution Go version
@@ -15,29 +16,37 @@ function update-go() {
 		case "${_UGO}" in
 			# Response is negative
 			[nN][oO]|[no])
-				echo -e "\\033[1;38;5;196;4mNot updating Go based on request\\033[0m";
-				sleep 0.3;
+				echo -e "\\033[1;38;5;196;4mNot updating Go based on request\\033[0m"; sleep 0.3;
 				;;
 			# Response is not negative, hence positive
 			*)
-				# Create/cleanup go base directory
-				mkdir -p /opt/go;
-				rm -rf /opt/go/*;
-				echo -e "\\033[1mInstalling/updating Go to version ${_CVER}...\\033[0m";
-				sleep 0.1;
-				curl -#Lk https://dl.google.com/go/${_CVER}.linux-amd64.tar.gz | tar --strip-components=1 -xzC /opt/go &>/dev/null
-				if [[ -x /opt/go/bin/go ]]; then
-					# Allows for using 'getgo' to update
-					# https://go.googlesource.com/tools/+/master/cmd/getgo/
-					ln -s /opt/go ~/.go &>/dev/null; mkdir -p ~/go/{bin,src,pkg};
-					echo -e "\\033[32mGo updated from version ${_IVER} to ${_CVER}\\033[0;1m.\\033[0m";
-					sleep 0.3;
+				# Create a temp directory
+				_TMPDIR=$(mktemp -dt golang-update.XXXXXXXX);
+				echo -e "\\033[1mInstalling/updating Go to version ${_CVER}...\\033[0m"; sleep 0.1;
+				# Set terminal columns to something smaller than fullscreen for curl output
+				stty cols 70 &>/dev/null;
+				# Download and extract to temp directory
+				curl -#Lk https://dl.google.com/go/go${_CVER}.linux-amd64.tar.gz | tar --strip-components=1 -xzC ${_TMPDIR} &>/dev/null;
+				# Reset columns
+				stty cols ${_COLS} &>/dev/null;
+				if [[ -x ${_TMPDIR}/bin/go ]]; then
+					# Create/cleanup go base directories and create required home directories
+					mkdir -p /opt/go ~/go/{bin,src,pkg}; rm -rf /opt/go/*;
+					# Move temporary directory to opt dir
+					mv ${_TMPDIR}/* /opt/go;
+					# Allows for using 'getgo' to update (https://go.googlesource.com/tools/+/master/cmd/getgo/)
+					ln -s /opt/go ~/.go &>/dev/null;
+					echo -e "\\033[32mGo updated from version ${_IVER} to ${_CVER}\\033[0;1m.\\033[0m"; sleep 0.3;
 				else
-					>&2 echo -e "\\033[1;38;5;196;4mGo update problem...\\033[0m";
-					sleep 2;
+					>&2 echo -e "\\033[1;38;5;196;4mGo update problem...\\033[0m"; sleep 2;
 				fi
 				;;
 		esac
+
+		# Cleanup our temp directory
+		if [[ -d ${_TMPDIR} ]]; then
+			rm -rf ${_TMPDIR};
+		fi
 	else
 		echo -e "\\033[32mGo is up to date \\033[0;1m(version ${_IVER})\\033[0m";
 	fi
