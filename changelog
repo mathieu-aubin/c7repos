@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2020.01.16  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds a new function, kill-procs
+
 2020.01.13  Mathieu Aubin <mathieu@zeroserieux.com>
    * Fixes a typo in 'update-go'
 

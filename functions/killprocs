@@ -1,0 +1,21 @@
+# Kill multiple processes simultaneously, independant of either a PID is passed
+# of, added for just this reason, a process name. It helps mitigate the frequent
+# killings of processes when developping, at least for me. It was really needed
+function killprocs() {
+        local INP PIDS;
+	PIDS=; INP=;
+
+        for INP in "$@"; do
+                # Check if the input is a PID/is numeric
+                if [[ "${INP}" =~ ^[0-9]+$ ]]; then
+                        PIDS="${PIDS} ${INP}";
+
+                # Otherwise, it must be a process name, as string
+                else
+			PIDS="${PIDS} $(pidof ${INP} 2>/dev/null)"
+                fi
+        done
+
+        [[ ! -z "${PIDS}" ]] && eval "kill -9 ${PIDS}" 2>/dev/null;
+}
+alias killpid=killprocs; alias kill-pids=killprocs; alias killproc=killprocs;
