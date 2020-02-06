@@ -169,6 +169,8 @@ alias go-update-all='go get -u -v -fix all';
 alias go-update-allfast='go get -u -v -d -fix all';
 # Same as above, plus get packages needed to build tests
 alias go-update-alltests='go get -u -v -d -t -fix all';
+# Cleans all go cache data
+alias go-cache-cleanup='go clean -cache -testcache -modcache';
 
 #################################################################
 #### Self-destruct aliases (one-shot, self-removing aliases) ####

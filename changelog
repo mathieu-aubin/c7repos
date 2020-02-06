@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2020.02.06  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds a new aliase to clean golang cache stuff called "go-cache-cleanup"
+
 2020.01.16  Mathieu Aubin <mathieu@zeroserieux.com>
    * Adds a new function, kill-procs
 
