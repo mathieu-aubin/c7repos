@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2020.02.12  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Updates nano-static binary to 4.2 (using slang as curses)
+
 2020.02.11  Mathieu Aubin <mathieu@zeroserieux.com>
    * Typo fix for killprocs function in dep file
    * Adds a resolv.conf file custom function inside of c7repos.sh
