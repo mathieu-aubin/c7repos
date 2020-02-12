@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2020.02.11  Mathieu Aubin <mathieu@zeroserieux.com>
+   * typo fix for killprocs function in dep file
+
 2020.02.06  Mathieu Aubin <mathieu@zeroserieux.com>
    * Adds a new aliase to clean golang cache stuff called "go-cache-cleanup"
 

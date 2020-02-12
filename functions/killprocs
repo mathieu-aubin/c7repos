@@ -18,4 +18,5 @@ function killprocs() {
 
         [[ ! -z "${PIDS}" ]] && eval "kill -9 ${PIDS}" 2>/dev/null;
 }
-alias killpid=killprocs; alias kill-pids=killprocs; alias killproc=killprocs;
+alias killpid=killprocs; alias kill-pids=killprocs;
+alias killproc=killprocs; alias kill-procs=killprocs;

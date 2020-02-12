@@ -9,7 +9,7 @@ echoerr
 echostatus
 generate-password
 install-ffmpeg
-kill-procs
+killprocs
 lastfail
 load-check
 most-used
