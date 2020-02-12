@@ -6,7 +6,8 @@
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
 2020.02.11  Mathieu Aubin <mathieu@zeroserieux.com>
-   * typo fix for killprocs function in dep file
+   * Typo fix for killprocs function in dep file
+   * Adds a resolv.conf file custom function inside of c7repos.sh
 
 2020.02.06  Mathieu Aubin <mathieu@zeroserieux.com>
    * Adds a new aliase to clean golang cache stuff called "go-cache-cleanup"
