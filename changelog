@@ -5,6 +5,12 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2020.03.21  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Updates upx alias (fix for best compression)
+   * Removes a 4ce.ca link that is no longer available
+   * Adds an alias for gunzip that keeps original archive
+     instead of original behavior which deletes it
+
 2020.02.12  Mathieu Aubin <mathieu@zeroserieux.com>
    * Updates nano-static binary to 4.2 (using slang as curses)
 
