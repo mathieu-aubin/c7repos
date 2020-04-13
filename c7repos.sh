@@ -692,6 +692,7 @@ function _createDOTFILES() {
 	cat <<- "__EOF__" >> ~/.bash_exports
 		shopt -s checkwinsize; shopt -s histappend;
 		shopt -s globstar; shopt -s dotglob;
+		shopt -s autocd;
 		export HISTCONTROL=ignoreboth:erasedups;
 		export HISTSIZE=20000;
 		export HISTFILESIZE=-1;

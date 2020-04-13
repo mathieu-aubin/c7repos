@@ -82,7 +82,9 @@ alias llf='ll | grep -Ev "^d"';
 alias ll='ls -lah --color=auto --group-directories-first';
 alias lln='ls -lah --color=never --group-directories-first';
 # and.. because, shit happens
-alias l='ll'; alias lll='ll'
+alias l='ll'; alias lll='ll';
+# fast edit using last command...
+alias nanoll='nano';
 
 ###############################################################
 #### Dot files fun (add/source to/from dot files, quickly) ####

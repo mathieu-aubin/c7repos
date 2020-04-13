@@ -5,6 +5,10 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2020.04.12  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Adds shell option to autocd on directoy name input
+   * Adds nanoll alias for quick edit using last command (arrowup)
+
 2020.03.21  Mathieu Aubin <mathieu@zeroserieux.com>
    * Updates upx alias (fix for best compression)
    * Removes a 4ce.ca link that is no longer available
