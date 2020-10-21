@@ -113,11 +113,11 @@
 #
 # NodeJS - Must be a valid version number
 #	Reference: https://github.com/nodesource/distributions
-NODEJS_VERSION=${NODEJS_VERSION:-13};
+NODEJS_VERSION=${NODEJS_VERSION:-15};
 
 # MariaDB - Must be a valid version number (stable release)
 #	Reference: https://mariadb.com/kb/en/library/library-mariadb-releases/
-MARIADB_VERSION=${MARIADB_VERSION:-10.4};
+MARIADB_VERSION=${MARIADB_VERSION:-10.6};
 
 # TODO:
 #	- Add a php installer thing

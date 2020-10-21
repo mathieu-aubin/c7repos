@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2020.10.21  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Updates MariaDB and NodeJS to latest versions
+
 2020.04.12  Mathieu Aubin <mathieu@zeroserieux.com>
    * Adds shell option to autocd on directoy name input
    * Adds nanoll alias for quick edit using last command (arrowup)
