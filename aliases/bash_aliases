@@ -31,7 +31,7 @@ alias chownroot='chown root:root ${PWD} -R && echo -e "Current folder ownership 
 alias upx='nice -n -20 upx --8mib-ram --best --ultra-brute';
 alias please='sudo';
 alias xargs='xargs -r';
-alias gunzip='gunzip -k-;
+alias gunzip='gunzip -k';
 
 ###################################################
 #### Overrides the default cp/rm/mkdir aliases ####
