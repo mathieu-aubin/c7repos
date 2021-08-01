@@ -21,7 +21,7 @@ alias df='df -kTh -x tmpfs -x devtmpfs';
 alias columnt='column -t';
 alias idn='idn --allow-unassigned';
 alias gpg='gpg -a --keyserver pool.sks-keyservers.net';
-alias curla='curl -A "Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0"';
+alias curla='curl -A "Mozilla/5.0 (X11; Linux x86_64; rv:72.0) Gecko/20100101 Firefox/72.0"';
 alias curlc='curla -c /tmp/cookies -b /tmp/cookies -sSL'; alias curl-cookie='curlc';
 alias quick-stats='bash <(curl -skL https://bit.ly/qsts)'; alias qstats='quick-stats';
 alias greps='grep -C5'; alias grep='grep --color=auto';
@@ -82,7 +82,7 @@ alias llf='ll | grep -Ev "^d"';
 alias ll='ls -lah --color=auto --group-directories-first';
 alias lln='ls -lah --color=never --group-directories-first';
 # and.. because, shit happens
-alias l='ll'; alias lll='ll';
+alias l='ll'; alias lll='ll'; alias LL='ll';
 # fast edit using last command...
 alias nanoll='nano';
 
