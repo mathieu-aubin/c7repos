@@ -7,6 +7,7 @@
 
 2021.08.01  Mathieu Aubin <mathieu@zeroserieux.com>
    * Adds LL as an alias to ll
+   * Add epel repository exclude for packages nginx*
 
 2020.10.21  Mathieu Aubin <mathieu@zeroserieux.com>
    * Updates MariaDB and NodeJS to latest versions

@@ -2,7 +2,7 @@
 #
 # c7repos.sh
 #
-# Copyright © 2017-2019 Mathieu Aubin <mathieu@zeroserieux.com>
+# Copyright © 2017-2021 Mathieu Aubin <mathieu@zeroserieux.com>
 #
 # Installs common/base CentOS 7 repositories/programs (x86_64 ONLY)
 #
@@ -327,6 +327,11 @@ function _installREPOS() {
 		yum-config-manager --enable ${R} &>/dev/null;
 		echo -e "  - \033[32mRepository ${R} enabled\033[0;1m.\033[0m"; sleep 0.3;
 	done
+
+	# Fix an issue with epel repo having, sometimes, a higher, newer version of nginx
+	# We want to use official repository only
+	yum-config-manager --setopt=epel.exclude=nginx* --save
+
 	# Yum config manager has a tendency to add equal '=' sign as ' = ', that is, using spaces.
 	# Get rid of the spaces before and after the equal sign to keep me sane.
 	sed -i 's/ = /=/g' /etc/yum.repos.d/*.repo;
