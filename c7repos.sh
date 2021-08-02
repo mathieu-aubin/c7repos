@@ -507,7 +507,7 @@ function _installMARIADB() {
 			echo -e "\033[1mUnless you know precisely what you are doing, all the answers except the first one\nabout root password should be answered by YES or simply by pressing ENTER.\033[0m"; sleep 1;
 			read -rsp $'\033[1;37;41m PRESS ENTER TO CONTINUE. \033[0m\n';
 			echo -e "\033[1mStarting MariaDB secure installation...\033[0m"; sleep 0.1;
-			mariadb_secure_installation; echo -e "\n  - \033[32m DONE Securing MariaDB\033[0;1m.\033[0m";
+			mariadb-secure-installation; echo -e "\n  - \033[32m DONE Securing MariaDB\033[0;1m.\033[0m";
 			;;
 	esac
 	unset _MARIADB _MARIADB_INST _SQLPASS _RNDPASS;
