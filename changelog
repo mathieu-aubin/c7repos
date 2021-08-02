@@ -5,6 +5,14 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2021.08.02  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Update NodeJS version to 16.x
+   * Update MariaDB version to 10.6
+   * Update Php version to 8.0
+   * Fix iUS gpg key
+   * Fix elrepo rpm link
+   * Change mysql_secure_installation to mariadb-secure-installation
+
 2021.08.01  Mathieu Aubin <mathieu@zeroserieux.com>
    * Adds LL as an alias to ll
    * Add epel repository exclude for packages nginx*

@@ -113,11 +113,11 @@
 #
 # NodeJS - Must be a valid version number
 #	Reference: https://github.com/nodesource/distributions
-NODEJS_VERSION=${NODEJS_VERSION:-15};
+NODEJS_VERSION=${NODEJS_VERSION:-16};
 
 # MariaDB - Must be a valid version number (stable release)
 #	Reference: https://mariadb.com/kb/en/library/library-mariadb-releases/
-MARIADB_VERSION=${MARIADB_VERSION:-10.5};
+MARIADB_VERSION=${MARIADB_VERSION:-10.6};
 
 # TODO:
 #	- Add a php installer thing
@@ -126,7 +126,7 @@ MARIADB_VERSION=${MARIADB_VERSION:-10.5};
 
 # PHP - Must be a valid remi repo version
 #	Reference: https://blog.remirepo.net/pages/Config-en
-PHP_VERSION=${PHP_VERSION:-74};
+PHP_VERSION=${PHP_VERSION:-80};
 
 # Repository URL used to fetch ressources from
 REPOURL='https://raw.githubusercontent.com/mathieu-aubin/c7repos/master';
@@ -212,7 +212,7 @@ function _importGPGKEYS() {
 	rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org; sleep 0.01;
 	rpm --import https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7; sleep 0.01;
 	rpm --import https://download.docker.com/linux/centos/gpg; sleep 0.01;
-	rpm --import https://dl.iuscommunity.org/pub/ius/IUS-COMMUNITY-GPG-KEY; sleep 0.01;
+	rpm --import https://repo.ius.io/RPM-GPG-KEY-IUS-7; sleep 0.01;
 	rpm --import https://raw.githubusercontent.com/wp-cli/builds/gh-pages/wp-cli.pgp; sleep 0.01;
 	rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg &>/dev/null; sleep 0.01;
 	rpm --import https://download.opensuse.org/repositories/home:/laurentwandrebeck:/mc/CentOS_7/repodata/repomd.xml.key; sleep 0.01;
@@ -223,7 +223,7 @@ function _importGPGKEYS() {
 function _installREPOS() {
 	echo -e "\033[1mInstalling repository packages for available ones...\033[0m ";
 	rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm &>/dev/null; sleep 0.1;
-	rpm -Uvh https://www.elrepo.org/elrepo-release-7.0-4.el7.elrepo.noarch.rpm &>/dev/null; sleep 0.1;
+	rpm -Uvh https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm &>/dev/null; sleep 0.1;
 	rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-7.rpm &>/dev/null; sleep 0.1;
 	echo -e "  - \033[32mRepository packages installed\033[0;1m.\033[0m"; sleep 0.3;
 
@@ -259,6 +259,7 @@ function _installREPOS() {
 		name=NGINX stable repository for CentOS \$releasever
 		baseurl=https://nginx.org/packages/centos/\$releasever/\$basearch
 		gpgkey=https://nginx.org/keys/nginx_signing.key
+		skip_if_unavailable=1
 		gpgcheck=1
 		enabled=1
 
@@ -266,6 +267,7 @@ function _installREPOS() {
 		name=NGINX mainline repository for CentOS \$releasever
 		baseurl=https://nginx.org/packages/mainline/centos/\$releasever/\$basearch
 		gpgkey=https://nginx.org/keys/nginx_signing.key
+		skip_if_unavailable=1
 		gpgcheck=1
 		enabled=0
 
@@ -330,7 +332,7 @@ function _installREPOS() {
 
 	# Fix an issue with epel repo having, sometimes, a higher, newer version of nginx
 	# We want to use official repository only
-	yum-config-manager --setopt=epel.exclude=nginx* --save
+	yum-config-manager --setopt=epel.exclude=nginx* --save &>/dev/null
 
 	# Yum config manager has a tendency to add equal '=' sign as ' = ', that is, using spaces.
 	# Get rid of the spaces before and after the equal sign to keep me sane.
@@ -505,7 +507,7 @@ function _installMARIADB() {
 			echo -e "\033[1mUnless you know precisely what you are doing, all the answers except the first one\nabout root password should be answered by YES or simply by pressing ENTER.\033[0m"; sleep 1;
 			read -rsp $'\033[1;37;41m PRESS ENTER TO CONTINUE. \033[0m\n';
 			echo -e "\033[1mStarting MariaDB secure installation...\033[0m"; sleep 0.1;
-			mysql_secure_installation; echo -e "\n  - \033[32m DONE Securing MariaDB\033[0;1m.\033[0m";
+			mariadb_secure_installation; echo -e "\n  - \033[32m DONE Securing MariaDB\033[0;1m.\033[0m";
 			;;
 	esac
 	unset _MARIADB _MARIADB_INST _SQLPASS _RNDPASS;
