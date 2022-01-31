@@ -5,6 +5,11 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2022.01.31  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Update NodeJS version to 17.x
+   * Update MariaDB version to 10.7 (RC)
+   * Update Php version to 8.1
+
 2021.08.02  Mathieu Aubin <mathieu@zeroserieux.com>
    * Update NodeJS version to 16.x
    * Update MariaDB version to 10.6

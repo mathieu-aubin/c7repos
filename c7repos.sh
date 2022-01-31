@@ -2,7 +2,7 @@
 #
 # c7repos.sh
 #
-# Copyright © 2017-2021 Mathieu Aubin <mathieu@zeroserieux.com>
+# Copyright © 2017-2022 Mathieu Aubin <mathieu@zeroserieux.com>
 #
 # Installs common/base CentOS 7 repositories/programs (x86_64 ONLY)
 #
@@ -113,11 +113,11 @@
 #
 # NodeJS - Must be a valid version number
 #	Reference: https://github.com/nodesource/distributions
-NODEJS_VERSION=${NODEJS_VERSION:-16};
+NODEJS_VERSION=${NODEJS_VERSION:-17};
 
-# MariaDB - Must be a valid version number (stable release)
+# MariaDB - Must be a valid version number
 #	Reference: https://mariadb.com/kb/en/library/library-mariadb-releases/
-MARIADB_VERSION=${MARIADB_VERSION:-10.6};
+MARIADB_VERSION=${MARIADB_VERSION:-10.7}; # 10.7 is still RC as of 2022/01/31
 
 # TODO:
 #	- Add a php installer thing
@@ -126,7 +126,7 @@ MARIADB_VERSION=${MARIADB_VERSION:-10.6};
 
 # PHP - Must be a valid remi repo version
 #	Reference: https://blog.remirepo.net/pages/Config-en
-PHP_VERSION=${PHP_VERSION:-80};
+PHP_VERSION=${PHP_VERSION:-81};
 
 # Repository URL used to fetch ressources from
 REPOURL='https://raw.githubusercontent.com/mathieu-aubin/c7repos/master';
