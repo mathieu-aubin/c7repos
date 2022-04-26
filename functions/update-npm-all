@@ -2,7 +2,7 @@
 function update-npm-all() {
 	local _TOUPDATE;
 	# Avoid the damn 'property of lenght undefined' from recent npm by running latest version @latest (used to be devel @next?)
-	_TOUPDATE=$(npx npm@latest outdated -g | awk '{print $1}' | grep -Eiv "^Package$|^node$|^$");
+	_TOUPDATE=$(echo -e '\n'|npx npm@latest outdated -g|awk '{print $1}'|grep -Eiv "^Package$|^node$|^$");
 	if [[ ! -z ${_TOUPDATE} ]]; then
 		_showINFOS "Updating all global NPM packages...";
 		#echo -e "\\033[1mUpdating \\033[3mNPM\\033[0;1m itself...\\033[0m" && npm i npm -g --upgrade; sleep 0.2;

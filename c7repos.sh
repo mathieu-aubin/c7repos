@@ -113,7 +113,8 @@
 #
 # NodeJS - Must be a valid version number
 #	Reference: https://github.com/nodesource/distributions
-NODEJS_VERSION=${NODEJS_VERSION:-18};
+# nodejs 18 requires higher glibc 2.2++
+NODEJS_VERSION=${NODEJS_VERSION:-17};
 
 # MariaDB - Must be a valid version number
 #	Reference: https://mariadb.com/kb/en/library/library-mariadb-releases/
@@ -559,7 +560,7 @@ function _installNODE() {
 			;;
 		*)
 			[[ ${_NODE_INST} -eq 0 ]] && echo -e "\033[1mInstalling NodeJS/NPM...\033[0m" || echo -e "\033[1mRe-installing NodeJS/NPM...\033[0m"; sleep 0.1
-			[[ ${_NODE_INST} -eq 0 ]] && yum -y install nodejs &>/dev/null || yum -y reinstall nodejs &>/dev/null;
+			[[ ${_NODE_INST} -eq 0 ]] && yum -y --skip-broken install nodejs npm &>/dev/null || yum -y --skip-broken reinstall nodejs npm &>/dev/null;
 			echo -e "  - \033[32mNodeJS installed\033[0;1m.\033[0m"; sleep 0.3;
 			echo -e "\033[1mUpgrading NPM to latest/current version...\033[0m"; sleep 0.1;
 			# Upgrades npm to latest version
@@ -965,67 +966,92 @@ function _modifyRESOLVCONF() {
 
 # Call to show our header
 _showHEADER;
+
 # Call to check if all is correct to run the script...
 _preCHECK;
+
 # Call to the disable SELinux function
 _doSELINUX;
+
 # Call to check SSH port and change if needed/wanted
 _checkSSH;
+
 # Call to create getaddressinfo config which favors ipv4
 _createGAICONF;
+
 # Call to modify resolv.conf adding CF/GOOGLE nameservers
 _modifyRESOLVCONF;
+
 # Call to set a HOSTNAME for the server/instance
 _setHOSTNAME;
+
 # Call to create ssh key pair
 _createSSHKEYS;
+
 # Call to install Yum-utils/fastestmirror/deltapm/yum-plugin-post-transaction-actions
 _installYUMSTUFF;
+
 # Call to set Yum post install actions (essentially for kernel packages manipulations)
 _createYUMPOST;
+
 # Call to update bootloader config after any yum kernel modifications
 _updateGRUB;
+
 # Call to import the repo gpg keys
 _importGPGKEYS;
+
 # Call to install/create known repos files
 _installREPOS;
+
 # Call to install nano
 _installNANO;
+
 # Call to edit repo files
 _editREPOS;
+
 # Call to add some extra Yum configs
 _addtoYUMCONF;
+
 # Call to update system packages
 _updateSYSTEM;
+
 # Call to install devel packages
 _installDEVEL;
+
 # Call to install MariaDB
 _installMARIADB;
+
 # Call to install NGINX
 _installNGINX;
+
 # Call to install NODEJS
 _installNODE;
+
 # Call to install common packages
 _installCOMMON;
+
 # Call to install PERLBREW
 _installPERLBREW;
+
 # Call to install GOLANG
 _installGOLANG;
+
 # Call to create aliase and function
 _createDOTFILES;
+
 # Call to add to DIR_COLORS* files
 _addCOLORS; # Adds webp support
+
 # Call to cheat parallel citation (sorry)
 _cheatPARALLEL;
 
 sleep 2; clear;
-echo;
-echo -e "\033[1mDone with this CentOS 7 auto install script.\033[0m";
+echo -e "\n\033[1mDone with this CentOS 7 auto install script.\033[0m";
 echo -e "\033[1mConsider checking your firewall, SSH configs and the likes.\033[0m";
-echo -e "\033[1mAlso, a reboot wouldn't hurt, after initial install...\033[0m";
-echo;
-echo -e "\033[1mHave a nice day.\033[0m";
+echo -e "\033[1mAlso, a reboot wouldn't hurt, after initial install...\033[0m\n";
+echo -e "\033[1mHave a nice day.\033[0m\n";
 sleep 5;
+
 # Ensure a definite exit code in order for the initially set trap
 # to be executed - Essentially, to source ~/.bash_profile at exit
 exit 0;
