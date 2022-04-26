@@ -113,11 +113,11 @@
 #
 # NodeJS - Must be a valid version number
 #	Reference: https://github.com/nodesource/distributions
-NODEJS_VERSION=${NODEJS_VERSION:-17};
+NODEJS_VERSION=${NODEJS_VERSION:-18};
 
 # MariaDB - Must be a valid version number
 #	Reference: https://mariadb.com/kb/en/library/library-mariadb-releases/
-MARIADB_VERSION=${MARIADB_VERSION:-10.7}; # 10.7 is still RC as of 2022/01/31
+MARIADB_VERSION=${MARIADB_VERSION:-10.7}; # 10.7 is stable as of 2022/04/26
 
 # TODO:
 #	- Add a php installer thing
@@ -208,6 +208,7 @@ function _importGPGKEYS() {
 	echo -e "\033[1mImporting repositories GPG keys...\033[0m ";
 	rpm --import https://nginx.org/keys/nginx_signing.key; sleep 0.01;
 	rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi; sleep 0.01;
+	rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi2022; sleep 0.01
 	rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB; sleep 0.01;
 	rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org; sleep 0.01;
 	rpm --import https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7; sleep 0.01;
@@ -324,8 +325,9 @@ function _installREPOS() {
 	curl -4skL https://download.docker.com/linux/centos/docker-ce.repo | sed -e 's/enabled=1/enabled=0/' >> /etc/yum.repos.d/docker-ce.repo && \
 	echo -e "  - \033[32mDocker CE repository installed (disabled by default)\033[0;1m.\033[0m"; sleep 0.3;
 
+	# Removed fasttrack repository enable
 	echo -e "\033[1mEnabling repositories...\033[0m"; sleep 0.1;
-	for R in {centosplus,elrepo,elrepo-extras,elrepo-kernel,epel,extras,fasttrack,ius,mariadb,midnight-commander,nginx-stable,nodesource,remi,remi-safe,remi-php${PHP_VERSION},yarn}; do
+	for R in {centosplus,elrepo,elrepo-extras,elrepo-kernel,epel,extras,ius,mariadb,midnight-commander,nginx-stable,nodesource,remi,remi-safe,remi-php${PHP_VERSION},yarn}; do
 		yum-config-manager --enable ${R} &>/dev/null;
 		echo -e "  - \033[32mRepository ${R} enabled\033[0;1m.\033[0m"; sleep 0.3;
 	done
@@ -347,7 +349,7 @@ function _editREPOS() {
 			sleep 0.3;
 			;;
 		*)
-			nano /etc/yum.repos.d/*.repo;
+			${EDITOR:-nano} /etc/yum.repos.d/*.repo;
 			;;
 	esac
 	unset _EDITREPOS;
