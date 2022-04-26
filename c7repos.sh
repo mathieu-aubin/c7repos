@@ -439,7 +439,7 @@ function _addtoYUMCONF() {
 # To know more about 'update-grub' you can run it with -h or --help
 function _updateGRUB() {
 	echo -e "\033[1mGetting 'update-grub' tool...\033[0m"; sleep 0.1;
-	mkdir -p ~/bin &>/dev/null;
+	mkdir -p ~/{bin,.config} &>/dev/null;
 	curl -4skL ${REPOURL}/bin/update-grub -o ~/bin/update-grub;
 	chmod +x ~/bin/update-grub &>/dev/null; sleep 0.1;
 	echo -e "  - \033[32mGrub-Updater tool installed in ~/bin\033[0;1m. Updating bootloader now.\033[0m\n"; sleep 0.3;

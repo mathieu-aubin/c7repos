@@ -14,6 +14,7 @@
    * Fixes MC repository, hopefuly
    * Directly reference npm to be installed, otherwise err
    * Fixes function update-npm-all (npx first call requires a keypress)
+   * Creates a config dir in home if not present (vultr)
    * Some spacings and such..
 
 2022.01.31  Mathieu Aubin <mathieu@zeroserieux.com>
