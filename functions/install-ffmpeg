@@ -6,12 +6,12 @@ function install-ffmpeg() {
 	mkdir /tmp/ffmpeg-new && pushd /tmp/ffmpeg-new &>/dev/null && \
 		curl -sLko ffmpeg-new.tar.xz https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz && \
 		tar xf ffmpeg-new.tar.xz --strip-component=1 &&
-		rm -rf /usr/local/share/model /usr/local/bin/*ffmpeg-*-64bit-static && \
+		rm -rf /usr/local/share/model /usr/local/bin/*ffmpeg-*-static && \
 		mv model /usr/local/share;
 		for TARGET in {ffserver,ffmpeg,ffmpeg-10bit,ffprobe,qt-faststart}; do
-			unlink /usr/local/bin/${TARGET} &>/dev/null;
 			# Check if file exist in current directory (after extract)
 			if [[ -f "${TARGET}" ]]; then
+				unlink /usr/local/bin/${TARGET} &>/dev/null;
 				# Move to folder
 				mv ${TARGET} /usr/local/bin;
 			else

@@ -3,6 +3,8 @@ function update-go() {
 	local _IVER _CVER _UGO _COLS _TMPDIR;
 	# Get current colums from terminal
 	_COLS=$(tput cols);
+	# Set a trap to reset columns
+	trap "stty cols ${_COLS}" INT EXIT RETURN;
 	# Get locally installed Go version
 	_IVER=$(go version 2>/dev/null | grep -Pio --color=never 'go\K\S+');
 	# Get current distribution Go version
@@ -26,7 +28,7 @@ function update-go() {
 				# Set terminal columns to something smaller than fullscreen for curl output
 				stty cols 70 &>/dev/null;
 				# Download and extract to temp directory
-				curl -#Lk https://dl.google.com/go/go${_CVER}.linux-amd64.tar.gz | tar --strip-components=1 -xzC ${_TMPDIR} &>/dev/null;
+				\curl -#SLk https://dl.google.com/go/go${_CVER}.linux-amd64.tar.gz | tar --strip-components=1 -xzC ${_TMPDIR} &>/dev/null;
 				# Reset columns
 				stty cols ${_COLS} &>/dev/null;
 				if [[ -x ${_TMPDIR}/bin/go ]]; then

@@ -5,6 +5,9 @@
          ▐███▌██▌▐▀▐█ ▪▐▌██▐█▌▐█▄▪▐█▐█▄▄▌▐█▌▐▌▐█▌.▐▌▐█▄▪▐█
          ·▀▀▀ ▀▀▀ · ▀  ▀ ▀▀ █▪·▀▀▀▀  ▀▀▀ .▀▀▀  ▀█▄▀▪·▀▀▀▀
 
+2022.06.05  Mathieu Aubin <mathieu@zeroserieux.com>
+   * Fix some functions (ffmpeg/update-go)
+
 2022.04.26  Mathieu Aubin <mathieu@zeroserieux.com>
    * Update NodeJS version to 17.x
    * MariaDB 10.7 now stable
